@@ -1,0 +1,109 @@
+import { useState } from "react";
+import { Button } from "../ui/button";
+import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  return (
+    <header className="bg-white shadow-sm sticky top-0 z-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-4">
+          {/* Logo */}
+          <div className="flex-shrink-0 flex items-center">
+            <Link to="/" className="flex items-center">
+              <span className="text-2xl font-bold text-edtech-primary">Skill Bloom</span>
+            </Link>
+          </div>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex space-x-10">
+            <Link to="/" className="text-edtech-secondary hover:text-edtech-primary font-medium">
+              Home
+            </Link>
+            <Link to="/courses" className="text-edtech-secondary hover:text-edtech-primary font-medium">
+              Courses
+            </Link>
+            <Link to="/about" className="text-edtech-secondary hover:text-edtech-primary font-medium">
+              About Us
+            </Link>
+            <Link to="/contact" className="text-edtech-secondary hover:text-edtech-primary font-medium">
+              Contact
+            </Link>
+          </nav>
+
+          {/* CTA Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Button variant="outline" className="text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white">
+              Log In
+            </Button>
+            <Button className="bg-edtech-primary hover:bg-edtech-primary/90 text-white">
+              Sign Up
+            </Button>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={toggleMobileMenu}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-edtech-primary focus:outline-none"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <Link
+              to="/"
+              className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
+            >
+              Home
+            </Link>
+            <Link
+              to="/courses"
+              className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
+            >
+              Courses
+            </Link>
+            <Link
+              to="/about"
+              className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
+            >
+              About Us
+            </Link>
+            <Link
+              to="/contact"
+              className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
+            >
+              Contact
+            </Link>
+          </div>
+          <div className="pt-4 pb-3 border-t border-gray-200">
+            <div className="flex items-center px-5">
+              <div className="flex-shrink-0">
+                <Button variant="outline" className="w-full mb-2 text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white">
+                  Log In
+                </Button>
+                <Button className="w-full bg-edtech-primary hover:bg-edtech-primary/90 text-white">
+                  Sign Up
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Navbar;
