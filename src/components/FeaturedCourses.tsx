@@ -122,8 +122,8 @@ const FeaturedCourses = () => {
                 <p className="text-sm text-gray-600 mb-2">By {course.instructor}</p>
                 <div className="flex items-center justify-between mt-4">
                   <div className="flex items-baseline">
-                    <span className="text-edtech-dark font-bold text-lg">${course.price}</span>
-                    <span className="text-gray-500 line-through text-sm ml-2">${course.originalPrice}</span>
+                    <span className="text-edtech-dark font-bold text-lg">₹{course.price}</span>
+                    <span className="text-gray-500 line-through text-sm ml-2">₹{course.originalPrice}</span>
                   </div>
                   <Badge variant="outline" className="border-gray-300 text-gray-600">
                     {course.level}

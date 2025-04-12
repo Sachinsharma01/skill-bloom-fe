@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const navigate = useNavigate();
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -35,14 +35,17 @@ const Navbar = () => {
             <Link to="/contact" className="text-edtech-secondary hover:text-edtech-primary font-medium">
               Contact
             </Link>
+            <Link to="/blog" className="text-edtech-secondary hover:text-edtech-primary font-medium">
+              Blog
+            </Link>
           </nav>
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" className="text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white">
+            <Button onClick={() => navigate("/login")} variant="outline" className="text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white">
               Log In
             </Button>
-            <Button className="bg-edtech-primary hover:bg-edtech-primary/90 text-white">
+            <Button onClick={() => navigate("/signup")} className="bg-edtech-primary hover:bg-edtech-primary/90 text-white">
               Sign Up
             </Button>
           </div>
@@ -86,6 +89,12 @@ const Navbar = () => {
               className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
             >
               Contact
+            </Link>
+            <Link
+              to="/blog"
+              className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
+            >
+              Blog
             </Link>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">

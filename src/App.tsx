@@ -8,6 +8,8 @@ import NotFound from "./pages/404/NotFound";
 import About from "./pages/about";
 import Resources from "./pages/resources";
 import Contact from "./pages/contact";
+import Login from "./pages/login";
+import Blog from "./pages/blog";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -17,10 +19,12 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home   />} />
-          <Route path="/about" element={<About   />} />
-          <Route path="/resources" element={<Resources   />} />
-          <Route path="/contact" element={<Contact   />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path='/blog' Component={Blog} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
