@@ -18,89 +18,76 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 const coursesData = [
   {
     id: 1,
-    title: "Web Development Masterclass",
-    description: "Master HTML, CSS, JavaScript, React and Node.js in this comprehensive bootcamp",
-    category: "bootcamp",
-    price: 199,
-    duration: 12,
+    title: "Top Product Based Companies In India",
+    description: "Explore the top product based companies in India and their unique offerings",
+    category: "product-based-companies",
+    price: 29,
+    duration: 1,
     level: "Intermediate",
     rating: 4.8,
     students: 1245,
-    instructor: "Sarah Johnson",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop"
+    instructor: "Akhil Dubey",
+    image: "https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fac409000129a7563e/view?project=67fabe35003d5a3f0bb3&mode=admin"
   },
   {
     id: 2,
-    title: "UX/UI Design Fundamentals",
-    description: "Learn user experience design from scratch and create stunning interfaces",
-    category: "course",
-    price: 89,
+    title: "Top MNCs In India",
+    description: "Explore the top product based companies in India and their unique offerings",
+    category: "mncs",
+    price: 29,
     duration: 6,
     level: "Beginner",
     rating: 4.7,
     students: 850,
-    instructor: "Michael Chen",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop"
+    instructor: "Akhil Dubey",
+    image: "https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fac71c00097f6a2304/view?project=67fabe35003d5a3f0bb3&mode=admin"
   },
   {
     id: 3,
-    title: "Data Science & Machine Learning",
-    description: "From data analysis to building AI models with Python and TensorFlow",
-    category: "bootcamp",
-    price: 249,
+    title: "Top Hyderabad Startups",
+    description: "Explore the top startups in Hyderabad and their unique offerings",
+    category: "startups",
+    price: 19,
     duration: 14,
     level: "Advanced",
     rating: 4.9,
     students: 760,
-    instructor: "Dr. Alex Rivera",
-    image: "https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=2134&auto=format&fit=crop"
+    instructor: "Akhil Dubey",
+    image: "https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad4750020d46c3c04/view?project=67fabe35003d5a3f0bb3&mode=admin"
   },
   {
     id: 4,
-    title: "Mobile App Development Bundle",
-    description: "Master React Native, Flutter, and native iOS/Android development",
-    category: "combo",
-    price: 299,
+    title: "Top Chennai Startups",
+    description: "Explore the top startups in Chennai and their unique offerings",
+    category: "startups",
+    price: 19,
     duration: 20,
     level: "Intermediate",
     rating: 4.6,
     students: 530,
-    instructor: "James Wilson",
-    image: "https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?q=80&w=2144&auto=format&fit=crop"
+    instructor: "Akhil Dubey",
+    image: "https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad7bd003385be8d1c/view?project=67fabe35003d5a3f0bb3&mode=admin"
   },
   {
     id: 5,
-    title: "Digital Marketing Essentials",
-    description: "SEO, social media, content marketing and PPC campaign strategies",
-    category: "course",
-    price: 79,
+    title: "Top Startups In India",
+    description: "Explore the top startups in India and their unique offerings",
+    category: "startups",
+    price: 19,
     duration: 5,
     level: "Beginner",
     rating: 4.5,
     students: 1890,
     instructor: "Emma Rodriguez",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
+    image: "https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad925001c8970148f/view?project=67fabe35003d5a3f0bb3&mode=admin"
   },
-  {
-    id: 6,
-    title: "Full-Stack Career Path",
-    description: "Complete journey from beginner to professional full-stack developer",
-    category: "combo",
-    price: 399,
-    duration: 32,
-    level: "All Levels",
-    rating: 4.9,
-    students: 2150,
-    instructor: "David Thompson",
-    image: "https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?q=80&w=2125&auto=format&fit=crop"
-  }
 ];
 
 const popularCategories = [
-  { name: "Web Development", icon: <Book className="h-8 w-8 text-brand-teal" />, count: 42, slug: "web-development" },
-  { name: "Data Science", icon: <Video className="h-8 w-8 text-brand-teal" />, count: 38, slug: "data-science" },
-  { name: "UI/UX Design", icon: <Award className="h-8 w-8 text-brand-teal" />, count: 24, slug: "ui-ux-design" },
-  { name: "Mobile Development", icon: <Calendar className="h-8 w-8 text-brand-teal" />, count: 19, slug: "mobile-development" }
+  { name: "Product Based Companies", icon: <Book className="h-8 w-8 text-brand-teal" />, count: 42, slug: "product-based-companies" },
+  { name: "MNCs", icon: <Video className="h-8 w-8 text-brand-teal" />, count: 38, slug: "mncs" },
+  { name: "Startups", icon: <Award className="h-8 w-8 text-brand-teal" />, count: 24, slug: "startups" },
+  { name: "Hyderabad Startups", icon: <Calendar className="h-8 w-8 text-brand-teal" />, count: 19, slug: "hyderabad-startups" }
 ];
 
 const Courses = () => {
@@ -137,7 +124,7 @@ const Courses = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-brand-blue-dark to-brand-teal/90 text-white py-16 px-4">
+      <div className="bg-gradient-to-r from-edtech-dark to-edtech-secondary text-white py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">Discover Your Next Learning Adventure</h1>
           <p className="text-xl max-w-3xl mx-auto mb-8">
@@ -157,7 +144,7 @@ const Courses = () => {
       </div>
       
       {/* Featured Categories Section */}
-      <div className="py-16 px-4 bg-brand-gray-light">
+      {/* <div className="py-16 px-4 bg-brand-gray-light">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-serif font-bold text-brand-blue-dark mb-10 text-center">Popular Categories</h2>
           
@@ -177,74 +164,7 @@ const Courses = () => {
             ))}
           </div>
         </div>
-      </div>
-      
-      {/* Highlighted Bootcamp Carousel */}
-      <div className="py-16 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-serif font-bold text-brand-blue-dark">Featured Bootcamps</h2>
-            <Button 
-              variant="outline" 
-              className="border-brand-teal text-brand-teal hover:bg-brand-teal/10"
-              onClick={() => handleCategoryClick('bootcamp')}
-            >
-              View All
-            </Button>
-          </div>
-          
-          <Carousel className="w-full">
-            <CarouselContent>
-              {coursesData.filter(course => course.category === 'bootcamp').map((bootcamp) => (
-                <CarouselItem key={bootcamp.id} className="md:basis-1/2 lg:basis-1/3">
-                  <Card className="h-full border-none shadow-md hover:shadow-xl transition-shadow">
-                    <div className="relative h-48 overflow-hidden rounded-t-lg">
-                      <img 
-                        src={bootcamp.image} 
-                        alt={bootcamp.title} 
-                        className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute top-2 right-2 bg-brand-teal text-white px-3 py-1 rounded-full text-sm font-medium">
-                        {bootcamp.level}
-                      </div>
-                    </div>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-xl text-brand-blue-dark">{bootcamp.title}</CardTitle>
-                      <CardDescription>{bootcamp.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="pb-2">
-                      <div className="flex justify-between text-sm text-brand-blue-light">
-                        <span className="flex items-center">
-                          <Calendar className="h-4 w-4 mr-1" />
-                          {bootcamp.duration} weeks
-                        </span>
-                        <span className="flex items-center">
-                          <Award className="h-4 w-4 mr-1" />
-                          {bootcamp.rating}/5
-                        </span>
-                      </div>
-                    </CardContent>
-                    <CardFooter className="flex justify-between items-center">
-                      <div className="font-bold text-lg text-brand-teal">${bootcamp.price}</div>
-                      <Button 
-                        asChild 
-                        size="sm" 
-                        className="bg-brand-teal hover:bg-opacity-90"
-                      >
-                        <Link to={`/bootcamp/${bootcamp.id}`}>Enroll Now</Link>
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="hidden sm:block">
-              <CarouselPrevious className="-left-4 bg-white border-brand-teal text-brand-teal" />
-              <CarouselNext className="-right-4 bg-white border-brand-teal text-brand-teal" />
-            </div>
-          </Carousel>
-        </div>
-      </div>
+      </div> */}
       
       {/* Main Courses Section with Filters */}
       <div className="py-16 px-4 bg-brand-gray-light">
@@ -263,7 +183,7 @@ const Courses = () => {
                   <div>
                     <h3 className="font-medium text-brand-blue-dark mb-3">Category</h3>
                     <div className="space-y-2">
-                      {['all', 'course', 'bootcamp', 'combo'].map((category) => (
+                      {['all', 'startups', 'product-based-companies', 'mncs'].map((category) => (
                         <div key={category} className="flex items-center">
                           <input
                             type="radio"
@@ -286,7 +206,7 @@ const Courses = () => {
                     <div className="flex justify-between mb-3">
                       <h3 className="font-medium text-brand-blue-dark">Price Range</h3>
                       <span className="text-sm text-brand-blue-light">
-                        ${priceRange[0]} - ${priceRange[1]}
+                      ₹{priceRange[0]} - ₹{priceRange[1]}
                       </span>
                     </div>
                     <Slider
@@ -377,7 +297,7 @@ const Courses = () => {
                         </CardContent>
                         <CardFooter className="bg-brand-gray-medium/50">
                           <div className="flex items-center justify-between w-full">
-                            <div className="font-bold text-lg text-brand-teal">${course.price}</div>
+                            <div className="font-bold text-lg text-brand-teal">₹{course.price}</div>
                             <div className="flex space-x-2">
                               <Button
                                 size="sm"
@@ -484,7 +404,7 @@ const Courses = () => {
                     </ul>
                   </div>
                   <div className="flex flex-col space-y-3">
-                    <div className="text-3xl font-bold text-brand-teal">${previewCourse.price}</div>
+                    <div className="text-3xl font-bold text-brand-teal">₹{previewCourse.price}</div>
                     <Button 
                       asChild 
                       className="w-full bg-brand-teal hover:bg-opacity-90"

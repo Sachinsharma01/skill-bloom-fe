@@ -92,10 +92,10 @@ const About = () => {
       
       <main className="bg-gray-50">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-brand-blue-dark to-brand-blue-light text-white py-20">
+        <section className="bg-gradient-to-r from-edtech-dark to-edtech-secondary text-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4" style={{color: '#000'}}>
+              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
                 Transforming Education for a Digital World
               </h1>
               <p className="text-xl opacity-90 mb-8">
@@ -103,9 +103,9 @@ const About = () => {
               </p>
               <div className="flex space-x-4">
                 <Button asChild className="bg-brand-teal hover:bg-opacity-90 text-white">
-                  <Link to="/courses">Explore Our Courses</Link>
+                  <Link to="/resources">Explore Our Resources</Link>
                 </Button>
-                <Button asChild variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button asChild variant="outline" className="bg-brand-teal text-white hover:bg-white/10">
                   <Link to="/contact">Get in Touch</Link>
                 </Button>
               </div>
@@ -178,7 +178,7 @@ const About = () => {
         </section>
         
         {/* Core Values */}
-        <section className="py-16 md:py-24 bg-brand-blue-dark text-white">
+        <section className="py-16 md:py-24 bg-edtech-dark text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold mb-4">Our Core Values</h2>
@@ -239,18 +239,18 @@ const About = () => {
             <h2 className="text-3xl font-serif font-bold text-brand-blue-dark mb-12 text-center">Our Journey</h2>
             <div className="relative">
               {/* Vertical line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-brand-teal/30"></div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-edtech-secondary/30"></div>
               
               <div className="space-y-12">
                 {milestones.map((milestone, index) => (
                   <div key={index} className={`relative flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
                     {/* Year bubble */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-brand-teal flex items-center justify-center text-white font-bold z-10">
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-edtech-secondary flex items-center justify-center text-white font-bold z-10">
                       {milestone.year}
                     </div>
                     
                     {/* Content box */}
-                    <div className={`w-5/12 bg-white p-6 rounded-lg shadow-md ${index % 2 === 0 ? 'text-right mr-8' : 'text-left ml-8'}`}>
+                    <div className={`w-5/12 p-6 rounded-lg shadow-md ${index % 2 === 0 ? 'text-right mr-8' : 'text-left ml-8'}`}>
                       <p className="text-gray-700">{milestone.event}</p>
                     </div>
                   </div>
@@ -261,7 +261,7 @@ const About = () => {
         </section>
         
         {/* Statistics */}
-        <section className="py-16 bg-brand-teal text-white">
+        <section className="py-16 bg-edtech-secondary text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
               <div>
@@ -292,13 +292,13 @@ const About = () => {
               Whether you're a student, instructor, or passionate about education, there's a place for you in our community.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button asChild className="bg-brand-teal hover:bg-opacity-90 text-white">
-                <Link to="/courses">Explore Courses</Link>
+              <Button asChild className="bg-edtech-secondary hover:bg-opacity-90 text-white">
+                <Link to="/resources">Explore Resources</Link>
               </Button>
-              <Button asChild variant="outline" className="border-brand-blue-dark text-brand-blue-dark hover:bg-brand-blue-dark/10">
+              {/* <Button asChild variant="outline" className="border-edtech-dark text-edtech-dark hover:bg-edtech-dark/10">
                 <Link to="/teach">Become an Instructor</Link>
-              </Button>
-              <Button asChild variant="outline" className="border-brand-blue-light text-brand-blue-light hover:bg-brand-blue-light/10">
+              </Button> */}
+              <Button asChild variant="outline" className="border-edtech-dark text-edtech-dark hover:bg-edtech-dark/10">
                 <Link to="/contact">Contact Us</Link>
               </Button>
             </div>

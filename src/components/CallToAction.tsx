@@ -17,7 +17,7 @@ const CallToAction = () => {
             <Button size="lg" className="bg-white text-edtech-primary hover:bg-gray-100 px-8 font-medium">
               Get Started Today
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/20">
+            <Button variant="outline" size="lg" className="border-white text-edtech-secondary hover:bg-white/20">
               View Pricing Plans
             </Button>
           </div>
