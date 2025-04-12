@@ -26,8 +26,8 @@ const Navbar = () => {
             <Link to="/" className="text-edtech-secondary hover:text-edtech-primary font-medium">
               Home
             </Link>
-            <Link to="/courses" className="text-edtech-secondary hover:text-edtech-primary font-medium">
-              Courses
+            <Link to="/resources" className="text-edtech-secondary hover:text-edtech-primary font-medium">
+              Resources
             </Link>
             <Link to="/about" className="text-edtech-secondary hover:text-edtech-primary font-medium">
               About Us
