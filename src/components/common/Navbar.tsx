@@ -70,10 +70,10 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              to="/courses"
+              to="/resources"
               className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
             >
-              Courses
+              Resources
             </Link>
             <Link
               to="/about"
