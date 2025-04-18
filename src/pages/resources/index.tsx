@@ -11,7 +11,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Slider } from '../../components/ui/slider';
 import { Label } from '../../components/ui/label';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '../../components/ui/pagination';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../../components/ui/carousel';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../../components/ui/dialog';
 
 // Sample course data
@@ -91,6 +90,8 @@ const popularCategories = [
 ];
 
 const Courses = () => {
+  window.scrollTo({ top: 0, left: 0});
+
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -325,19 +326,19 @@ const Courses = () => {
                   <Pagination className="mt-12">
                     <PaginationContent>
                       <PaginationItem>
-                        <PaginationPrevious href="#" />
+                        <PaginationPrevious href="#" size="sm" />
                       </PaginationItem>
                       <PaginationItem>
-                        <PaginationLink href="#" isActive>1</PaginationLink>
+                        <PaginationLink href="#" isActive size="sm">1</PaginationLink>
                       </PaginationItem>
                       <PaginationItem>
-                        <PaginationLink href="#">2</PaginationLink>
+                        <PaginationLink href="#" isActive size="sm">2</PaginationLink>
                       </PaginationItem>
                       <PaginationItem>
-                        <PaginationLink href="#">3</PaginationLink>
+                        <PaginationLink href="#" isActive size="sm">3</PaginationLink>
                       </PaginationItem>
                       <PaginationItem>
-                        <PaginationNext href="#" />
+                        <PaginationNext href="#" size="sm" />
                       </PaginationItem>
                     </PaginationContent>
                   </Pagination>

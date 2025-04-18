@@ -1,50 +1,50 @@
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "../components/ui/card";
 import { 
-  CodeIcon, 
-  BarChart3Icon, 
-  BrainCircuitIcon, 
-  PencilRulerIcon, 
-  CameraIcon,
-  LanguagesIcon
+  RocketIcon,
+  Briefcase,
+  BrainCircuit,
+  Palette,
+  ClipboardCheck,
+  Code2,
 } from "lucide-react";
 
 const categories = [
   {
-    name: "Programming & Development",
-    description: "Learn coding, web development, mobile app creation and more",
-    icon: CodeIcon,
+    name: "Build Your Portfolio",
+    description: "Create your portfolio in just 5 minutes — no coding needed",
+    icon: RocketIcon,
     color: "bg-blue-100 text-blue-600",
   },
   {
-    name: "Business & Marketing",
-    description: "Master business strategies, marketing, and entrepreneurship",
-    icon: BarChart3Icon,
-    color: "bg-green-100 text-green-600",
+    name: "Career Launchpad",
+    description: "Explore top companies, expert resume formats & interview prep",
+    icon: Briefcase,
+    color: "bg-yellow-100 text-yellow-600",
   },
   {
-    name: "Data Science & AI",
-    description: "Explore data analysis, machine learning and artificial intelligence",
-    icon: BrainCircuitIcon,
+    name: "Job-Ready Resources",
+    description: "LinkedIn checklist, optimization tools, and more",
+    icon: ClipboardCheck,
     color: "bg-purple-100 text-purple-600",
   },
   {
-    name: "Design & Creativity",
-    description: "Develop skills in graphic design, UX/UI, illustration and more",
-    icon: PencilRulerIcon,
-    color: "bg-orange-100 text-orange-600",
+    name: "Data Career Hub",
+    description: "Tailored for data analysts and data engineers",
+    icon: BrainCircuit,
+    color: "bg-green-100 text-green-600",
   },
   {
-    name: "Photography & Video",
-    description: "Learn photography, videography, and visual storytelling",
-    icon: CameraIcon,
+    name: "Full Stack Development",
+    description: "Master front-end, back-end, and everything in between",
+    icon: Code2,
+    color: "bg-pink-100 text-pink-600",
+  },
+  {
+    name: "Creator’s Toolkit",
+    description: "Design, storytelling & communication essentials",
+    icon: Palette,
     color: "bg-red-100 text-red-600",
-  },
-  {
-    name: "Languages & Communication",
-    description: "Master new languages and effective communication skills",
-    icon: LanguagesIcon,
-    color: "bg-teal-100 text-teal-600",
   },
 ];
 
@@ -57,7 +57,7 @@ const Categories = () => {
             Explore Top Categories
           </h2>
           <p className="text-lg text-edtech-secondary">
-            Discover the perfect course category to help you achieve your learning goals and advance your skills.
+            Discover the perfect resources category to help you achieve your learning goals and advance your skills.
           </p>
         </div>
 

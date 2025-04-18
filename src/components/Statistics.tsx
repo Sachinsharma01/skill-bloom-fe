@@ -3,19 +3,19 @@ import { GraduationCapIcon, UsersIcon, AwardIcon, BookOpenIcon } from "lucide-re
 
 const stats = [
   {
-    value: "250+",
-    label: "Expert Courses",
+    value: "20+",
+    label: "Top Resources",
     icon: BookOpenIcon,
-    description: "Courses created by industry experts"
+    description: "Resources created by industry experts"
   },
   {
-    value: "50,000+",
+    value: "100+",
     label: "Active Students",
     icon: UsersIcon,
     description: "Learning and growing with us"
   },
   {
-    value: "15+",
+    value: "10+",
     label: "Subject Areas",
     icon: GraduationCapIcon,
     description: "From programming to business"

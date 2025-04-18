@@ -24,9 +24,11 @@ type CoreValue = {
 };
 
 const About = () => {
+
+  window.scrollTo({ top: 0, left: 0});
   // Team members data
   const teamMembers: TeamMember[] = [
-    {
+   /* {
       name: "Sarah Johnson",
       role: "Founder & CEO",
       bio: "Former education director with 15+ years of experience revolutionizing online learning experiences.",
@@ -49,41 +51,41 @@ const About = () => {
       role: "Technical Director",
       bio: "Software engineer passionate about creating intuitive, accessible educational platforms.",
       imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80"
-    }
+    }*/
   ];
 
   // Core values
   const coreValues: CoreValue[] = [
     {
-      title: "Accessible Education",
-      description: "We believe quality education should be available to everyone, regardless of location or background.",
-      icon: <Globe className="h-10 w-10 text-brand-teal" />
-    },
-    {
-      title: "Innovation",
-      description: "We constantly explore new technologies and teaching methods to enhance the learning experience.",
-      icon: <Lightbulb className="h-10 w-10 text-brand-teal" />
-    },
-    {
-      title: "Excellence",
-      description: "We're committed to delivering the highest quality educational content and experiences.",
+      title: "Quality First",
+      description: "We don’t compromise. Every resource is designed with precision, ensuring high standards and real impact.",
       icon: <Award className="h-10 w-10 text-brand-teal" />
     },
     {
-      title: "Student-Centered",
-      description: "Everything we do focuses on empowering students to achieve their unique learning goals.",
+      title: "User Experience",
+      description: "From design to delivery, we focus on creating a smooth, intuitive, and enjoyable journey for every user.",
+      icon: <Lightbulb className="h-10 w-10 text-brand-teal" />
+    },
+    {
+      title: "Purpose Driven",
+      description: "Everything we offer is created with intent — to solve real challenges and bring measurable career growth.",
       icon: <Target className="h-10 w-10 text-brand-teal" />
+    },
+    {
+      title: "Inclusive Access",
+      description: "No matter who you are or where you're from, SkillBoom is built to support your growth — with tools that are clear, useful, and open to all.",
+      icon: <Globe className="h-10 w-10 text-brand-teal" />
     }
   ];
 
   // Company milestones
   const milestones = [
-    { year: 2018, event: "EduPlatform founded with a mission to democratize education" },
-    { year: 2019, event: "Launched our first 10 courses, reaching 5,000 students" },
-    { year: 2020, event: "Expanded to 50+ courses and introduced our adaptive learning technology" },
+    { year: 2024, event: "SkillBoom was founded with a mission to make personal branding simple, fast, and accessible for everyone." },
+    { year: 2025, event: "Launched our first platform with instant portfolio creation and premium career resources for job seekers and professionals." }
+    /*{ year: 2020, event: "Expanded to 50+ courses and introduced our adaptive learning technology" },
     { year: 2021, event: "Reached 100,000 students across 30 countries" },
     { year: 2022, event: "Established partnerships with 25 leading universities and organizations" },
-    { year: 2023, event: "Introduced personalized learning paths and AI-driven content recommendations" }
+    { year: 2023, event: "Introduced personalized learning paths and AI-driven content recommendations" }*/
   ];
 
   return (
@@ -93,25 +95,29 @@ const About = () => {
       <main className="bg-gray-50">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-edtech-dark to-edtech-secondary text-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
-                Transforming Education for a Digital World
-              </h1>
-              <p className="text-xl opacity-90 mb-8">
-                We're on a mission to make quality education accessible to everyone through innovative, engaging online learning experiences.
-              </p>
-              <div className="flex space-x-4">
-                <Button asChild className="bg-brand-teal hover:bg-opacity-90 text-white">
-                  <Link to="/resources">Explore Our Resources</Link>
-                </Button>
-                <Button asChild variant="outline" className="bg-brand-teal text-white hover:bg-white/10">
-                  <Link to="/contact">Get in Touch</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center">
+             <div className="w-full text-center">
+                <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 whitespace-nowrap">
+                     Unlock Your Potential with SkillBoom
+                </h1>
+                <p className="text-xl opacity-90 mb-8 max-w-3xl mx-auto">
+                     At SkillBoom, we're redefining how individuals prepare for the professional world.
+                  <br />
+                      We are here to make personal branding and career growth effortless.
+                 </p>
+               <div className="flex justify-center space-x-4">
+                    <Button asChild className="bg-brand-teal hover:bg-opacity-90 text-white">
+                        <Link to="/resources">Explore Our Resources</Link>
+                      </Button>
+                    <Button asChild variant="outline" className="bg-brand-teal text-white hover:bg-white/10">
+                        <Link to="/contact">Get in Touch</Link>
+                    </Button>
+                   </div>
+                 </div>
+               </div>
+            </section>
+
+
         
         {/* Our Story Section */}
         <section className="py-16 md:py-24">
@@ -121,16 +127,28 @@ const About = () => {
                 <h2 className="text-3xl font-serif font-bold text-brand-blue-dark mb-6">Our Story</h2>
                 <div className="prose prose-lg max-w-none text-gray-600">
                   <p className="mb-4">
-                    Founded in 2018, EduPlatform began with a simple yet powerful idea: what if quality education were truly accessible to everyone?
+                  <b>Where Skills Spark the Future</b>
                   </p>
                   <p className="mb-4">
-                    Our founder, Sarah Johnson, experienced firsthand the transformative power of education but also saw how traditional educational systems often created barriers rather than opportunities.
+                  In a world where standing out is just as important as showing up, SkillBoom was created to bridge the gap between talent and opportunity.
                   </p>
                   <p className="mb-4">
-                    With a team of passionate educators and technologists, we set out to build an educational platform that combines academic rigor with engaging, flexible learning experiences tailored to modern learners.
+                  We realized that while people are constantly learning and growing, what they often lack is the right way to present their skills — to be seen, to be remembered, and to be chosen. That’s where we come in.
                   </p>
                   <p>
-                    Today, we serve over 250,000 students worldwide, offering courses across diverse disciplines from coding to creative writing, business to biology, all designed with our core belief: learning should be accessible, engaging, and empowering.
+                  SkillBoom isn’t just a platform — it’s a mindset shift. We’re here to simplify personal branding and professional growth with intuitive tools designed for today’s learners, jobseekers, and career switchers.
+                  </p> <br/>
+                  <p className="mb-4">
+                  From day one, our goal has been clear:
+                  
+                  <ul className="list-disc ml-10 space-y-1">
+                      <li className="pl-1">
+                         Empower individuals to showcase their skills confidently and take control of their career journey.
+                      </li>
+                  </ul>
+                  </p>
+                  <p className="mb-4">
+                  And this is just the beginning.
                   </p>
                 </div>
               </div>
@@ -159,7 +177,7 @@ const About = () => {
                   <BookOpen className="h-12 w-12 text-brand-teal mb-4" />
                   <h3 className="text-2xl font-serif font-bold text-brand-blue-dark mb-4">Our Mission</h3>
                   <p className="text-gray-600">
-                    To democratize education by providing accessible, high-quality learning experiences that empower individuals to achieve their personal and professional goals, regardless of their background or circumstances.
+                  To empower every individual to confidently present their skills, build a powerful personal brand, and unlock better opportunities — through accessible, smart, and modern digital platform.
                   </p>
                 </CardContent>
               </Card>
@@ -169,7 +187,7 @@ const About = () => {
                   <Target className="h-12 w-12 text-brand-blue-light mb-4" />
                   <h3 className="text-2xl font-serif font-bold text-brand-blue-dark mb-4">Our Vision</h3>
                   <p className="text-gray-600">
-                    A world where access to quality education is a right, not a privilege – where everyone can learn, grow, and contribute to society through personalized educational experiences that adapt to their unique needs and aspirations.
+                  To become the go-to platform where skills meet visibility — enabling everyone to own their narrative, showcase their talent, and shape the future they envision.
                   </p>
                 </CardContent>
               </Card>
@@ -178,12 +196,12 @@ const About = () => {
         </section>
         
         {/* Core Values */}
-        <section className="py-16 md:py-24 bg-edtech-dark text-white">
+        <section className="py-10 md:py-24 bg-edtech-dark text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold mb-4">Our Core Values</h2>
               <p className="max-w-2xl mx-auto text-lg opacity-90">
-                These principles guide everything we do at EduPlatform, from course development to student support.
+              At SkillBoom, every click, resource, and detail is guided by these four values — built to elevate your journey.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -199,15 +217,15 @@ const About = () => {
         </section>
         
         {/* Team Section */}
-        <section className="py-16 md:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+        {/* <section className="py-16 md:py-24"> */}
+          {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> */}
+            {/*<div className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold text-brand-blue-dark mb-4">Meet Our Team</h2>
               <p className="max-w-2xl mx-auto text-lg text-gray-600">
                 Passionate educators, technologists, and visionaries committed to transforming how the world learns.
               </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            </div>*/}
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {teamMembers.map((member, index) => (
                 <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:transform hover:scale-105">
                   <div className="aspect-square">
@@ -224,14 +242,14 @@ const About = () => {
                   </div>
                 </div>
               ))}
-            </div>
-            <div className="text-center mt-12">
+            </div> */}
+            {/*<div className="text-center mt-12">
               <Button asChild variant="outline" className="border-brand-blue-light text-brand-blue-light hover:bg-brand-blue-light/10">
                 <Link to="/team">View Full Team</Link>
               </Button>
-            </div>
-          </div>
-        </section>
+            </div>*/}
+          {/* </div> */}
+        {/* </section> */}
         
         {/* Milestones Timeline */}
         <section className="py-16 bg-gray-50">
@@ -265,20 +283,20 @@ const About = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
               <div>
-                <div className="text-4xl font-bold mb-2">250K+</div>
-                <div className="text-white/80">Global Students</div>
-              </div>
-              <div>
                 <div className="text-4xl font-bold mb-2">100+</div>
-                <div className="text-white/80">Expert Instructors</div>
+                <div className="text-white/80">Active Users</div>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">200+</div>
-                <div className="text-white/80">Unique Courses</div>
+                <div className="text-4xl font-bold mb-2">10+</div>
+                <div className="text-white/80">Published Portfolios</div>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">30+</div>
-                <div className="text-white/80">Countries Reached</div>
+                <div className="text-4xl font-bold mb-2">20+</div>
+                <div className="text-white/80">Unique Resources</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold mb-2">10+</div>
+                <div className="text-white/80">States Reached</div>
               </div>
             </div>
           </div>
@@ -287,9 +305,9 @@ const About = () => {
         {/* CTA Section */}
         <section className="py-20 bg-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-serif font-bold text-brand-blue-dark mb-6">Join Us in Transforming Education</h2>
+            <h2 className="text-3xl font-serif font-bold text-brand-blue-dark mb-6">Join Us in Transforming Careers</h2>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Whether you're a student, instructor, or passionate about education, there's a place for you in our community.
+            Whether you're a student, job seeker, or just passionate about building your future — there's a space for you at SkillBoom.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button asChild className="bg-edtech-secondary hover:bg-opacity-90 text-white">

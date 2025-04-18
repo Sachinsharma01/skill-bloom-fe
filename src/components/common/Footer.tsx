@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { FacebookIcon, TwitterIcon, InstagramIcon, YoutubeIcon } from "lucide-react";
+import { FacebookIcon, TwitterIcon, InstagramIcon, YoutubeIcon, LinkedinIcon } from "lucide-react";
+import logo from "../../assets/logo.png";
 
 const Footer = () => {
   return (
@@ -10,12 +11,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Skill Bloom</h3>
+            <h3 className="text-xl font-bold mb-4">
+              <img src={logo} alt="Skill Bloom Logo" className="w-20 h-20" />
+            </h3>
             <p className="text-gray-400 mb-6">
               Empowering individuals to master new skills and advance their careers through quality online education.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white">
+              {/* <a href="#" className="text-gray-400 hover:text-white">
                 <FacebookIcon size={20} />
               </a>
               <a href="#" className="text-gray-400 hover:text-white">
@@ -26,6 +29,9 @@ const Footer = () => {
               </a>
               <a href="#" className="text-gray-400 hover:text-white">
                 <YoutubeIcon size={20} />
+              </a> */}
+              <a href="https://www.linkedin.com/company/skill-bloom" target="_blank" className="text-gray-400 hover:text-white">
+                <LinkedinIcon size={20} />
               </a>
             </div>
           </div>
@@ -35,8 +41,8 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/courses" className="text-gray-400 hover:text-white">
-                  Explore Courses
+                <Link to="/resources" className="text-gray-400 hover:text-white">
+                  Explore Resources
                 </Link>
               </li>
               <li>
@@ -49,11 +55,11 @@ const Footer = () => {
                   Contact Us
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/faq" className="text-gray-400 hover:text-white">
                   FAQs
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/blog" className="text-gray-400 hover:text-white">
                   Blog
@@ -68,27 +74,27 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link to="/courses/programming" className="text-gray-400 hover:text-white">
-                  Programming & Development
+                  Build Your Portfolio
                 </Link>
               </li>
               <li>
                 <Link to="/courses/business" className="text-gray-400 hover:text-white">
-                  Business & Marketing
+                  Career Launchpad
                 </Link>
               </li>
               <li>
                 <Link to="/courses/data-science" className="text-gray-400 hover:text-white">
-                  Data Science & AI
+                  Job-Ready Resources
                 </Link>
               </li>
               <li>
                 <Link to="/courses/design" className="text-gray-400 hover:text-white">
-                  Design & Creativity
+                  Data Career Hub
                 </Link>
               </li>
               <li>
                 <Link to="/courses/personal" className="text-gray-400 hover:text-white">
-                  Personal Development
+                  Full Stack Development
                 </Link>
               </li>
             </ul>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-
+import logo from "../../assets/logo.png";
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-bold text-edtech-primary">Skill Bloom</span>
+              <img src={logo} alt="Skill Bloom Logo" className="w-20 h-20" />
             </Link>
           </div>
 
@@ -35,9 +35,9 @@ const Navbar = () => {
             <Link to="/contact" className="text-edtech-secondary hover:text-edtech-primary font-medium">
               Contact
             </Link>
-            <Link to="/blog" className="text-edtech-secondary hover:text-edtech-primary font-medium">
+            {/* <Link to="/blog" className="text-edtech-secondary hover:text-edtech-primary font-medium">
               Blog
-            </Link>
+            </Link> */}
           </nav>
 
           {/* CTA Buttons */}
@@ -90,12 +90,12 @@ const Navbar = () => {
             >
               Contact
             </Link>
-            <Link
+            {/* <Link
               to="/blog"
               className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
             >
               Blog
-            </Link>
+            </Link> */}
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="flex items-center px-5">

@@ -1,7 +1,7 @@
-
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { Card, CardContent } from "../components/ui/card";
+import { Badge } from "../components/ui/badge";
+import { Button } from "../components/ui/button";
 
 const courses = [
   {
@@ -67,6 +67,7 @@ const courses = [
 ];
 
 const FeaturedCourses = () => {
+  const navigate = useNavigate();
   return (
     <section className="py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,8 +81,8 @@ const FeaturedCourses = () => {
             </p>
           </div>
           <div>
-            <Button variant="outline" className="border-edtech-primary text-edtech-primary hover:bg-edtech-primary hover:text-white">
-              View All Courses
+            <Button onClick={() => navigate('/resources')} variant="outline" className="border-edtech-primary text-edtech-primary hover:bg-edtech-primary hover:text-white">
+              View All Resources
             </Button>
           </div>
         </div>

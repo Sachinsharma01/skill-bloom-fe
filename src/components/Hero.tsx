@@ -1,6 +1,8 @@
 import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <div className="relative bg-gradient-to-r from-edtech-dark to-edtech-secondary overflow-hidden">
       {/* Background Pattern */}
@@ -26,18 +28,19 @@ const Hero = () => {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="text-white animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Unlock Your Potential With Online Learning
+            Stand Out With a Live Portfolio & Curated Career Resources
             </h1>
             <p className="text-lg md:text-xl opacity-90 mb-8">
-              Discover expert-led courses designed to help you master new
-              skills, advance your career, and achieve your goals.
+            Get online in 5 minutes with an effortless portfolio builder.
+            Explore top resources to boost your job search and professional brand.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
                 className="bg-edtech-primary hover:bg-edtech-primary/90 text-white font-medium px-6"
+                onClick={() => navigate('/resources')}
               >
-                Explore Courses
+                Explore Resources
               </Button>
             </div>
           </div>
