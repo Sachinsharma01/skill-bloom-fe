@@ -135,98 +135,242 @@ const resourcesData = [
   },
   {
     id: 3,
-    title: "Data Analyst Roadmap 2025",
-    category: "Data Analysis",
-    date: "February 28, 2025",
-    image: "/placeholder.svg",
-    downloadLink: "/resource/3",
-    featured: true,
-    description: "Comprehensive roadmap to become a professional Data Analyst in 2025.",
-    downloads: 1643,
-    type: "PDF",
-    isFree: false,
-    price: 19.99,
-    content: "Detailed content for the Data Analyst Roadmap..."
+    title: "Top Hyderabad Startups",
+    description: "Explore the top startups in Hyderabad and their unique offerings",
+    category: "startups",
+    price: 19,
+    duration: 14,
+    level: "Advanced",
+    rating: 4.9,
+    bestseller: false,
+    reviews: 760,
+    downloads: 760,
+    instructor: "Akhil Dubey",
+    originalPrice: 39,
+    image: "https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad4750020d46c3c04/view?project=67fabe35003d5a3f0bb3&mode=admin",
+    content: `
+    <h2>Introduction</h2>
+    <p>This comprehensive roadmap outlines the skills, tools, and knowledge needed to become an AI Engineer in 2025. Whether you're just starting out or looking to pivot your career, this guide will help you navigate the rapidly evolving field of artificial intelligence.</p>
+    
+    <h2>Fundamental Skills</h2>
+    <ul>
+      <li>Strong foundation in Python programming</li>
+      <li>Understanding of data structures and algorithms</li>
+      <li>Knowledge of software engineering principles</li>
+      <li>Familiarity with version control (Git)</li>
+      <li>Solid mathematics background (linear algebra, calculus, probability)</li>
+    </ul>
+    
+    <h2>Machine Learning Fundamentals</h2>
+    <ul>
+      <li>Supervised learning algorithms</li>
+      <li>Unsupervised learning techniques</li>
+      <li>Model evaluation and validation</li>
+      <li>Feature engineering</li>
+      <li>Hyperparameter tuning</li>
+    </ul>
+    
+    <h2>Deep Learning Mastery</h2>
+    <ul>
+      <li>Neural network architectures</li>
+      <li>Convolutional neural networks (CNNs)</li>
+      <li>Recurrent neural networks (RNNs)</li>
+      <li>Transformers and attention mechanisms</li>
+      <li>Generative models (GANs, VAEs, Diffusion models)</li>
+    </ul>
+    
+    <h2>Tools and Frameworks</h2>
+    <ul>
+      <li>TensorFlow and Keras</li>
+      <li>PyTorch</li>
+      <li>Hugging Face transformers</li>
+      <li>MLflow for experiment tracking</li>
+      <li>DVC for data version control</li>
+    </ul>
+    
+    <h2>Model Deployment</h2>
+    <ul>
+      <li>Model serving (TensorFlow Serving, TorchServe)</li>
+      <li>Containerization with Docker</li>
+      <li>Orchestration with Kubernetes</li>
+      <li>Cloud platforms (AWS, GCP, Azure)</li>
+      <li>MLOps best practices</li>
+    </ul>
+    
+    <h2>Specialized Skills</h2>
+    <ul>
+      <li>Computer vision</li>
+      <li>Natural language processing</li>
+      <li>Reinforcement learning</li>
+      <li>Time series analysis</li>
+      <li>Generative AI</li>
+    </ul>
+    
+    <h2>Projects to Build</h2>
+    <p>This roadmap includes 10 hands-on projects of increasing complexity to apply your skills and build your portfolio.</p>
+    `
   },
   {
     id: 4,
-    title: "SQL Fundamentals for Data Scientists",
-    category: "SQL",
-    date: "February 15, 2025",
-    image: "/placeholder.svg",
-    downloadLink: "/resource/4",
-    featured: false,
-    description: "Master essential SQL queries that every data scientist needs to know.",
-    downloads: 740,
-    type: "Cheat Sheet",
-    isFree: true,
-    price: 0,
-    content: "Detailed content for SQL Fundamentals..."
+    title: "Top Chennai Startups",
+    description: "Explore the top startups in Chennai and their unique offerings",
+    category: "startups",
+    price: 19,
+    duration: 20,
+    level: "Intermediate",
+    rating: 4.6,
+    bestseller: false,
+    reviews: 530,
+    instructor: "Akhil Dubey",
+    downloads: 530,
+    originalPrice: 59,
+    image: "https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad7bd003385be8d1c/view?project=67fabe35003d5a3f0bb3&mode=admin",
+    content: `
+    <h2>Introduction</h2>
+    <p>This comprehensive roadmap outlines the skills, tools, and knowledge needed to become an AI Engineer in 2025. Whether you're just starting out or looking to pivot your career, this guide will help you navigate the rapidly evolving field of artificial intelligence.</p>
+    
+    <h2>Fundamental Skills</h2>
+    <ul>
+      <li>Strong foundation in Python programming</li>
+      <li>Understanding of data structures and algorithms</li>
+      <li>Knowledge of software engineering principles</li>
+      <li>Familiarity with version control (Git)</li>
+      <li>Solid mathematics background (linear algebra, calculus, probability)</li>
+    </ul>
+    
+    <h2>Machine Learning Fundamentals</h2>
+    <ul>
+      <li>Supervised learning algorithms</li>
+      <li>Unsupervised learning techniques</li>
+      <li>Model evaluation and validation</li>
+      <li>Feature engineering</li>
+      <li>Hyperparameter tuning</li>
+    </ul>
+    
+    <h2>Deep Learning Mastery</h2>
+    <ul>
+      <li>Neural network architectures</li>
+      <li>Convolutional neural networks (CNNs)</li>
+      <li>Recurrent neural networks (RNNs)</li>
+      <li>Transformers and attention mechanisms</li>
+      <li>Generative models (GANs, VAEs, Diffusion models)</li>
+    </ul>
+    
+    <h2>Tools and Frameworks</h2>
+    <ul>
+      <li>TensorFlow and Keras</li>
+      <li>PyTorch</li>
+      <li>Hugging Face transformers</li>
+      <li>MLflow for experiment tracking</li>
+      <li>DVC for data version control</li>
+    </ul>
+    
+    <h2>Model Deployment</h2>
+    <ul>
+      <li>Model serving (TensorFlow Serving, TorchServe)</li>
+      <li>Containerization with Docker</li>
+      <li>Orchestration with Kubernetes</li>
+      <li>Cloud platforms (AWS, GCP, Azure)</li>
+      <li>MLOps best practices</li>
+    </ul>
+    
+    <h2>Specialized Skills</h2>
+    <ul>
+      <li>Computer vision</li>
+      <li>Natural language processing</li>
+      <li>Reinforcement learning</li>
+      <li>Time series analysis</li>
+      <li>Generative AI</li>
+    </ul>
+    
+    <h2>Projects to Build</h2>
+    <p>This roadmap includes 10 hands-on projects of increasing complexity to apply your skills and build your portfolio.</p>
+    `
   },
   {
     id: 5,
-    title: "Python for Data Analysis Handbook",
-    category: "Python",
-    date: "February 10, 2025",
-    image: "/placeholder.svg",
-    downloadLink: "/resource/5",
-    featured: false,
-    description: "A comprehensive handbook covering Pandas, NumPy, and data visualization with Python.",
-    downloads: 1128,
-    type: "E-Book",
-    isFree: false,
-    price: 24.99,
-    content: "Detailed content for Python Handbook..."
-  },
-  {
-    id: 6,
-    title: "Top 50 Data Science Interview Questions",
-    category: "Interview Questions",
-    date: "January 30, 2025",
-    image: "/placeholder.svg",
-    downloadLink: "/resource/6",
+    title: "Top Startups In India",
+    description: "Explore the top startups in India and their unique offerings",
+    category: "startups",
+    price: 19,
+    duration: 5,
+    level: "Beginner",
+    rating: 4.5,
+    students: 1890,
+    instructor: "Emma Rodriguez",
     featured: true,
-    description: "Prepare for your next data science interview with these common questions and answers.",
-    downloads: 975,
+    date: "2025-02-01",
+    downloads: 1890,
+    isFree: false,
     type: "PDF",
-    isFree: false,
-    price: 14.99,
-    content: "Detailed content for Interview Questions..."
+    image: "https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad925001c8970148f/view?project=67fabe35003d5a3f0bb3&mode=admin",
+    content: `
+    <h2>Introduction</h2>
+    <p>This comprehensive roadmap outlines the skills, tools, and knowledge needed to become an AI Engineer in 2025. Whether you're just starting out or looking to pivot your career, this guide will help you navigate the rapidly evolving field of artificial intelligence.</p>
+    
+    <h2>Fundamental Skills</h2>
+    <ul>
+      <li>Strong foundation in Python programming</li>
+      <li>Understanding of data structures and algorithms</li>
+      <li>Knowledge of software engineering principles</li>
+      <li>Familiarity with version control (Git)</li>
+      <li>Solid mathematics background (linear algebra, calculus, probability)</li>
+    </ul>
+    
+    <h2>Machine Learning Fundamentals</h2>
+    <ul>
+      <li>Supervised learning algorithms</li>
+      <li>Unsupervised learning techniques</li>
+      <li>Model evaluation and validation</li>
+      <li>Feature engineering</li>
+      <li>Hyperparameter tuning</li>
+    </ul>
+    
+    <h2>Deep Learning Mastery</h2>
+    <ul>
+      <li>Neural network architectures</li>
+      <li>Convolutional neural networks (CNNs)</li>
+      <li>Recurrent neural networks (RNNs)</li>
+      <li>Transformers and attention mechanisms</li>
+      <li>Generative models (GANs, VAEs, Diffusion models)</li>
+    </ul>
+    
+    <h2>Tools and Frameworks</h2>
+    <ul>
+      <li>TensorFlow and Keras</li>
+      <li>PyTorch</li>
+      <li>Hugging Face transformers</li>
+      <li>MLflow for experiment tracking</li>
+      <li>DVC for data version control</li>
+    </ul>
+    
+    <h2>Model Deployment</h2>
+    <ul>
+      <li>Model serving (TensorFlow Serving, TorchServe)</li>
+      <li>Containerization with Docker</li>
+      <li>Orchestration with Kubernetes</li>
+      <li>Cloud platforms (AWS, GCP, Azure)</li>
+      <li>MLOps best practices</li>
+    </ul>
+    
+    <h2>Specialized Skills</h2>
+    <ul>
+      <li>Computer vision</li>
+      <li>Natural language processing</li>
+      <li>Reinforcement learning</li>
+      <li>Time series analysis</li>
+      <li>Generative AI</li>
+    </ul>
+    
+    <h2>Projects to Build</h2>
+    <p>This roadmap includes 10 hands-on projects of increasing complexity to apply your skills and build your portfolio.</p>
+    `
   },
-  {
-    id: 7,
-    title: "Power BI Dashboard Templates for Business",
-    category: "Power BI",
-    date: "January 25, 2025",
-    image: "/placeholder.svg",
-    downloadLink: "/resource/7",
-    featured: false,
-    description: "Ready-to-use Power BI dashboard templates for business analytics and reporting.",
-    downloads: 503,
-    type: "Template",
-    isFree: true,
-    price: 0,
-    content: "Detailed content for Power BI Templates..."
-  },
-  {
-    id: 8,
-    title: "Machine Learning Project Ideas with Source Code",
-    category: "Machine Learning",
-    date: "January 15, 2025",
-    image: "/placeholder.svg",
-    downloadLink: "/resource/8",
-    featured: true,
-    description: "Hands-on ML project ideas with complete source code to build your portfolio.",
-    downloads: 1427,
-    type: "Project Kit",
-    isFree: false,
-    price: 39.99,
-    content: "Detailed content for ML Project Ideas..."
-  }
 ];
 
 const ResourceDetail = () => {
   const { id } = useParams();
+  console.log("Id of dynamic route", id)
   const navigate = useNavigate();
   const { toast } = useToast();
   const [resource, setResource] = useState<any>(null);

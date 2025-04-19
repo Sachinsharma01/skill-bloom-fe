@@ -3,12 +3,17 @@ import { Button } from "../ui/button";
 import { Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { useSelector } from "react-redux";
+import Avatar from "./Avatar";
+
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
+  const { token, isLoggedIn } = useSelector((state: any) => state.tokenReducer);
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -23,16 +28,28 @@ const Navbar = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex space-x-10">
-            <Link to="/" className="text-edtech-secondary hover:text-edtech-primary font-medium">
+            <Link
+              to="/"
+              className="text-edtech-secondary hover:text-edtech-primary font-medium"
+            >
               Home
             </Link>
-            <Link to="/resources" className="text-edtech-secondary hover:text-edtech-primary font-medium">
+            <Link
+              to="/resources"
+              className="text-edtech-secondary hover:text-edtech-primary font-medium"
+            >
               Resources
             </Link>
-            <Link to="/about" className="text-edtech-secondary hover:text-edtech-primary font-medium">
+            <Link
+              to="/about"
+              className="text-edtech-secondary hover:text-edtech-primary font-medium"
+            >
               About Us
             </Link>
-            <Link to="/contact" className="text-edtech-secondary hover:text-edtech-primary font-medium">
+            <Link
+              to="/contact"
+              className="text-edtech-secondary hover:text-edtech-primary font-medium"
+            >
               Contact
             </Link>
             {/* <Link to="/blog" className="text-edtech-secondary hover:text-edtech-primary font-medium">
@@ -41,14 +58,25 @@ const Navbar = () => {
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button onClick={() => navigate("/login")} variant="outline" className="text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white">
-              Log In
-            </Button>
-            <Button onClick={() => navigate("/signup")} className="bg-edtech-primary hover:bg-edtech-primary/90 text-white">
-              Sign Up
-            </Button>
-          </div>
+          {isLoggedIn ? (
+            <Avatar image={undefined} name="Sachin" />
+          ) : (
+            <div className="hidden md:flex items-center space-x-4">
+              <Button
+                onClick={() => navigate("/login")}
+                variant="outline"
+                className="text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white"
+              >
+                Log In
+              </Button>
+              <Button
+                onClick={() => navigate("/signup")}
+                className="bg-edtech-primary hover:bg-edtech-primary/90 text-white"
+              >
+                Sign Up
+              </Button>
+            </div>
+          )}
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
@@ -100,7 +128,10 @@ const Navbar = () => {
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="flex items-center px-5">
               <div className="flex-shrink-0">
-                <Button variant="outline" className="w-full mb-2 text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white">
+                <Button
+                  variant="outline"
+                  className="w-full mb-2 text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white"
+                >
                   Log In
                 </Button>
                 <Button className="w-full bg-edtech-primary hover:bg-edtech-primary/90 text-white">

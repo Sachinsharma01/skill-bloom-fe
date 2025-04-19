@@ -1,3 +1,4 @@
+import { isNullOrUndefined } from ".";
 import config from "../config";
 import axios from "axios";
 
@@ -13,9 +14,12 @@ export const makeAPICall = async (api: string, payload?: any, token?: string) =>
     const headers: any = {
         'Content-Type': 'application/json',
     };
-    if (token) {
+    
+
+    if (!isNullOrUndefined(token)) {
         headers.Authorization = `Bearer ${token}`;
     }
+   
     try {
         const response = await API[api](payload, { headers });
         return response.data;
@@ -31,7 +35,7 @@ export const makeAPICall = async (api: string, payload?: any, token?: string) =>
 }
 
 const API = {
-    signIn: async (payload: any) => {
+    signin: async (payload: any) => {
         const response = await axiosInstance.post('/auth/signin', payload);
         return response.data
     },
@@ -42,5 +46,13 @@ const API = {
     username: async (payload: any) => {
         const response = await axiosInstance.get('/validate/username', { params: payload });
         return response.data.data
+    },
+    profile: async (payload: { id: number }, headers: any) => {
+        const response = await axiosInstance.get(`/user/profile/${payload.id}`, headers);
+        return response.data
+    },
+    updateProfile: async (payload: any, headers: any) => {
+        const response = await axiosInstance.put(`/user/profile/${payload.id}`, payload, headers);
+        return response.data
     }
 }

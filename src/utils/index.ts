@@ -21,3 +21,11 @@ export const validateUserName = (username: string) => {
 export const isNullOrUndefined = (value: any) => {
     return value === null || value === undefined;
 }
+
+export const isMobileDevice = () => {
+    return window.innerWidth < 768;
+}
+
+export const isTabletDevice = () => {
+    return window.innerWidth >= 768 && window.innerWidth <= 1024;
+}

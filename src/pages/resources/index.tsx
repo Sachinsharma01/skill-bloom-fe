@@ -184,7 +184,7 @@ const Resources = () => {
   }, [viewType, filteredResources]);
 
   const handleViewResource = (resource: any) => {
-    navigate(`/resource/${resource.id}`);
+    navigate(`/resources/${resource.id}`);
   };
 
   const getResourceTypeIcon = (type: string) => {
@@ -448,7 +448,7 @@ const Resources = () => {
                                 variant="outline" 
                                 size="sm"
                                 onClick={() => handleViewResource(resource)}
-                                className="text-black bg-edtech-primary border-edtech-teal hover:bg-edtech-teal hover:text-white"
+                                className="text-black border-edtech-teal hover:bg-teal-500 hover:text-white"
                               >
                                 View Details
                               </Button>
@@ -510,7 +510,7 @@ const Resources = () => {
                                 )}
                                 <Button 
                                   onClick={() => handleViewResource(resource)}
-                                  className="bg-edtech-teal text-white hover:bg-edtech-teal/90"
+                                  className="bg-teal-500 border-edtech-teal text-white hover:bg-teal-500"
                                 >
                                   <Download size={16} className="mr-2" />
                                   View Details

@@ -6,6 +6,9 @@ import { toast } from "sonner";
 import { makeAPICall } from "../../utils/api";
 import { useDispatch } from "react-redux";
 import tokenActions from "../../redux/actions/tokenActions";
+import metaDataActions from "../../redux/actions/metaDataActions";
+import AuthImage from "../../assets/auth.svg";
+import { isMobileDevice, isTabletDevice } from "../../utils";
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,21 +25,24 @@ const Login: React.FC = () => {
       return;
     }
 
-    makeAPICall("signIn", { email, password }).then((res: any) => {
+    makeAPICall("signin", { email, password }).then((res: any) => {
       if (res.error) {
         toast.error(res.message);
         return;
       }
-
+      dispatch(tokenActions.setToken(res.accessToken));
+      dispatch(metaDataActions.setMetaData(res.user));
       toast.success("Login successful");
-      dispatch(tokenActions.setToken(res.token));
-      navigate("/dashboard");
+
+      console.log('res', res)
+      navigate(`/profile`);
     });
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="w-full max-w-md p-10 login-container bg-white border-gray-200 rounded-lg shadow-md">
+    <div className="flex md:flex-col sm:flex-col lg:flex-row items-center justify-center h-screen">
+      {!isMobileDevice() && !isTabletDevice() && <img src={AuthImage} alt="logo" className="w-1/3 h-1/3" />}
+      <div className="w-full max-w-md p-10 login-container bg-white border-gray-200 rounded-lg shadow-md mx-2">
         <h2 className="text-2xl font-bold mb-6">Login to Your Account</h2>
 
         <div className="w-full max-w-md">
@@ -73,7 +79,7 @@ const Login: React.FC = () => {
                 value={password}
               />
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full" style={{ backgroundColor: '#396FDF' }}>
               Login
             </Button>
           </form>

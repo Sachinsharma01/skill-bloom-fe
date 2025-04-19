@@ -82,7 +82,7 @@ const FeaturedCourses = () => {
           </div>
           <div>
             <Button onClick={() => navigate('/resources')} variant="outline" className="border-edtech-primary text-edtech-primary hover:bg-edtech-primary hover:text-white">
-              View All Resources
+              View All
             </Button>
           </div>
         </div>
