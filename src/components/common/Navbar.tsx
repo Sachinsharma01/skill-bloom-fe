@@ -1,39 +1,48 @@
-import { useState } from "react";
-import { Button } from "../ui/button";
-import { Menu, X } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png";
-import { useSelector } from "react-redux";
-import Avatar from "./Avatar";
+import { useState } from 'react'
+import { Button } from '../ui/button'
+import { Menu, X } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import logo from '../../assets/logo.png'
+import { useSelector } from 'react-redux'
+import Avatar from './Avatar'
 
 const Navbar = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const navigate = useNavigate()
   const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
 
-  const { token, isLoggedIn } = useSelector((state: any) => state.tokenReducer);
-
+  const { token, isLoggedIn } = useSelector((state: any) => state.tokenReducer)
+  const { user } = useSelector((state: any) => state.metaDataReducer)
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="flex items-center">
-              <img src={logo} alt="Skill Bloom Logo" className="w-20 h-20" />
+            <Link
+              to="/"
+              className="flex items-center"
+            >
+              <img
+                src={logo}
+                alt="Skill Bloom Logo"
+                className="w-20 h-20"
+              />
             </Link>
           </div>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex space-x-10">
-            <Link
-              to="/"
-              className="text-edtech-secondary hover:text-edtech-primary font-medium"
-            >
-              Home
-            </Link>
+            {!isLoggedIn && (
+              <Link
+                to="/"
+                className="text-edtech-secondary hover:text-edtech-primary font-medium"
+              >
+                Home
+              </Link>
+            )}
             <Link
               to="/resources"
               className="text-edtech-secondary hover:text-edtech-primary font-medium"
@@ -41,17 +50,27 @@ const Navbar = () => {
               Resources
             </Link>
             <Link
-              to="/about"
+              to="/portfolio"
               className="text-edtech-secondary hover:text-edtech-primary font-medium"
             >
-              About Us
+              Portfolio
             </Link>
-            <Link
-              to="/contact"
-              className="text-edtech-secondary hover:text-edtech-primary font-medium"
-            >
-              Contact
-            </Link>
+            {!isLoggedIn && (
+              <Link
+                to="/about"
+                className="text-edtech-secondary hover:text-edtech-primary font-medium"
+              >
+                About Us
+              </Link>
+            )}
+            {!isLoggedIn && (
+              <Link
+                to="/contact"
+                className="text-edtech-secondary hover:text-edtech-primary font-medium"
+              >
+                Contact
+              </Link>
+            )}
             {/* <Link to="/blog" className="text-edtech-secondary hover:text-edtech-primary font-medium">
               Blog
             </Link> */}
@@ -59,18 +78,21 @@ const Navbar = () => {
 
           {/* CTA Buttons */}
           {isLoggedIn ? (
-            <Avatar image={undefined} name="Sachin" />
+            <Avatar
+              image={user?.profile_picture}
+              name={user?.name}
+            />
           ) : (
             <div className="hidden md:flex items-center space-x-4">
               <Button
-                onClick={() => navigate("/login")}
+                onClick={() => navigate('/login')}
                 variant="outline"
                 className="text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white"
               >
                 Log In
               </Button>
               <Button
-                onClick={() => navigate("/signup")}
+                onClick={() => navigate('/signup')}
                 className="bg-edtech-primary hover:bg-edtech-primary/90 text-white"
               >
                 Sign Up
@@ -134,16 +156,14 @@ const Navbar = () => {
                 >
                   Log In
                 </Button>
-                <Button className="w-full bg-edtech-primary hover:bg-edtech-primary/90 text-white">
-                  Sign Up
-                </Button>
+                <Button className="w-full bg-edtech-primary hover:bg-edtech-primary/90 text-white">Sign Up</Button>
               </div>
             </div>
           </div>
         </div>
       )}
     </header>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

@@ -68,7 +68,9 @@ export default {
 					secondary: '#4A5568',
 					dark: '#2D3748',
 					light: '#F7FAFC',
-					accent: '#E53E3E'
+					accent: '#E53E3E',
+					common: '#396FDF',
+					white: '#FFFFFF'
 				}
 			},
 			borderRadius: {

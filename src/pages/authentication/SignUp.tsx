@@ -1,40 +1,40 @@
-import React, { useState } from "react";
-import { Input } from "../../components/ui/input";
-import { Button } from "../../components/ui/button";
-import { toast } from "sonner";
-import { makeAPICall } from "../../utils/api";
-import { useNavigate } from "react-router-dom";
-import { validateUserName } from "../../utils";
-import { Link } from "react-router-dom";
-import SignUpImage from "../../assets/auth.svg";
-import { isMobileDevice, isTabletDevice } from "../../utils";
-
+import React, { useState } from 'react'
+import { Input } from '../../components/ui/input'
+import { Button } from '../../components/ui/button'
+import { toast } from 'sonner'
+import { makeAPICall } from '../../utils/api'
+import { useNavigate } from 'react-router-dom'
+import { validateUserName } from '../../utils'
+import { Link } from 'react-router-dom'
+import SignUpImage from '../../assets/auth.svg'
+import { isMobileDevice, isTabletDevice } from '../../utils'
+import logo from '../../assets/logo.png'
 function SignUp() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [profession, setProfession] = useState("");
+  const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [mobile, setMobile] = useState('')
+  const [country, setCountry] = useState('')
+  const [state, setState] = useState('')
+  const [profession, setProfession] = useState('')
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const usernameError: string | Promise<boolean> = validateUserName(username);
-    if (typeof usernameError === "string") {
-      toast.error(usernameError);
-      return;
+    e.preventDefault()
+    const usernameError: string | Promise<boolean> = validateUserName(username)
+    if (typeof usernameError === 'string') {
+      toast.error(usernameError)
+      return
     } else {
       usernameError.then((response: any) => {
         if (!response.valid) {
-          toast.error("Username is already taken");
-          return;
+          toast.error('Username is already taken')
+          return
         }
-      });
+      })
     }
-    makeAPICall("signup", {
+    makeAPICall('signup', {
       name,
       username,
       email,
@@ -44,23 +44,44 @@ function SignUp() {
       state,
       profession,
     }).then((res: any) => {
-      console.log(res);
+      console.log(res)
       if (res.error) {
-        toast.error(res.message ?? res.error);
+        toast.error(res.message ?? res.error)
       } else {
-        toast.success("Account created successfully");
-        navigate("/login");
+        toast.success('Account created successfully')
+        navigate('/login')
       }
-    });
-  };
+    })
+  }
 
   return (
     <div className="flex md:flex-col sm:flex-col lg:flex-row items-center justify-center h-screen">
-      {!isMobileDevice() && !isTabletDevice() && <img src={SignUpImage} alt="logo" className="w-1/3 h-1/3" />}
+      {!isMobileDevice() && !isTabletDevice() && (
+        <img
+          src={SignUpImage}
+          alt="logo"
+          className="w-1/3 h-1/3"
+        />
+      )}
       <div className="w-full max-w-md p-10 login-container bg-white border-gray-200 rounded-lg shadow-md mx-2">
+        <div className="flex justify-center items-center gap-3">
+          <h2 className="text-sm text-edtech-dark">
+            <span className="text-edtech-common">Kick Start</span> your journey with
+          </h2>
+          <img
+            src={logo}
+            alt="logo"
+            style={{ width: '50px', height: '50px' }}
+            onClick={() => navigate('/')}
+            className="cursor-pointer"
+          />
+        </div>
         <h2 className="text-2xl font-bold mb-6">Create an Account</h2>
         <div className="w-full max-w-md">
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form
+            className="space-y-4"
+            onSubmit={handleSubmit}
+          >
             <div className="flex lg:flex-row gap-4 md:flex-col sm:flex-col">
               <div>
                 <label
@@ -151,14 +172,17 @@ function SignUp() {
                 >
                   Profession
                 </label>
-                <Input
-                  type="text"
+                <select
                   id="profession"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
-                  placeholder="Enter your profession"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary px-3 py-2 bg-white border border-gray-300"
                   onChange={(e) => setProfession(e.target.value)}
                   value={profession}
-                />
+                >
+                  <option value="">Select profession</option>
+                  <option value="student">Student</option>
+                  <option value="working_professional">Working Professional</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
             </div>
             <div className="flex lg:flex-row gap-4 md:flex-col sm:flex-col">
@@ -195,22 +219,26 @@ function SignUp() {
                 />
               </div>
             </div>
-            <Button type="submit" className="w-full" style={{ backgroundColor: '#396FDF' }}>
+            <Button
+              type="submit"
+              className="w-full"
+              style={{ backgroundColor: '#396FDF' }}
+            >
               Sign Up
             </Button>
           </form>
           <div className="mt-4 text-center">
             <Link
               to="/login"
-              className="text-edtech-secondary hover:text-edtech-primary"
+              className="text-edtech-secondary "
             >
-              Already have an account? Login
+              Already have an account? <span className="text-edtech-primary font-bold">Login</span>
             </Link>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default SignUp;
+export default SignUp

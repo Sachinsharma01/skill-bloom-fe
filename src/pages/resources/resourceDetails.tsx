@@ -549,7 +549,7 @@ const ResourceDetail = () => {
                   <div className="flex justify-center">
                     <Button
                       onClick={handleDownload}
-                      className="bg-edtech-teal hover:bg-edtech-teal/90 text-white"
+                      className="bg-edtech-primary hover:bg-edtech-primary/90 text-white"
                     >
                       <ShoppingCart size={18} className="mr-2" />
                       Get Access for ${resource.price}
@@ -604,7 +604,7 @@ const ResourceDetail = () => {
                 </div>
                 
                 <Button 
-                  className="w-full bg-edtech-teal hover:bg-edtech-teal/90 gap-2 py-6"
+                  className="w-full bg-edtech-primary hover:bg-edtech-primary/90 gap-2 py-6"
                   onClick={handleDownload}
                 >
                   {resource.isFree ? (
