@@ -1,26 +1,37 @@
+import React, { useEffect, useRef, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import {
+  ArrowRight,
+  Download,
+  FileDigit,
+  Calendar,
+  Tag,
+  Sparkles,
+  BookOpen,
+  Grid3X3,
+  ListFilter,
+  ShoppingCart,
+} from 'lucide-react'
+import Navbar from '../../components/common/Navbar'
+import { Badge } from '../../components/ui/badge'
+import { Button } from '../../components/ui/button'
+import { Card, CardContent } from '../../components/ui/card'
+import { useSelector } from 'react-redux'
+import static_resource from '../../static/static_resource.json'
+import config from '../../config'
 
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowRight, Download, FileDigit, Calendar, Tag, Sparkles, BookOpen, Grid3X3, ListFilter, ShoppingCart } from 'lucide-react';
-import Navbar from '../../components/common/Navbar';
-import { Badge } from '../../components/ui/badge';
-import { Button } from '../../components/ui/button';
-import { Card, CardContent } from '../../components/ui/card';
-import { useToast } from "../../hooks/use-toast";
-
-// Sample resource data
 const resourcesData = [
   {
     id: 1,
-    title: "AI Engineer Roadmap 2025",
-    category: "AI & Data Science",
-    date: "March 18, 2025",
-    image: "/lovable-uploads/18957b32-3f3a-4d55-a983-166ab37fbb3c.png",
-    downloadLink: "/resource/1",
+    title: 'AI Engineer Roadmap 2025',
+    category: 'AI & Data Science',
+    date: 'March 18, 2025',
+    image: '/lovable-uploads/18957b32-3f3a-4d55-a983-166ab37fbb3c.png',
+    downloadLink: '/resource/1',
     featured: true,
-    description: "Complete guide to becoming an AI Engineer in 2025 with step-by-step learning path.",
+    description: 'Complete guide to becoming an AI Engineer in 2025 with step-by-step learning path.',
     downloads: 1205,
-    type: "PDF",
+    type: 'PDF',
     isFree: false,
     price: 29.99,
     content: `
@@ -83,19 +94,19 @@ const resourcesData = [
     
     <h2>Projects to Build</h2>
     <p>This roadmap includes 10 hands-on projects of increasing complexity to apply your skills and build your portfolio.</p>
-    `
+    `,
   },
   {
     id: 2,
-    title: "10 Common Mistakes Freshers Make in Their First Data Job",
-    category: "Career Advice",
-    date: "March 01, 2025",
-    image: "/placeholder.svg",
-    downloadLink: "/resource/2",
+    title: '10 Common Mistakes Freshers Make in Their First Data Job',
+    category: 'Career Advice',
+    date: 'March 01, 2025',
+    image: '/placeholder.svg',
+    downloadLink: '/resource/2',
     featured: false,
     description: "Learn from others' mistakes and accelerate your data career growth.",
     downloads: 832,
-    type: "Checklist",
+    type: 'Checklist',
     isFree: true,
     price: 0,
     content: `
@@ -131,23 +142,24 @@ const resourcesData = [
     
     <h2>Mistake #10: Forgetting to Network</h2>
     <p>Building relationships within and outside your team is crucial for career growth. Attend company events, join communities, and connect with fellow data professionals.</p>
-    `
+    `,
   },
   {
     id: 3,
-    title: "Top Hyderabad Startups",
-    description: "Explore the top startups in Hyderabad and their unique offerings",
-    category: "startups",
+    title: 'Top Hyderabad Startups',
+    description: 'Explore the top startups in Hyderabad and their unique offerings',
+    category: 'startups',
     price: 19,
     duration: 14,
-    level: "Advanced",
+    level: 'Advanced',
     rating: 4.9,
     bestseller: false,
     reviews: 760,
     downloads: 760,
-    instructor: "Akhil Dubey",
+    instructor: 'Akhil Dubey',
     originalPrice: 39,
-    image: "https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad4750020d46c3c04/view?project=67fabe35003d5a3f0bb3&mode=admin",
+    image:
+      'https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad4750020d46c3c04/view?project=67fabe35003d5a3f0bb3&mode=admin',
     content: `
     <h2>Introduction</h2>
     <p>This comprehensive roadmap outlines the skills, tools, and knowledge needed to become an AI Engineer in 2025. Whether you're just starting out or looking to pivot your career, this guide will help you navigate the rapidly evolving field of artificial intelligence.</p>
@@ -208,23 +220,24 @@ const resourcesData = [
     
     <h2>Projects to Build</h2>
     <p>This roadmap includes 10 hands-on projects of increasing complexity to apply your skills and build your portfolio.</p>
-    `
+    `,
   },
   {
     id: 4,
-    title: "Top Chennai Startups",
-    description: "Explore the top startups in Chennai and their unique offerings",
-    category: "startups",
+    title: 'Top Chennai Startups',
+    description: 'Explore the top startups in Chennai and their unique offerings',
+    category: 'startups',
     price: 19,
     duration: 20,
-    level: "Intermediate",
+    level: 'Intermediate',
     rating: 4.6,
     bestseller: false,
     reviews: 530,
-    instructor: "Akhil Dubey",
+    instructor: 'Akhil Dubey',
     downloads: 530,
     originalPrice: 59,
-    image: "https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad7bd003385be8d1c/view?project=67fabe35003d5a3f0bb3&mode=admin",
+    image:
+      'https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad7bd003385be8d1c/view?project=67fabe35003d5a3f0bb3&mode=admin',
     content: `
     <h2>Introduction</h2>
     <p>This comprehensive roadmap outlines the skills, tools, and knowledge needed to become an AI Engineer in 2025. Whether you're just starting out or looking to pivot your career, this guide will help you navigate the rapidly evolving field of artificial intelligence.</p>
@@ -285,25 +298,26 @@ const resourcesData = [
     
     <h2>Projects to Build</h2>
     <p>This roadmap includes 10 hands-on projects of increasing complexity to apply your skills and build your portfolio.</p>
-    `
+    `,
   },
   {
     id: 5,
-    title: "Top Startups In India",
-    description: "Explore the top startups in India and their unique offerings",
-    category: "startups",
+    title: 'Top Startups In India',
+    description: 'Explore the top startups in India and their unique offerings',
+    category: 'startups',
     price: 19,
     duration: 5,
-    level: "Beginner",
+    level: 'Beginner',
     rating: 4.5,
     students: 1890,
-    instructor: "Emma Rodriguez",
+    instructor: 'Emma Rodriguez',
     featured: true,
-    date: "2025-02-01",
+    date: '2025-02-01',
     downloads: 1890,
     isFree: false,
-    type: "PDF",
-    image: "https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad925001c8970148f/view?project=67fabe35003d5a3f0bb3&mode=admin",
+    type: 'PDF',
+    image:
+      'https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad925001c8970148f/view?project=67fabe35003d5a3f0bb3&mode=admin',
     content: `
     <h2>Introduction</h2>
     <p>This comprehensive roadmap outlines the skills, tools, and knowledge needed to become an AI Engineer in 2025. Whether you're just starting out or looking to pivot your career, this guide will help you navigate the rapidly evolving field of artificial intelligence.</p>
@@ -364,108 +378,162 @@ const resourcesData = [
     
     <h2>Projects to Build</h2>
     <p>This roadmap includes 10 hands-on projects of increasing complexity to apply your skills and build your portfolio.</p>
-    `
+    `,
   },
-];
+]
 
 const ResourceDetail = () => {
-  const { id } = useParams();
-  console.log("Id of dynamic route", id)
-  const navigate = useNavigate();
-  const { toast } = useToast();
-  const [resource, setResource] = useState<any>(null);
-  const [showPreview, setShowPreview] = useState(true); // Controls whether to show preview or full content
-  const resourceId = parseInt(id || '0');
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const [resource, setResource] = useState<any>(null)
+  const [showPreview, setShowPreview] = useState(true)
+  const { user } = useSelector((state: any) => state.metaDataReducer)
+
+  const resourceId = parseInt(id || '0')
+
+  const rzp1Ref = useRef<any>(null)
 
   useEffect(() => {
-    // Find the resource by ID
-    const foundResource = resourcesData.find(r => r.id === resourceId);
-    if (foundResource) {
-      setResource(foundResource);
-    } else {
-      // Redirect to resources page if resource not found
-      navigate('/resources');
+    const script = document.createElement('script')
+    script.src = static_resource.razorpayScript
+    script.async = true
+    script.onload = scriptLoaded
+    document.body.appendChild(script)
+
+    return () => {
+      document.body.removeChild(script)
     }
-  }, [resourceId, navigate]);
+  }, [])
+
+  const scriptLoaded = () => {
+    const options = {
+      key: config.razorpay.razorpayKey,
+      amount: resource?.price * 100, //? amount in paisa
+      currency: static_resource.currency,
+      name: static_resource.companyName,
+      description: resource?.title,
+      image: static_resource.logoUrl,
+      handler: function (response: any) {
+        alert(response.razorpay_payment_id)
+        alert(response.razorpay_order_id)
+        alert(response.razorpay_signature)
+      },
+      prefill: {
+        name: user?.name ?? 'Demo User',
+        email: user?.email ?? 'demo@gmail.com',
+        contact: user?.mobile_number ?? '9999999999',
+      },
+      notes: {
+        address: user?.address ?? 'India',
+      },
+      theme: static_resource.theme,
+    }
+
+    rzp1Ref.current = new (window as any).Razorpay(options)
+    rzp1Ref.current.on('payment.failed', function (response: any) {
+      alert(response.error.code)
+      alert(response.error.description)
+      alert(response.error.source)
+      alert(response.error.step)
+      alert(response.error.reason)
+      alert(response.error.metadata.order_id)
+      alert(response.error.metadata.payment_id)
+    })
+  }
+
+  useEffect(() => {
+    const foundResource = resourcesData.find((r) => r.id === resourceId)
+    if (foundResource) {
+      setResource(foundResource)
+    } else {
+      navigate('/resources')
+    }
+  }, [resourceId, navigate])
 
   const handleDownload = () => {
-    if (resource.isFree) {
-      // For free resources, show download toast and trigger download
-      toast({
-        title: "Download started",
-        description: `${resource.title} is downloading...`,
-      });
-      
-      // Simulate a download by creating a temporary link
-      setTimeout(() => {
-        const link = document.createElement('a');
-        link.href = '/placeholder.svg'; // In a real app, this would be a real file URL
-        link.download = `${resource.title.replace(/\s+/g, '_')}.${resource.type.toLowerCase()}`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }, 1000);
-    } else {
-      // For paid resources, redirect to payment page
-      navigate(`/payment/${resource.id}`);
-    }
-  };
+    rzp1Ref.current?.open()
+  }
 
   const getResourceTypeIcon = (type: string) => {
-    switch(type) {
+    switch (type) {
       case 'PDF':
-        return <FileDigit size={16} className="text-red-500" />;
+        return (
+          <FileDigit
+            size={16}
+            className="text-red-500"
+          />
+        )
       case 'E-Book':
-        return <BookOpen size={16} className="text-indigo-500" />;
+        return (
+          <BookOpen
+            size={16}
+            className="text-indigo-500"
+          />
+        )
       case 'Template':
-        return <Grid3X3 size={16} className="text-green-500" />;
+        return (
+          <Grid3X3
+            size={16}
+            className="text-green-500"
+          />
+        )
       case 'Cheat Sheet':
-        return <ListFilter size={16} className="text-amber-500" />;
+        return (
+          <ListFilter
+            size={16}
+            className="text-amber-500"
+          />
+        )
       default:
-        return <FileDigit size={16} className="text-gray-500" />;
+        return (
+          <FileDigit
+            size={16}
+            className="text-gray-500"
+          />
+        )
     }
-  };
+  }
 
   const getCategoryClass = (category: string) => {
-    switch(category) {
+    switch (category) {
       case 'Data Analysis':
-        return 'bg-gradient-to-r from-blue-100 to-blue-200 text-blue-700';
+        return 'bg-gradient-to-r from-blue-100 to-blue-200 text-blue-700'
       case 'AI & Data Science':
-        return 'bg-gradient-to-r from-purple-100 to-purple-200 text-purple-700';
+        return 'bg-gradient-to-r from-purple-100 to-purple-200 text-purple-700'
       case 'Career Advice':
-        return 'bg-gradient-to-r from-green-100 to-green-200 text-green-700';
+        return 'bg-gradient-to-r from-green-100 to-green-200 text-green-700'
       case 'SQL':
-        return 'bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-700';
+        return 'bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-700'
       case 'Python':
-        return 'bg-gradient-to-r from-indigo-100 to-indigo-200 text-indigo-700';
+        return 'bg-gradient-to-r from-indigo-100 to-indigo-200 text-indigo-700'
       case 'Interview Questions':
-        return 'bg-gradient-to-r from-pink-100 to-pink-200 text-pink-700';
+        return 'bg-gradient-to-r from-pink-100 to-pink-200 text-pink-700'
       case 'Power BI':
-        return 'bg-gradient-to-r from-orange-100 to-orange-200 text-orange-700';
+        return 'bg-gradient-to-r from-orange-100 to-orange-200 text-orange-700'
       case 'Machine Learning':
-        return 'bg-gradient-to-r from-teal-100 to-teal-200 text-teal-700';
+        return 'bg-gradient-to-r from-teal-100 to-teal-200 text-teal-700'
       default:
-        return 'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700';
+        return 'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700'
     }
-  };
+  }
 
-  // Function to determine if we show full content or a preview 
+  // Function to determine if we show full content or a preview
   const getDisplayContent = () => {
-    if (!resource) return '';
-    
+    if (!resource) return ''
+
     // For free resources, always show the full content
-    if (resource.isFree) return resource.content;
-    
+    if (resource.isFree) return resource.content
+
     // For paid resources, show a preview (first section only)
-    if (!showPreview) return resource.content;
-    
+    if (!showPreview) return resource.content
+
     // Extract just the first section for the preview
-    const contentSections = resource.content.split('<h2>');
-    if (contentSections.length <= 1) return resource.content;
-    
+    const contentSections = resource.content.split('<h2>')
+    if (contentSections.length <= 1) return resource.content
+
     // Return the introduction and first section
-    return contentSections[0] + '<h2>' + contentSections[1];
-  };
+    return contentSections[0] + '<h2>' + contentSections[1]
+  }
 
   if (!resource) {
     return (
@@ -475,20 +543,23 @@ const ResourceDetail = () => {
           <p>Loading resource...</p>
         </div>
       </div>
-    );
+    )
   }
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-white">
       <Navbar />
-      
+
       <div className="container mx-auto px-4 py-12">
-        <Button 
-          variant="ghost" 
+        <Button
+          variant="ghost"
           className="mb-6 hover:bg-gray-100"
           onClick={() => navigate('/resources')}
         >
-          <ArrowRight className="mr-2 rotate-180" size={16} />
+          <ArrowRight
+            className="mr-2 rotate-180"
+            size={16}
+          />
           Back to Resources
         </Button>
 
@@ -496,50 +567,52 @@ const ResourceDetail = () => {
           <div className="md:col-span-8 space-y-6 animate-fade-in">
             <div className="space-y-4">
               <div className="flex flex-wrap gap-2">
-                <Badge className={`${getCategoryClass(resource.category)}`}>
-                  {resource.category}
-                </Badge>
+                <Badge className={`${getCategoryClass(resource.category)}`}>{resource.category}</Badge>
                 <div className="flex items-center text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
                   {getResourceTypeIcon(resource.type)}
                   <span className="ml-1">{resource.type}</span>
                 </div>
                 {resource.featured && (
                   <Badge className="bg-edtech-teal text-white border-none">
-                    <Sparkles size={12} className="mr-1" />
+                    <Sparkles
+                      size={12}
+                      className="mr-1"
+                    />
                     Featured
                   </Badge>
                 )}
               </div>
-              
-              <h1 className="text-3xl md:text-4xl font-bold text-edtech-blue-dark leading-tight">
-                {resource.title}
-              </h1>
-              
+
+              <h1 className="text-3xl md:text-4xl font-bold text-edtech-blue-dark leading-tight">{resource.title}</h1>
+
               <div className="flex items-center text-sm text-gray-500">
-                <Calendar size={14} className="mr-1" />
+                <Calendar
+                  size={14}
+                  className="mr-1"
+                />
                 <span>{resource.date}</span>
                 <span className="mx-2">•</span>
                 <span>{resource.downloads.toLocaleString()} downloads</span>
               </div>
             </div>
-            
+
             <div className="aspect-video rounded-xl overflow-hidden shadow-md">
-              <img 
-                src={resource.image} 
-                alt={resource.title} 
+              <img
+                src={resource.image}
+                alt={resource.title}
                 className="w-full h-full object-cover"
               />
             </div>
-            
+
             <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
               <h2 className="text-xl font-semibold text-edtech-blue-dark mb-4">About This Resource</h2>
               <p className="text-edtech-blue-medium mb-6">{resource.description}</p>
-              
-              <div 
+
+              <div
                 className="prose prose-lg max-w-none prose-headings:text-edtech-blue-dark prose-a:text-edtech-teal"
                 dangerouslySetInnerHTML={{ __html: getDisplayContent() }}
               ></div>
-              
+
               {/* Preview notice for paid resources */}
               {!resource.isFree && showPreview && (
                 <div className="mt-8 p-4 bg-gray-50 border-t border-gray-200 rounded-b-lg">
@@ -551,7 +624,10 @@ const ResourceDetail = () => {
                       onClick={handleDownload}
                       className="bg-edtech-primary hover:bg-edtech-primary/90 text-white"
                     >
-                      <ShoppingCart size={18} className="mr-2" />
+                      <ShoppingCart
+                        size={18}
+                        className="mr-2"
+                      />
                       Get Access for ${resource.price}
                     </Button>
                   </div>
@@ -559,51 +635,73 @@ const ResourceDetail = () => {
               )}
             </div>
           </div>
-          
+
           <div className="md:col-span-4 space-y-6">
             <Card className="sticky top-20 rounded-xl overflow-hidden border-gray-100 shadow-sm">
               <CardContent className="p-6 space-y-6">
                 <div className="text-center space-y-2">
                   {resource.isFree ? (
-                    <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-lg px-4 py-1">Free Resource</Badge>
+                    <Badge
+                      variant="outline"
+                      className="text-green-600 border-green-200 bg-green-50 text-lg px-4 py-1"
+                    >
+                      Free Resource
+                    </Badge>
                   ) : (
                     <div className="space-y-1">
-                      <Badge variant="outline" className="text-blue-600 border-blue-200 bg-blue-50 text-lg px-4 py-1">Premium Resource</Badge>
+                      <Badge
+                        variant="outline"
+                        className="text-blue-600 border-blue-200 bg-blue-50 text-lg px-4 py-1"
+                      >
+                        Premium Resource
+                      </Badge>
                       <p className="text-2xl font-bold text-edtech-blue-dark">${resource.price}</p>
                     </div>
                   )}
                 </div>
-                
+
                 <div className="space-y-3">
                   <h3 className="text-lg font-semibold text-edtech-blue-dark">Resource Details</h3>
                   <div className="grid grid-cols-2 gap-2 text-sm">
                     <div className="flex items-center text-gray-500">
-                      <Tag size={14} className="mr-2 text-edtech-teal" />
+                      <Tag
+                        size={14}
+                        className="mr-2 text-edtech-teal"
+                      />
                       <span>Category:</span>
                     </div>
                     <span className="text-edtech-blue-dark">{resource.category}</span>
-                    
+
                     <div className="flex items-center text-gray-500">
-                      <FileDigit size={14} className="mr-2 text-edtech-teal" />
+                      <FileDigit
+                        size={14}
+                        className="mr-2 text-edtech-teal"
+                      />
                       <span>Type:</span>
                     </div>
                     <span className="text-edtech-blue-dark">{resource.type}</span>
-                    
+
                     <div className="flex items-center text-gray-500">
-                      <Calendar size={14} className="mr-2 text-edtech-teal" />
+                      <Calendar
+                        size={14}
+                        className="mr-2 text-edtech-teal"
+                      />
                       <span>Date:</span>
                     </div>
                     <span className="text-edtech-blue-dark">{resource.date}</span>
-                    
+
                     <div className="flex items-center text-gray-500">
-                      <Download size={14} className="mr-2 text-edtech-teal" />
+                      <Download
+                        size={14}
+                        className="mr-2 text-edtech-teal"
+                      />
                       <span>Downloads:</span>
                     </div>
                     <span className="text-edtech-blue-dark">{resource.downloads.toLocaleString()}</span>
                   </div>
                 </div>
-                
-                <Button 
+
+                <Button
                   className="w-full bg-edtech-primary hover:bg-edtech-primary/90 gap-2 py-6"
                   onClick={handleDownload}
                 >
@@ -619,7 +717,7 @@ const ResourceDetail = () => {
                     </>
                   )}
                 </Button>
-                
+
                 <div className="text-xs text-gray-500 text-center">
                   By downloading this resource, you agree to our terms of service and privacy policy.
                 </div>
@@ -633,24 +731,27 @@ const ResourceDetail = () => {
           <h2 className="text-2xl font-bold text-edtech-blue-dark">Related Resources</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {resourcesData
-              .filter(r => r.id !== resourceId && r.category === resource.category)
+              .filter((r) => r.id !== resourceId && r.category === resource.category)
               .slice(0, 3)
-              .map(relatedResource => (
-                <Card 
-                  key={relatedResource.id} 
+              .map((relatedResource) => (
+                <Card
+                  key={relatedResource.id}
                   className="resource-card rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60 cursor-pointer"
                   onClick={() => navigate(`/resource/${relatedResource.id}`)}
                 >
                   <div className="relative h-40 overflow-hidden">
-                    <img 
-                      src={relatedResource.image} 
-                      alt={relatedResource.title} 
+                    <img
+                      src={relatedResource.image}
+                      alt={relatedResource.title}
                       className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
                     />
                     {relatedResource.featured && (
                       <div className="absolute top-3 left-3">
                         <Badge className="bg-edtech-teal text-white border-none">
-                          <Sparkles size={12} className="mr-1" />
+                          <Sparkles
+                            size={12}
+                            className="mr-1"
+                          />
                           Featured
                         </Badge>
                       </div>
@@ -665,12 +766,22 @@ const ResourceDetail = () => {
                     </h3>
                     <div className="flex justify-between items-center mt-3">
                       {relatedResource.isFree ? (
-                        <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50">Free</Badge>
+                        <Badge
+                          variant="outline"
+                          className="text-green-600 border-green-200 bg-green-50"
+                        >
+                          Free
+                        </Badge>
                       ) : (
-                        <Badge variant="outline" className="text-blue-600 border-blue-200 bg-blue-50">${relatedResource.price}</Badge>
+                        <Badge
+                          variant="outline"
+                          className="text-blue-600 border-blue-200 bg-blue-50"
+                        >
+                          ${relatedResource.price}
+                        </Badge>
                       )}
-                      <Button 
-                        variant="outline" 
+                      <Button
+                        variant="outline"
                         size="sm"
                         className="text-edtech-teal border-edtech-teal hover:bg-edtech-teal hover:text-white"
                       >
@@ -684,7 +795,7 @@ const ResourceDetail = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ResourceDetail;
+export default ResourceDetail

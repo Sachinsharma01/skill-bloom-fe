@@ -6,9 +6,11 @@ import { makeAPICall } from '../../utils/api'
 import { useNavigate } from 'react-router-dom'
 import { validateUserName } from '../../utils'
 import { Link } from 'react-router-dom'
-import SignUpImage from '../../assets/auth.svg'
+import AuthImage from '../../assets/auth.jpeg'
 import { isMobileDevice, isTabletDevice } from '../../utils'
 import logo from '../../assets/logo.png'
+import authBg from '../../assets/auth_bg.png'
+import { Loader2 } from 'lucide-react'
 function SignUp() {
   const navigate = useNavigate()
 
@@ -20,8 +22,10 @@ function SignUp() {
   const [country, setCountry] = useState('')
   const [state, setState] = useState('')
   const [profession, setProfession] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsLoading(true)
     const usernameError: string | Promise<boolean> = validateUserName(username)
     if (typeof usernameError === 'string') {
       toast.error(usernameError)
@@ -30,6 +34,7 @@ function SignUp() {
       usernameError.then((response: any) => {
         if (!response.valid) {
           toast.error('Username is already taken')
+          setIsLoading(false)
           return
         }
       })
@@ -49,191 +54,205 @@ function SignUp() {
         toast.error(res.message ?? res.error)
       } else {
         toast.success('Account created successfully')
+        setIsLoading(false)
         navigate('/login')
       }
     })
   }
 
   return (
-    <div className="flex md:flex-col sm:flex-col lg:flex-row items-center justify-center h-screen">
-      {!isMobileDevice() && !isTabletDevice() && (
-        <img
-          src={SignUpImage}
-          alt="logo"
-          className="w-1/3 h-1/3"
-        />
-      )}
-      <div className="w-full max-w-md p-10 login-container bg-white border-gray-200 rounded-lg shadow-md mx-2">
-        <div className="flex justify-center items-center gap-3">
-          <h2 className="text-sm text-edtech-dark">
-            <span className="text-edtech-common">Kick Start</span> your journey with
-          </h2>
-          <img
-            src={logo}
-            alt="logo"
-            style={{ width: '50px', height: '50px' }}
-            onClick={() => navigate('/')}
-            className="cursor-pointer"
-          />
-        </div>
-        <h2 className="text-2xl font-bold mb-6">Create an Account</h2>
-        <div className="w-full max-w-md">
-          <form
-            className="space-y-4"
-            onSubmit={handleSubmit}
-          >
-            <div className="flex lg:flex-row gap-4 md:flex-col sm:flex-col">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Full Name
-                </label>
-                <Input
-                  type="text"
-                  id="name"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
-                  placeholder="Enter your name"
-                  onChange={(e) => setName(e.target.value)}
-                  value={name}
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="username"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Username
-                </label>
-                <Input
-                  type="text"
-                  id="username"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
-                  placeholder="Enter your username"
-                  onChange={(e) => setUsername(e.target.value)}
-                  value={username}
-                />
-              </div>
-            </div>
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Email
-              </label>
-              <Input
-                type="email"
-                id="email"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
-                placeholder="Enter your email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
+    <div
+      style={{
+        height: '100vh',
+        width: '100vw',
+        backgroundImage: `url(${authBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="flex md:flex-col sm:flex-col lg:flex-row items-center justify-center h-screen"> 
+        <div className="lg:w-1/2 flex justify-center items-center bg-white lg:p-20 rounded-lg">
+          {!isMobileDevice() && !isTabletDevice() && (
+            <img
+              src={AuthImage}
+              alt="logo"
+              className="w-1/2 h-1/2 mx-auto"
+            />
+          )}
+          <div className="w-full max-w-md p-10 login-container bg-white border-gray-200 rounded-lg shadow-md mx-2 gap-3">
+            <div className="flex justify-center items-center gap-3">
+              <h2 className="text-sm text-edtech-dark">
+                <span className="text-edtech-common">Kick Start</span> your journey with
+              </h2>
+              <img
+                src={logo}
+                alt="logo"
+                style={{ width: '50px', height: '50px' }}
+                onClick={() => navigate('/')}
+                className="cursor-pointer"
               />
             </div>
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+            <h2 className="text-2xl font-bold mb-6">Create an Account</h2>
+            <div className="w-full max-w-md">
+              <form
+                className="space-y-4"
+                onSubmit={handleSubmit}
               >
-                Password
-              </label>
-              <Input
-                type="password"
-                id="password"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
-                placeholder="Enter your password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-              />
+                <div className="flex lg:flex-row gap-4 md:flex-col sm:flex-col">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Full Name
+                    </label>
+                    <Input
+                      type="text"
+                      id="name"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                      placeholder="Enter your name"
+                      onChange={(e) => setName(e.target.value)}
+                      value={name}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="username"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Username
+                    </label>
+                    <Input
+                      type="text"
+                      id="username"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                      placeholder="Enter your username"
+                      onChange={(e) => setUsername(e.target.value)}
+                      value={username}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Email
+                  </label>
+                  <Input
+                    type="email"
+                    id="email"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                    placeholder="Enter your email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Password
+                  </label>
+                  <Input
+                    type="password"
+                    id="password"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                    placeholder="Enter your password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                  />
+                </div>
+                <div className="flex lg:flex-row gap-4 md:flex-col sm:flex-col">
+                  <div>
+                    <label
+                      htmlFor="mobile"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Mobile Number
+                    </label>
+                    <Input
+                      type="number"
+                      id="mobile"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                      placeholder="Enter your mobile number"
+                      onChange={(e) => setMobile(e.target.value)}
+                      value={mobile}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="profession"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Profession
+                    </label>
+                    <select
+                      id="profession"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary px-3 py-2 bg-white border border-gray-300"
+                      onChange={(e) => setProfession(e.target.value)}
+                      value={profession}
+                    >
+                      <option value="">Select profession</option>
+                      <option value="student">Student</option>
+                      <option value="working_professional">Working Professional</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="flex lg:flex-row gap-4 md:flex-col sm:flex-col">
+                  <div>
+                    <label
+                      htmlFor="country"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Country
+                    </label>
+                    <Input
+                      type="text"
+                      id="country"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                      placeholder="Enter your country"
+                      onChange={(e) => setCountry(e.target.value)}
+                      value={country}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="state"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      State
+                    </label>
+                    <Input
+                      type="text"
+                      id="state"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                      placeholder="Enter your state"
+                      onChange={(e) => setState(e.target.value)}
+                      value={state}
+                    />
+                  </div>
+                </div>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  style={{ backgroundColor: '#396FDF' }}
+                  disabled={isLoading}
+                >
+                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Sign Up'}
+                </Button>
+              </form>
+              <div className="mt-4 text-center">
+                <Link
+                  to="/login"
+                  className="text-edtech-secondary "
+                >
+                  Already have an account? <span className="text-edtech-primary font-bold">Login</span>
+                </Link>
+              </div>
             </div>
-            <div className="flex lg:flex-row gap-4 md:flex-col sm:flex-col">
-              <div>
-                <label
-                  htmlFor="mobile"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Mobile Number
-                </label>
-                <Input
-                  type="number"
-                  id="mobile"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
-                  placeholder="Enter your mobile number"
-                  onChange={(e) => setMobile(e.target.value)}
-                  value={mobile}
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="profession"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Profession
-                </label>
-                <select
-                  id="profession"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary px-3 py-2 bg-white border border-gray-300"
-                  onChange={(e) => setProfession(e.target.value)}
-                  value={profession}
-                >
-                  <option value="">Select profession</option>
-                  <option value="student">Student</option>
-                  <option value="working_professional">Working Professional</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-            </div>
-            <div className="flex lg:flex-row gap-4 md:flex-col sm:flex-col">
-              <div>
-                <label
-                  htmlFor="country"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Country
-                </label>
-                <Input
-                  type="text"
-                  id="country"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
-                  placeholder="Enter your country"
-                  onChange={(e) => setCountry(e.target.value)}
-                  value={country}
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="state"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  State
-                </label>
-                <Input
-                  type="text"
-                  id="state"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
-                  placeholder="Enter your state"
-                  onChange={(e) => setState(e.target.value)}
-                  value={state}
-                />
-              </div>
-            </div>
-            <Button
-              type="submit"
-              className="w-full"
-              style={{ backgroundColor: '#396FDF' }}
-            >
-              Sign Up
-            </Button>
-          </form>
-          <div className="mt-4 text-center">
-            <Link
-              to="/login"
-              className="text-edtech-secondary "
-            >
-              Already have an account? <span className="text-edtech-primary font-bold">Login</span>
-            </Link>
           </div>
         </div>
       </div>

@@ -7,22 +7,26 @@ import { makeAPICall } from '../../utils/api'
 import { useDispatch } from 'react-redux'
 import tokenActions from '../../redux/actions/tokenActions'
 import metaDataActions from '../../redux/actions/metaDataActions'
-import AuthImage from '../../assets/auth.svg'
+import AuthImage from '../../assets/auth.jpeg'
 import { isMobileDevice, isTabletDevice } from '../../utils'
 import logo from '../../assets/logo.png'
 import authBg from '../../assets/auth_bg.png'
+import { Loader2 } from 'lucide-react'
+
 const Login: React.FC = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
+    setIsLoading(true)
     if (!email || !password) {
       toast.error('Please enter both email and password')
+      setIsLoading(false)
       return
     }
 
@@ -36,7 +40,8 @@ const Login: React.FC = () => {
       toast.success('Login successful')
 
       console.log('res', res)
-      navigate(`/profile`)
+      setIsLoading(false)
+      navigate(`/dashboard`)
     })
   }
 
@@ -114,8 +119,9 @@ const Login: React.FC = () => {
                   type="submit"
                   className="w-full"
                   style={{ backgroundColor: '#396FDF' }}
+                  disabled={isLoading}
                 >
-                  Login
+                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Login'}
                 </Button>
               </form>
               <div className="mt-6 text-center">

@@ -1,16 +1,24 @@
 import { useState } from 'react'
 import { Button } from '../ui/button'
-import { Menu, X } from 'lucide-react'
+import { LogOutIcon, Menu, X } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import { useSelector } from 'react-redux'
 import Avatar from './Avatar'
+import { useDispatch } from 'react-redux'
+import tokenActions from '../../redux/actions/tokenActions'
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen)
+  }
+
+  const handleLogout = () => {
+    dispatch(tokenActions.removeToken())
+    navigate('/')
   }
 
   const { token, isLoggedIn } = useSelector((state: any) => state.tokenReducer)
@@ -28,7 +36,7 @@ const Navbar = () => {
               <img
                 src={logo}
                 alt="Skill Bloom Logo"
-                className="w-20 h-20"
+                className="w-16 h-16"
               />
             </Link>
           </div>
@@ -49,6 +57,14 @@ const Navbar = () => {
             >
               Resources
             </Link>
+            {isLoggedIn && (
+              <Link
+                to="/dashboard  "
+                className="text-edtech-secondary hover:text-edtech-primary font-medium"
+              >
+                Dashboard
+              </Link>
+            )}
             <Link
               to="/portfolio"
               className="text-edtech-secondary hover:text-edtech-primary font-medium"
@@ -78,10 +94,19 @@ const Navbar = () => {
 
           {/* CTA Buttons */}
           {isLoggedIn ? (
-            <Avatar
-              image={user?.profile_picture}
-              name={user?.name}
-            />
+            <div className="flex items-center space-x-4">
+              <Avatar
+                image={user?.profile_picture}
+                name={user?.name}
+              />
+              <Button
+                onClick={handleLogout}
+                variant="outline"
+                className="text-edtech-common border-edtech-common hover:bg-edtech-common hover:text-white"
+              >
+                <LogOutIcon size={16} />
+              </Button>
+            </div>
           ) : (
             <div className="hidden md:flex items-center space-x-4">
               <Button

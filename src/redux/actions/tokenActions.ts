@@ -14,5 +14,4 @@ const removeToken = () => {
     }
 }
 
-
 export default { removeToken, setToken };
