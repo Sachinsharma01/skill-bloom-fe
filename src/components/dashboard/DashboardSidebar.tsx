@@ -5,9 +5,9 @@ import { useIsMobile } from '../../hooks/use-mobile'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 
 const menuItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
+  { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
   { icon: Book, label: 'Portfolio', path: '/portfolio' },
-  { icon: List, label: 'Enrolled Resources', path: '/enrolled-courses' },
+  { icon: List, label: 'Enrolled Resources', path: '/enrolled-resources' },
 ]
 
 export const DashboardSidebar = () => {

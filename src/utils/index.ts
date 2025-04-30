@@ -29,3 +29,10 @@ export const isMobileDevice = () => {
 export const isTabletDevice = () => {
     return window.innerWidth >= 768 && window.innerWidth <= 1024;
 }
+
+export const secondsToHoursOrMinutes = (seconds: number) => {
+    if (seconds < 3600) {
+        return `${Math.floor(seconds / 60)} min`;
+    }
+    return `${Math.floor(seconds / 3600)} hr`;
+}
