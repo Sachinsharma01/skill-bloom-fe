@@ -19,6 +19,8 @@ import { Card, CardContent } from '../../components/ui/card'
 import { useSelector } from 'react-redux'
 import static_resource from '../../static/static_resource.json'
 import config from '../../config'
+import { makeAPICall } from '../../utils/api'
+import { toast } from 'sonner'
 
 const resourcesData = [
   {
@@ -388,6 +390,7 @@ const ResourceDetail = () => {
   const [resource, setResource] = useState<any>(null)
   const [showPreview, setShowPreview] = useState(true)
   const { user } = useSelector((state: any) => state.metaDataReducer)
+  const { token } = useSelector((state: any) => state.tokenReducer)
 
   const resourceId = parseInt(id || '0')
 
@@ -397,7 +400,7 @@ const ResourceDetail = () => {
     const script = document.createElement('script')
     script.src = static_resource.razorpayScript
     script.async = true
-    script.onload = scriptLoaded
+    // script.onload = scriptLoaded
     document.body.appendChild(script)
 
     return () => {
@@ -408,16 +411,9 @@ const ResourceDetail = () => {
   const scriptLoaded = () => {
     const options = {
       key: config.razorpay.razorpayKey,
-      amount: resource?.price * 100, //? amount in paisa
       currency: static_resource.currency,
       name: static_resource.companyName,
-      description: resource?.title,
       image: static_resource.logoUrl,
-      handler: function (response: any) {
-        alert(response.razorpay_payment_id)
-        alert(response.razorpay_order_id)
-        alert(response.razorpay_signature)
-      },
       prefill: {
         name: user?.name ?? 'Demo User',
         email: user?.email ?? 'demo@gmail.com',
@@ -451,7 +447,50 @@ const ResourceDetail = () => {
   }, [resourceId, navigate])
 
   const handleDownload = () => {
-    rzp1Ref.current?.open()
+    makeAPICall(
+      'createOrder',
+      {
+        course_id: resourceId + '',
+        amount: resource?.price,
+        user_id: user?.id + '',
+      },
+      token as string,
+    ).then((order: any) => {
+      const options = {
+        key: config.razorpay.razorpayKey,
+        currency: static_resource.currency,
+        name: static_resource.companyName,
+        image: static_resource.logoUrl,
+        prefill: {
+          name: user?.name ?? 'Demo User',
+          email: user?.email ?? 'demo@gmail.com',
+          contact: user?.mobile_number ?? '9999999999',
+        },
+        notes: {
+          address: user?.address ?? 'India',
+        },
+        theme: static_resource.theme,
+        amount: resource?.price * 100, // amount in paisa
+        description: resource?.title,
+        order_id: order.id,
+        handler: function (response: any) {
+          toast.success('Payment successful')
+          makeAPICall('updateOrder', {
+            id: order.id,
+            razorpay_id: response.razorpay_order.id,
+            payment_id: order.payment_id,
+            status: 'success',
+          }).then((order: any) => {
+            console.log(order)
+            toast.success('Purchase successful')
+            rzp1Ref.current.close()
+            navigate('/dashboard')
+          })
+        },
+      }
+      rzp1Ref.current = new (window as any).Razorpay(options)
+      rzp1Ref.current.open()
+    })
   }
 
   const getResourceTypeIcon = (type: string) => {

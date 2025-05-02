@@ -58,5 +58,13 @@ const API = {
     enrolledCourses: async (payload: any, headers: any) => {
         const response = await axiosInstance.get(`/user/${payload.userId}/enrolled_courses`, headers);
         return response.data
+    },
+    createOrder: async (payload: any, headers: any) => {
+        const response = await axiosInstance.post('/orders', payload, headers);
+        return response.data
+    },
+    updateOrder: async (payload: any, headers: any) => {
+        const response = await axiosInstance.put(`/orders/${payload.id}`, payload, headers);
+        return response.data
     }
 }
