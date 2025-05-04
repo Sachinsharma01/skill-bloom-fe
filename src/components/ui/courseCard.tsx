@@ -7,11 +7,12 @@ interface CourseCardProps {
   duration: number;
   total_lessons: string;
   category: string;
+  onClick: () => void;
 }
 
-export const CourseCard: React.FC<CourseCardProps> = ({ title, image_url, duration, total_lessons, category }: CourseCardProps) => {
+export const CourseCard: React.FC<CourseCardProps> = ({ title, image_url, duration, total_lessons, category, onClick }: CourseCardProps) => {
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" onClick={onClick}>
       <div className="relative">
         <img src={image_url} alt={title} className="w-full h-36 sm:h-48 object-cover" />
         {category && (

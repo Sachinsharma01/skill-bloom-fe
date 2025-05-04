@@ -24,6 +24,7 @@ export const makeAPICall = async (api: string, payload?: any, token?: string) =>
         const response = await API[api](payload, { headers });
         return response.data;
     } catch (error: any) {
+        console.error('API Error:', error);
         if (error.response) {
             return error.response.data;
         }
@@ -65,6 +66,18 @@ const API = {
     },
     updateOrder: async (payload: any, headers: any) => {
         const response = await axiosInstance.put(`/orders/${payload.id}`, payload, headers);
+        return response.data
+    },
+    dashboardDetails: async (payload: any, headers: any) => {
+        const response = await axiosInstance.get(`/dashboard/${payload.id}`, headers);
+        return response.data
+    },
+    savePortfolio: async (payload: any, headers: any) => {
+        const response = await axiosInstance.post('/dashboard/portfolio', payload, headers);
+        return response.data
+    },
+    getPortfolio: async (payload: any, headers: any) => {
+        const response = await axiosInstance.get(`/dashboard/portfolio/${payload.id}`, headers);
         return response.data
     }
 }

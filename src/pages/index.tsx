@@ -11,6 +11,10 @@ import Home from "./home/Index";
 import Login from "./authentication/Login";
 import SignUp from "./authentication/SignUp";
 import Dashboard from "./dashboard";
+import DashboardCourseDetails from "./dashboard/DashboardCourseDetails";
+import Portfolio from "./portfolio";
+import PortfolioDownload from "./portfolio/PortfolioDownload";
+import PortfolioCreate from "./portfolio/CreatePortfolio";
 // import Payment from "./payment";
 
 const Navigation = () => {
@@ -31,7 +35,10 @@ const Navigation = () => {
           <Route path="/signup" element={isLoggedIn ? <Navigate to="/dashboard" /> : <SignUp />} />
           <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
           <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
-          <Route path="/portfolio" element={<div className="flex items-center justify-center h-screen">Hang tight!We are working on it</div>} />
+          <Route path="/dashboard/course/:id" element={ isLoggedIn ? <DashboardCourseDetails /> : <Navigate to="/login" />} />
+          <Route path="/portfolio" element={isLoggedIn ? <Portfolio /> : <Navigate to="/login" />} />
+          <Route path="/portfolio/download" element={isLoggedIn ? <PortfolioDownload /> : <Navigate to="/login" />} />
+          <Route path="/portfolio/create" element={isLoggedIn ? <PortfolioCreate /> : <Navigate to="/login" />} />
           {/* <Route path="/payment/:id" element={<Payment />} /> */}
           <Route path="/blog" Component={Blog} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

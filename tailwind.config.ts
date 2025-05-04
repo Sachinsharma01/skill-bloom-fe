@@ -70,6 +70,7 @@ export default {
 					light: '#F7FAFC',
 					accent: '#E53E3E',
 					common: '#396FDF',
+					'common-light': '#E6F0FF',
 					white: '#FFFFFF'
 				}
 			},

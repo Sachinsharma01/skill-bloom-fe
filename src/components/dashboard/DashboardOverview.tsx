@@ -46,6 +46,8 @@ const DashboardOverview = () => {
       })
   }, [])
 
+  console.log("enrolledCourses", enrolledCourses)
+
   return (
     <>
       {loading && <div className="flex justify-center items-center h-screen">Loading...</div>}
@@ -90,6 +92,7 @@ const DashboardOverview = () => {
                     <CourseCard
                       key={index}
                       {...course.course}
+                      onClick={() => navigate(`/dashboard/course/${course.course.id}`)}
                     />
                   ))}
               </div>
@@ -106,7 +109,7 @@ const DashboardOverview = () => {
               <h3 className="text-lg font-semibold text-gray-800 mb-2">Portfolio Builder</h3>
               <p className="text-gray-600 mb-4">Create a stunning portfolio to showcase your skills and projects.</p>
               <button
-                onClick={() => navigate('/portfolio')}
+                onClick={() => navigate('/portfolio/create')}
                 className="text-indigo-600 hover:text-indigo-700"
               >
                 Get Started →
