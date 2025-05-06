@@ -5,12 +5,12 @@ import { useIsMobile } from '../../hooks/use-mobile'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 
 const menuItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
-  { icon: Book, label: 'Portfolio', path: '/portfolio' },
-  { icon: List, label: 'Enrolled Resources', path: '/enrolled-resources' },
+  { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard', tab: 'overview' },
+  { icon: Book, label: 'Portfolio', path: '/portfolio', tab: 'portfolio' },
+  { icon: List, label: 'Enrolled Resources', path: '/enrolled-resources', tab: 'enrolled-resources' },
 ]
 
-export const DashboardSidebar = () => {
+export const DashboardSidebar = ({ onClick, selectedTab }: { onClick: (tab: string) => void, selectedTab: string }) => {
   const location = useLocation()
   const isMobile = useIsMobile()
 
@@ -18,9 +18,9 @@ export const DashboardSidebar = () => {
     <div
       className={cn(
         'bg-gradient-to-b from-indigo-600 to-purple-600 text-white',
-        'w-full md:w-64 md:h-screen p-4 md:p-6',
+        'w-full h-full p-4 md:p-6 mt-8',
         'flex flex-row md:flex-col items-center md:items-start',
-        'overflow-x-auto md:overflow-y-auto sticky top-0 z-10',
+        'overflow-x-auto md:overflow-y-auto',
       )}
     >
       <nav
@@ -33,17 +33,17 @@ export const DashboardSidebar = () => {
           {menuItems.map((item) => (
             <Tooltip key={item.path}>
               <TooltipTrigger asChild>
-                <Link
-                  to={item.path}
+                <button
                   className={cn(
                     'flex items-center md:space-x-3 px-3 md:px-4 py-2 md:py-3 rounded-lg transition-colors whitespace-nowrap',
                     'min-w-[80px] md:min-w-0 justify-center md:justify-start',
-                    location.pathname === item.path ? 'bg-white/20 text-white' : 'hover:bg-white/10 text-white/80',
+                    selectedTab === item.tab ? 'bg-white/20 text-white' : 'hover:bg-white/10 text-white/80',
                   )}
+                  onClick={() => onClick(item.tab)}
                 >
                   <item.icon size={20} />
                   <span className="hidden md:inline">{item.label}</span>
-                </Link>
+                </button>
               </TooltipTrigger>
               <TooltipContent
                 side="bottom"

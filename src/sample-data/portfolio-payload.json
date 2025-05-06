@@ -1,0 +1,163 @@
+{
+  "basicInfo": {
+    "fullName": "John Doe",
+    "position": "Senior Software Engineer",
+    "headline": "Full-stack developer passionate about building scalable applications",
+    "city": "San Francisco, CA",
+    "photoUrl": "https://example.com/profile.jpg",
+    "email": "john.doe@example.com",
+    "phoneNumber": "1234567890",
+    "linkedinProfile": "https://linkedin.com/in/johndoe",
+    "githubProfile": "https://github.com/johndoe",
+    "resumeUrl": "https://example.com/resume.pdf",
+    "hideEmail": false,
+    "hidePhone": true,
+    "hideResume": false,
+    "whatYouDo": "I build scalable web applications using modern technologies. Specializing in React, Node.js, and cloud infrastructure.",
+    "whatYouDoHeadline": "What I Do",
+    "aboutYourself": "I'm a passionate software engineer with 5+ years of experience in building web applications. I love solving complex problems and creating elegant solutions."
+  },
+  "education": [
+    {
+      "id": "edu1",
+      "degree": "Master of Science in Computer Science",
+      "collegeName": "Stanford University",
+      "startDate": "2018-09",
+      "endDate": "2020-05",
+      "location": "Stanford, CA",
+      "websiteLink": "https://stanford.edu",
+      "description": "Specialized in Machine Learning and Distributed Systems",
+      "achievements": [
+        "Graduated with Distinction",
+        "Published research paper on Neural Networks",
+        "Teaching Assistant for Data Structures"
+      ],
+      "keySkills": [
+        "Machine Learning",
+        "Distributed Systems",
+        "Data Structures",
+        "Algorithms"
+      ]
+    },
+    {
+      "id": "edu2",
+      "degree": "Bachelor of Technology in Computer Science",
+      "collegeName": "Massachusetts Institute of Technology",
+      "startDate": "2014-09",
+      "endDate": "2018-05",
+      "location": "Cambridge, MA",
+      "websiteLink": "https://mit.edu",
+      "description": "Focused on Software Engineering and Web Development",
+      "achievements": [
+        "Dean's List all semesters",
+        "Won Hackathon 2017",
+        "Research Assistant in AI Lab"
+      ],
+      "keySkills": [
+        "Software Engineering",
+        "Web Development",
+        "Database Systems",
+        "Computer Networks"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill1",
+      "name": "React",
+      "category": "technical"
+    },
+    {
+      "id": "skill2",
+      "name": "Node.js",
+      "category": "technical"
+    },
+    {
+      "id": "skill3",
+      "name": "TypeScript",
+      "category": "technical"
+    },
+    {
+      "id": "skill4",
+      "name": "Git",
+      "category": "tools"
+    },
+    {
+      "id": "skill5",
+      "name": "Docker",
+      "category": "tools"
+    },
+    {
+      "id": "skill6",
+      "name": "Project Management",
+      "category": "additional"
+    }
+  ],
+  "experiences": [
+    {
+      "id": "exp1",
+      "title": "Senior Software Engineer",
+      "company": "Tech Corp Inc.",
+      "startDate": "2020-06",
+      "endDate": "Present",
+      "isOngoing": true,
+      "description": "Leading a team of developers in building scalable web applications",
+      "bullets": [
+        "Architected and implemented microservices architecture",
+        "Reduced server response time by 40%",
+        "Mentored junior developers",
+        "Implemented CI/CD pipeline"
+      ]
+    },
+    {
+      "id": "exp2",
+      "title": "Software Engineer",
+      "company": "Startup XYZ",
+      "startDate": "2018-06",
+      "endDate": "2020-05",
+      "isOngoing": false,
+      "description": "Full-stack development of web applications",
+      "bullets": [
+        "Developed RESTful APIs",
+        "Implemented frontend features using React",
+        "Optimized database queries",
+        "Participated in code reviews"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj1",
+      "name": "E-commerce Platform",
+      "description": "A scalable e-commerce platform built with React and Node.js",
+      "status": "completed",
+      "technologies": ["React", "Node.js", "MongoDB", "Redis"],
+      "link": "https://github.com/johndoe/ecommerce"
+    },
+    {
+      "id": "proj2",
+      "name": "Task Management App",
+      "description": "A real-time task management application with collaborative features",
+      "status": "active",
+      "technologies": ["React", "Firebase", "Material-UI"],
+      "link": "https://github.com/johndoe/taskmanager"
+    }
+  ],
+  "certificates": [
+    {
+      "id": "cert1",
+      "name": "AWS Certified Solutions Architect",
+      "issuer": "Amazon Web Services",
+      "date": "2021-03",
+      "selected": true
+    },
+    {
+      "id": "cert2",
+      "name": "Google Cloud Professional Developer",
+      "issuer": "Google Cloud",
+      "date": "2020-11",
+      "selected": true
+    }
+  ],
+  "selectedTemplate": "dark"
+} 

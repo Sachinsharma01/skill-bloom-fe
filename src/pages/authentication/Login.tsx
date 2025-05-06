@@ -31,8 +31,9 @@ const Login: React.FC = () => {
     }
 
     makeAPICall('signin', { email, password }).then((res: any) => {
-      if (res.error) {
-        toast.error(res.message)
+      if (res.error ?? res.errorMessage) {
+        toast.error(res.error ?? res.errorMessage)
+        setIsLoading(false)
         return
       }
       dispatch(tokenActions.setToken(res.accessToken))

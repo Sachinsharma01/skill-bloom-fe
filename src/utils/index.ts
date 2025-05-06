@@ -1,4 +1,6 @@
 import { makeAPICall } from "./api";
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
 export const validateUserName = (username: string) => {
     if (username.length < 3) {
@@ -36,3 +38,9 @@ export const secondsToHoursOrMinutes = (seconds: number) => {
     }
     return `${Math.floor(seconds / 3600)} hr`;
 }
+
+
+export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs))
+  }
+  

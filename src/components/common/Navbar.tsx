@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import Avatar from './Avatar'
 import { useDispatch } from 'react-redux'
 import tokenActions from '../../redux/actions/tokenActions'
+import config from '../../config'
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -66,7 +67,7 @@ const Navbar = () => {
               </Link>
             )}
             <Link
-              to="/portfolio"
+              to={`${config.skillbloom_portfoilo_url}/portfolio/${user.portfolio_id}`}
               className="text-edtech-secondary hover:text-edtech-primary font-medium"
             >
               Portfolio

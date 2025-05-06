@@ -19,8 +19,10 @@ import PortfolioCreate from "./portfolio/CreatePortfolio";
 
 const Navigation = () => {
   
+  const {user} = useSelector((state: any) => state.metaDataReducer)
   const { token, isLoggedIn } = useSelector((state: any) => state.tokenReducer);
   console.log(isLoggedIn)
+  console.log("user", user)
   
   return (
     <>
