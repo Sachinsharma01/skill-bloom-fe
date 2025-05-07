@@ -60,7 +60,7 @@ const Navbar = () => {
             </Link>
             {isLoggedIn && (
               <Link
-                to="/dashboard  "
+                to="/dashboard"
                 className="text-edtech-secondary hover:text-edtech-primary font-medium"
               >
                 Dashboard
@@ -88,9 +88,6 @@ const Navbar = () => {
                 Contact
               </Link>
             )}
-            {/* <Link to="/blog" className="text-edtech-secondary hover:text-edtech-primary font-medium">
-              Blog
-            </Link> */}
           </nav>
 
           {/* CTA Buttons */}
@@ -142,47 +139,85 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link
-              to="/"
-              className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
-            >
-              Home
-            </Link>
+            {!isLoggedIn && (
+              <Link
+                to="/"
+                className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
+              >
+                Home
+              </Link>
+            )}
             <Link
               to="/resources"
               className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
             >
               Resources
             </Link>
+            {isLoggedIn && (
+              <Link
+                to="/dashboard"
+                className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
+              >
+                Dashboard
+              </Link>
+            )}
             <Link
-              to="/about"
+              to={`${user?.portfolio_id ? `${config.skillbloom_portfoilo_url}/portfolio/${user.portfolio_id}` : '/portfolio'}`}
               className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
             >
-              About Us
+              Portfolio
             </Link>
-            <Link
-              to="/contact"
-              className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
-            >
-              Contact
-            </Link>
-            {/* <Link
-              to="/blog"
-              className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
-            >
-              Blog
-            </Link> */}
+            {!isLoggedIn && (
+              <Link
+                to="/about"
+                className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
+              >
+                About Us
+              </Link>
+            )}
+            {!isLoggedIn && (
+              <Link
+                to="/contact"
+                className="block px-3 py-2 rounded-md text-base font-medium text-edtech-secondary hover:bg-gray-100"
+              >
+                Contact
+              </Link>
+            )}
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="flex items-center px-5">
-              <div className="flex-shrink-0">
-                <Button
-                  variant="outline"
-                  className="w-full mb-2 text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white"
-                >
-                  Log In
-                </Button>
-                <Button className="w-full bg-edtech-primary hover:bg-edtech-primary/90 text-white">Sign Up</Button>
+              <div className="flex-shrink-0 w-full">
+                {isLoggedIn ? (
+                  <div className="flex items-center justify-between">
+                    <Avatar
+                      image={user?.profile_picture}
+                      name={user?.name}
+                    />
+                    <Button
+                      onClick={handleLogout}
+                      variant="outline"
+                      className="text-edtech-common border-edtech-common hover:bg-edtech-common hover:text-white"
+                    >
+                      <LogOutIcon size={16} />
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <Button
+                      onClick={() => navigate('/login')}
+                      variant="outline"
+                      className="w-full text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white"
+                    >
+                      Log In
+                    </Button>
+                    <Button
+                      onClick={() => navigate('/signup')}
+                      className="w-full bg-edtech-primary hover:bg-edtech-primary/90 text-white"
+                    >
+                      Sign Up
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
