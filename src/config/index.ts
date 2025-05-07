@@ -5,5 +5,6 @@ export default {
   skillbloom_portfoilo_url: 'https://skillbloom-portfolio.vercel.app',
   razorpay: {
     razorpayKey: 'rzp_test_EG6BlhVlF1TrrH',
+    razorpayLiveKey: 'rzp_live_faAxjQtU7z0Tql',
   },
 }

@@ -67,7 +67,7 @@ const Navbar = () => {
               </Link>
             )}
             <Link
-              to={`${config.skillbloom_portfoilo_url}/portfolio/${user.portfolio_id}`}
+              to={`${user?.portfolio_id ? `${config.skillbloom_portfoilo_url}/portfolio/${user.portfolio_id}` : '/portfolio'}`}
               className="text-edtech-secondary hover:text-edtech-primary font-medium"
             >
               Portfolio

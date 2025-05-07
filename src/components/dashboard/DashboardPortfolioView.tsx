@@ -1,18 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from '../ui/card'
-import { CourseCard } from '../ui/courseCard'
 import { redirect, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { makeAPICall } from '../../utils/api'
 import GreetingBanner from '../common/GreetingBanner'
 import { isNullOrUndefined } from '../../utils'
 import config from '../../config'
+import { toast } from 'sonner'
+import PortfolioModel from '../portfolio/PortfolioModel'
+
 const DashboardPortfolioView = () => {
   const navigate = useNavigate()
   const { token } = useSelector((state: any) => state.tokenReducer)
   const { user } = useSelector((state: any) => state.metaDataReducer)
   const [loading, setLoading] = useState(false)
+  const [renderPortfolioModal, setRenderPortfolioModal] = useState(false)
   const alreadyHasPortfolio = !isNullOrUndefined(user?.portfolio_id)
+  const userHasPortfolioAccess = user?.has_portfolio_access
+
+  const handleCreatePortfolio = () => {
+    if (alreadyHasPortfolio) {
+      navigate(`${config.skillbloom_portfoilo_url}/portfolio/${user?.portfolio_id}`)
+    } else if (userHasPortfolioAccess && !alreadyHasPortfolio) {
+      navigate('/portfolio/create')
+    } else if (!userHasPortfolioAccess) {
+      toast.error("You don't have access to the portfolio yet, please contact support to get access")
+      setRenderPortfolioModal(true)
+    }
+  }
+
+  console.log('renderPortfolioModal', renderPortfolioModal)
 
   return (
     <>
@@ -27,7 +43,7 @@ const DashboardPortfolioView = () => {
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-semibold text-gray-800">My Portfolio</h2>
             </div>
-            {user?.has_portfolio_access ? (
+            {userHasPortfolioAccess ? (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
             ) : (
               <div className="flex justify-center items-center">
@@ -46,7 +62,7 @@ const DashboardPortfolioView = () => {
                   : 'Create a stunning portfolio to showcase your skills and projects.'}
               </p>
               <button
-                onClick={() => navigate('/portfolio/create')}
+                onClick={handleCreatePortfolio}
                 className="text-indigo-600 hover:text-indigo-700"
               >
                 Get Started →
@@ -56,15 +72,29 @@ const DashboardPortfolioView = () => {
               <h3 className="text-lg font-semibold text-gray-800 mb-2">View Portfolio</h3>
               <p className="text-gray-600 mb-4">Access your portfolio to showcase your skills and projects.</p>
               <button
-                onClick={() => window.open(`${config.skillbloom_portfoilo_url}/portfolio/${user?.portfolio_id}`, '_blank')}
+                onClick={() =>
+                  window.open(
+                    `${
+                      userHasPortfolioAccess
+                        ? `${
+                            alreadyHasPortfolio
+                              ? `${config.skillbloom_portfoilo_url}/portfolio/${user?.portfolio_id}`
+                              : `${'/dashboard/portfolio/create'}`
+                          }`
+                        : `${config.skillbloom_portfoilo_url}/portfolio/6817dc2877afb432eed5b516`
+                    }`,
+                    '_blank',
+                  )
+                }
                 className="text-indigo-600 hover:text-indigo-700"
               >
-                View Portfolio →
+                View {userHasPortfolioAccess ? 'Portfolio' : 'Sample Portfolio'} →
               </button>
             </Card>
           </div>
         </div>
       )}
+      {<PortfolioModel onClick={() => setRenderPortfolioModal(!renderPortfolioModal)} open={renderPortfolioModal} />}
     </>
   )
 }

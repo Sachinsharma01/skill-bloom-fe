@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 const Portfolio = () => {
   const { user } = useSelector((state: any) => state.metaDataReducer)
   const navigate = useNavigate()
-  console.log("user", user)
+  console.log('user', user)
   return (
     <>
       <Navbar />
@@ -17,9 +17,17 @@ const Portfolio = () => {
           <p className="text-gray-500">
             This is your portfolio page. You can add your projects, skills, and other information here.
           </p>
-          <Button onClick={() => navigate('/portfolio/create')}>
-            {!isNullOrUndefined(user?.portfolio_id) ? 'Edit Portfolio' : 'Create Portfolio'}
-          </Button>
+          {user?.has_portfolio_access && (
+            <Button onClick={() => navigate(`${user?.portfolio_id ? '/portfolio/edit' : '/portfolio/create'}`)}>
+              {!isNullOrUndefined(user?.portfolio_id) ? 'Edit Portfolio' : 'Create Portfolio'}
+            </Button>
+          )}
+          {!user?.has_portfolio_access && (
+            <p className="text-red-500">
+              OOPs!! You don't have access to the portfolio yet, get the access and create the portfolio, come back
+              later
+            </p>
+          )}
         </div>
       </div>
     </>
