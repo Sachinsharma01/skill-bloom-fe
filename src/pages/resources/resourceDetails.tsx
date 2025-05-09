@@ -383,6 +383,7 @@ const resourcesData = [
     `,
   },
 ]
+console.log("resource", resourcesData)
 
 const ResourceDetail = () => {
   const { id } = useParams()
@@ -444,7 +445,7 @@ const ResourceDetail = () => {
     } else {
       navigate('/resources')
     }
-  }, [resourceId, navigate])
+  }, [resourceId])
 
   const handleDownload = () => {
     makeAPICall(
@@ -822,7 +823,8 @@ const ResourceDetail = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="text-edtech-teal border-edtech-teal hover:bg-edtech-teal hover:text-white"
+                        className="text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white"
+                        onClick={() => window.open(`/resources/${relatedResource.id}`, '_blank')}
                       >
                         View Details
                       </Button>

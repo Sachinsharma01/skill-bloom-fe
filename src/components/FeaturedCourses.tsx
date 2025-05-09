@@ -57,6 +57,7 @@ const FeaturedCourses: React.FC = () => {
                 <Card
                   key={course.id}
                   className="course-card overflow-hidden border-none shadow-md"
+                  onClick={() => navigate(`/resources/${course.id}`)}
                 >
                   <div className="aspect-video relative">
                     <img

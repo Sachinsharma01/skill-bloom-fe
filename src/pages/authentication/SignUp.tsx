@@ -71,7 +71,7 @@ function SignUp() {
       }}
     >
       <div className="flex md:flex-col sm:flex-col lg:flex-row items-center justify-center h-screen"> 
-        <div className="flex gap-4 justify-center items-center bg-white lg:p-20 rounded-lg" style={{ width: '75%' }}>
+        <div className="flex gap-4 justify-center items-center bg-white lg:p-10 rounded-lg" style={{ width: '75%' }}>
           {!isMobileDevice() && !isTabletDevice() && (
             <img
               src={AuthImage}
@@ -79,7 +79,7 @@ function SignUp() {
               className="w-1/3 h-1/2 mx-auto"
             />
           )}
-          <div className="w-1/2 max-w-md p-3 login-container bg-white border-gray-200 rounded-lg shadow-md mx-2">
+          <div className="w-1/2 max-w-md p-3 login-container bg-white border-gray-200 rounded-lg shadow-md">
             <div className="flex justify-center items-center gap-3">
               <h2 className="text-sm text-edtech-dark">
                 <span className="text-edtech-common">Kick Start</span> your journey with

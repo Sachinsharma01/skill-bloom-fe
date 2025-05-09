@@ -130,9 +130,9 @@ const resourcesData = [
 
 // Category data with counts
 const categoriesData = [
-  { name: 'startups', count: 39 },
-  { name: 'mncs', count: 11 },
-  { name: 'product-based-companies', count: 8 },
+  { name: 'startups', count: 3 },
+  { name: 'mncs', count: 1 },
+  { name: 'product-based-companies', count: 1 },
   // { name: "SQL", count: 8 },
   // { name: "Python", count: 5 },
   // { name: "Interview Questions", count: 3 },
@@ -148,33 +148,49 @@ const Resources: React.FC<{}> = () => {
   const [viewType, setViewType] = useState('masonry')
   const [activeTab, setActiveTab] = useState('all')
   const [isSearchFocused, setIsSearchFocused] = useState(false)
+  const [displayedResources, setDisplayedResources] = useState(resourcesData)
   const navigate = useNavigate()
   const { toast } = useToast()
 
-  // Filter resources based on search query, selected category, and tab
-  const filteredResources = resourcesData.filter((resource) => {
-    const matchesSearch =
-      resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      resource.description.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesCategory = !selectedCategory || resource.category === selectedCategory
-    const matchesTab =
-      activeTab === 'all' ||
-      (activeTab === 'featured' && resource.featured) ||
-      (activeTab === 'recent' && new Date(resource.date) > new Date('2025-02-01'))
-    return matchesSearch && matchesCategory && matchesTab
-  })
+  // Update displayed resources when filters change
+  useEffect(() => {
+    let filtered = [...resourcesData]
 
-  // Sort resources
-  const sortedResources = [...filteredResources].sort((a, b) => {
-    if (sortBy === 'popular') {
-      return b.downloads - a.downloads
-    } else if (sortBy === 'latest') {
-      return new Date(b.date).getTime() - new Date(a.date).getTime()
-    } else if (sortBy === 'oldest') {
-      return new Date(a.date).getTime() - new Date(b.date).getTime()
+    // Apply tab filter first
+    if (activeTab === 'featured') {
+      filtered = filtered.filter((resource) => resource.featured)
+    } else if (activeTab === 'recent') {
+      filtered = filtered.filter((resource) => new Date(resource.date) > new Date('2025-02-01'))
     }
-    return 0
-  })
+
+    // Then apply search filter
+    if (searchQuery) {
+      filtered = filtered.filter(
+        (resource) =>
+          resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          resource.description.toLowerCase().includes(searchQuery.toLowerCase()),
+      )
+    }
+
+    // Finally apply category filter
+    if (selectedCategory) {
+      filtered = filtered.filter((resource) => resource.category === selectedCategory)
+    }
+
+    // Apply sorting
+    filtered.sort((a, b) => {
+      if (sortBy === 'popular') {
+        return b.downloads - a.downloads
+      } else if (sortBy === 'latest') {
+        return new Date(b.date).getTime() - new Date(a.date).getTime()
+      } else if (sortBy === 'oldest') {
+        return new Date(a.date).getTime() - new Date(b.date).getTime()
+      }
+      return 0
+    })
+
+    setDisplayedResources(filtered)
+  }, [activeTab, searchQuery, selectedCategory, sortBy])
 
   // Animation effect for cards
   useEffect(() => {
@@ -195,7 +211,7 @@ const Resources: React.FC<{}> = () => {
     return () => {
       cards.forEach((card) => observer.unobserve(card))
     }
-  }, [viewType, filteredResources])
+  }, [viewType, displayedResources])
 
   const handleViewResource = (resource: any) => {
     navigate(`/resources/${resource.id}`)
@@ -477,7 +493,7 @@ const Resources: React.FC<{}> = () => {
               <div className="md:col-span-9">
                 {viewType === 'grid' ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {sortedResources.map((resource) => (
+                    {displayedResources.map((resource) => (
                       <Card
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60"
@@ -559,7 +575,7 @@ const Resources: React.FC<{}> = () => {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 gap-4">
-                    {sortedResources.map((resource) => (
+                    {displayedResources.map((resource) => (
                       <Card
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden border-gray-200/60"
@@ -628,10 +644,6 @@ const Resources: React.FC<{}> = () => {
                                   onClick={() => handleViewResource(resource)}
                                   className="bg-teal-500 border-edtech-teal text-white hover:bg-teal-500"
                                 >
-                                  <Download
-                                    size={16}
-                                    className="mr-2"
-                                  />
                                   View Details
                                 </Button>
                               </div>
@@ -644,7 +656,7 @@ const Resources: React.FC<{}> = () => {
                 )}
 
                 {/* Empty state */}
-                {sortedResources.length === 0 && (
+                {displayedResources.length === 0 && (
                   <div className="text-center py-16 bg-white rounded-xl border border-gray-200/60 shadow-sm p-8">
                     <Search
                       size={40}
@@ -667,7 +679,7 @@ const Resources: React.FC<{}> = () => {
                 )}
 
                 {/* Pagination */}
-                {sortedResources.length > 0 && (
+                {displayedResources.length > 0 && (
                   <div className="mt-10">
                     <Pagination>
                       <PaginationContent>
@@ -684,22 +696,6 @@ const Resources: React.FC<{}> = () => {
                             className="bg-edtech-teal border-edtech-teal hover:bg-edtech-teal/90"
                           >
                             1
-                          </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink
-                            href="#"
-                            className="hover:text-edtech-teal"
-                          >
-                            2
-                          </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink
-                            href="#"
-                            className="hover:text-edtech-teal"
-                          >
-                            3
                           </PaginationLink>
                         </PaginationItem>
                         <PaginationItem>
@@ -779,7 +775,7 @@ const Resources: React.FC<{}> = () => {
                 </Card>
 
                 {/* Stats card */}
-                <Card className="rounded-xl overflow-hidden border-gray-200/60 shadow-sm">
+                {/* <Card className="rounded-xl overflow-hidden border-gray-200/60 shadow-sm">
                   <CardContent className="p-4">
                     <h3 className="text-lg font-semibold text-edtech-blue-dark mb-3">Resource Stats</h3>
                     <div className="space-y-3">
@@ -803,13 +799,13 @@ const Resources: React.FC<{}> = () => {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
+                </Card> */}
               </div>
 
               <div className="md:col-span-9">
                 {viewType === 'grid' ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {sortedResources.map((resource) => (
+                    {displayedResources.map((resource) => (
                       <Card
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60"
@@ -889,7 +885,7 @@ const Resources: React.FC<{}> = () => {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 gap-4">
-                    {sortedResources.map((resource) => (
+                    {displayedResources.map((resource) => (
                       <Card
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden border-gray-200/60"
@@ -972,7 +968,7 @@ const Resources: React.FC<{}> = () => {
                 )}
 
                 {/* Empty state */}
-                {sortedResources.length === 0 && (
+                {displayedResources.length === 0 && (
                   <div className="text-center py-16 bg-white rounded-xl border border-gray-200/60 shadow-sm p-8">
                     <Search
                       size={40}
@@ -1060,7 +1056,7 @@ const Resources: React.FC<{}> = () => {
                 </Card>
 
                 {/* Stats card */}
-                <Card className="rounded-xl overflow-hidden border-gray-200/60 shadow-sm">
+                {/* <Card className="rounded-xl overflow-hidden border-gray-200/60 shadow-sm">
                   <CardContent className="p-4">
                     <h3 className="text-lg font-semibold text-edtech-blue-dark mb-3">Recent Resources</h3>
                     <div className="space-y-3">
@@ -1084,13 +1080,13 @@ const Resources: React.FC<{}> = () => {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
+                </Card> */}
               </div>
 
               <div className="md:col-span-9">
                 {viewType === 'grid' ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {sortedResources.map((resource) => (
+                    {displayedResources.map((resource) => (
                       <Card
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60"
@@ -1172,7 +1168,7 @@ const Resources: React.FC<{}> = () => {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 gap-4">
-                    {sortedResources.map((resource) => (
+                    {displayedResources.map((resource) => (
                       <Card
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden border-gray-200/60"
@@ -1257,7 +1253,7 @@ const Resources: React.FC<{}> = () => {
                 )}
 
                 {/* Empty state */}
-                {sortedResources.length === 0 && (
+                {displayedResources.length === 0 && (
                   <div className="text-center py-16 bg-white rounded-xl border border-gray-200/60 shadow-sm p-8">
                     <Search
                       size={40}
