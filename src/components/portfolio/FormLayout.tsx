@@ -30,7 +30,7 @@ export function FormLayout() {
           {currentStep === 'skillsExp' && <SkillsExpForm />}
           {currentStep === 'projects' && <ProjectsForm />}
           {currentStep === 'certificates' && <CertificatesForm />}
-          {currentStep === 'template' && <TemplateForm />}
+          {/* {currentStep === 'template' && <TemplateForm />} */}
           {currentStep === 'preview' && <PortfolioPreview />}
         </div>
 

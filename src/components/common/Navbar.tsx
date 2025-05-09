@@ -94,7 +94,7 @@ const Navbar = () => {
           {isLoggedIn ? (
             <div className="flex items-center space-x-4">
               <Avatar
-                image={user?.profile_picture}
+                image={user?.profile_image}
                 name={user?.name}
               />
               <Button
@@ -190,7 +190,7 @@ const Navbar = () => {
                 {isLoggedIn ? (
                   <div className="flex items-center justify-between">
                     <Avatar
-                      image={user?.profile_picture}
+                      image={user?.profile_image}
                       name={user?.name}
                     />
                     <Button

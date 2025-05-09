@@ -79,5 +79,13 @@ const API = {
     getPortfolio: async (payload: any, headers: any) => {
         const response = await axiosInstance.get(`/dashboard/portfolio/${payload.id}`, headers);
         return response.data
+    },
+    createPortfolioOrder: async (payload: any, headers: any) => {
+        const response = await axiosInstance.post(`/dashboard/portfolio/${payload.id}/order`, payload, headers);
+        return response.data
+    },
+    grantPortfolioAccess: async (payload: any, headers: any) => {
+        const response = await axiosInstance.post(`/dashboard/portfolio/${payload.id}/grant_access`, payload, headers);
+        return response.data
     }
 }

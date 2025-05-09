@@ -8,6 +8,8 @@ import { Button } from '../../components/ui/button'
 import { FileInput } from '../../components/ui/file-input'
 import { toast } from 'sonner'
 import { NavigationButtons } from './NavigationButtons'
+import { documentUpload } from '../../utils/storage'
+import { BUCKET_NAMES } from '../../utils/constants'
 
 export function BasicInfoForm() {
   const { formData, updateBasicInfo } = usePortfolio()
@@ -15,8 +17,18 @@ export function BasicInfoForm() {
 
   const handlePhotoChange = (file: File | null) => {
     if (file) {
-      const photoUrl = URL.createObjectURL(file)
-      updateBasicInfo({ photo: file, photoUrl })
+      toast.loading('Uploading photo...')
+      documentUpload(file, BUCKET_NAMES.PORTFOLIO).then((res) => {
+        if (res.error) {
+          toast.dismiss()
+          toast.error(res.message)
+        } else {
+          const photoUrl = res.url
+          updateBasicInfo({ photo: file, photoUrl })
+          toast.dismiss()
+          toast.success('Photo uploaded successfully')
+        }
+      })
     } else {
       updateBasicInfo({ photo: null, photoUrl: '' })
     }
@@ -24,8 +36,18 @@ export function BasicInfoForm() {
 
   const handleResumeChange = (file: File | null) => {
     if (file) {
-      const resumeUrl = URL.createObjectURL(file)
-      updateBasicInfo({ resume: file, resumeUrl })
+      toast.loading('Uploading resume...')
+      documentUpload(file, BUCKET_NAMES.RESUME).then((res) => {
+        if (res.error) {
+          toast.dismiss()
+          toast.error(res.message)
+        } else {
+          const resumeUrl = res.url
+          updateBasicInfo({ resume: file, resumeUrl })
+          toast.dismiss()
+          toast.success('Resume uploaded successfully')
+        }
+      })
     } else {
       updateBasicInfo({ resume: null, resumeUrl: '' })
     }

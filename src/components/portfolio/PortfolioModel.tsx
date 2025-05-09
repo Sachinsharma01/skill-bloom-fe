@@ -6,15 +6,17 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import { makeAPICall } from '../../utils/api'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { redirect } from 'react-router-dom'
 import config from '../../config'
 import static_resource from '../../static/static_resource.json'
 import { toast } from 'sonner'
+import metaDataActions from '../../redux/actions/metaDataActions'
 
 const PortfolioModel = ({ onClick, open }: { onClick: () => void; open: boolean }) => {
   const { token } = useSelector((state: any) => state.tokenReducer)
   const { user } = useSelector((state: any) => state.metaDataReducer)
+  const dispatch = useDispatch()
   const rzp1Ref = useRef<any>(null)
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const PortfolioModel = ({ onClick, open }: { onClick: () => void; open: boolean 
     makeAPICall(
       'createOrder',
       {
-        course_id: '2',
+        course_id: '6', //? for testing purpose
         amount: 1000,
         user_id: user?.id + '',
       },
@@ -60,19 +62,28 @@ const PortfolioModel = ({ onClick, open }: { onClick: () => void; open: boolean 
           order_id: order.id,
           handler: async function (response: any) {
             try {
-              await makeAPICall(
-                'updateOrder',
+              toast.loading('Processing payment please wait...')
+              const res = await makeAPICall(
+                'grantPortfolioAccess',
                 {
-                  id: order.id,
-                  razorpay_id: response.razorpay_order_id,
-                  payment_id: response.razorpay_payment_id,
-                  status: 'success',
+                  id: user?.id + '',
                 },
                 token as string,
               )
-              toast.success('Purchase successful')
-              rzp1Ref.current.close()
-              onClick()
+              console.log('res', res)
+              if (res.message || res.error || res.errorMessage) {
+                toast.error(res.message || res.error || res.errorMessage)
+              } else {
+                dispatch(
+                  metaDataActions.setMetaData({
+                    ...user,
+                    portfolio_access: true,
+                  }),
+                )
+                toast.success('Purchase successful')
+                rzp1Ref.current.close()
+                onClick()
+              }
             } catch (error) {
               toast.error('Failed to update order')
               console.error('Order update failed:', error)

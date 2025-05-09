@@ -56,3 +56,10 @@ export const TEMPLATES: { id: TemplateType; name: string; description: string }[
     description: 'Bright and airy design for a friendly approach',
   },
 ]
+
+export const BUCKET_NAMES = {
+  DOCUMENTS: 'documents',
+  PROFILE: 'profile',
+  RESUME: 'resumes',
+  PORTFOLIO: 'portfolio',
+}
