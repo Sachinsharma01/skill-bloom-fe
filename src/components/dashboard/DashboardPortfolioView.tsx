@@ -17,6 +17,13 @@ const DashboardPortfolioView = () => {
   const alreadyHasPortfolio = !isNullOrUndefined(user?.portfolio_id)
   const userHasPortfolioAccess = user?.has_portfolio_access
 
+  const viewText = userHasPortfolioAccess && alreadyHasPortfolio ? 'View Portfolio' : 'Sample Portfolio'
+  const viewLink =
+    userHasPortfolioAccess && alreadyHasPortfolio
+      ? `${config.skillbloom_portfoilo_url}/portfolio/${user?.portfolio_id}`
+      : `${config.skillbloom_portfoilo_url}/portfolio/6817dc2877afb432eed5b516`
+  const createdEditText = userHasPortfolioAccess && alreadyHasPortfolio ? 'Edit Portfolio' : 'Create Portfolio'
+
   const handleCreatePortfolio = () => {
     if (alreadyHasPortfolio) {
       navigate(`${config.skillbloom_portfoilo_url}/portfolio/${user?.portfolio_id}`)
@@ -65,27 +72,14 @@ const DashboardPortfolioView = () => {
                 onClick={handleCreatePortfolio}
                 className="text-indigo-600 hover:text-indigo-700"
               >
-                Get Started →
+                {createdEditText} →
               </button>
             </Card>
             <Card className="p-6 hover:shadow-lg transition-shadow">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">View Portfolio</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">{viewText}</h3>
               <p className="text-gray-600 mb-4">Access your portfolio to showcase your skills and projects.</p>
               <button
-                onClick={() =>
-                  window.open(
-                    `${
-                      userHasPortfolioAccess
-                        ? `${
-                            alreadyHasPortfolio
-                              ? `${config.skillbloom_portfoilo_url}/portfolio/${user?.portfolio_id}`
-                              : `${'/dashboard/portfolio/create'}`
-                          }`
-                        : `${config.skillbloom_portfoilo_url}/portfolio/6817dc2877afb432eed5b516`
-                    }`,
-                    '_blank',
-                  )
-                }
+                onClick={() => window.open(`${viewLink}`, '_blank')}
                 className="text-indigo-600 hover:text-indigo-700"
               >
                 View {userHasPortfolioAccess ? 'Portfolio' : 'Sample Portfolio'} →
@@ -94,7 +88,12 @@ const DashboardPortfolioView = () => {
           </div>
         </div>
       )}
-      {<PortfolioModel onClick={() => setRenderPortfolioModal(!renderPortfolioModal)} open={renderPortfolioModal} />}
+      {
+        <PortfolioModel
+          onClick={() => setRenderPortfolioModal(!renderPortfolioModal)}
+          open={renderPortfolioModal}
+        />
+      }
     </>
   )
 }

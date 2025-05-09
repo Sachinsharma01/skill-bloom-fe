@@ -63,53 +63,54 @@ function SignUp() {
   return (
     <div
       style={{
-        height: '100vh',
-        width: '100vw',
+        minHeight: '100vh',
+        width: '100%',
         backgroundImage: `url(${authBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        padding: '1rem',
       }}
     >
-      <div className="flex md:flex-col sm:flex-col lg:flex-row items-center justify-center h-screen"> 
-        <div className="flex gap-4 justify-center items-center bg-white lg:p-10 rounded-lg" style={{ width: '75%' }}>
+      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen py-8"> 
+        <div className="flex flex-col lg:flex-row gap-4 justify-center items-center bg-white lg:p-10 p-4 rounded-lg w-full lg:w-[75%] max-w-6xl">
           {!isMobileDevice() && !isTabletDevice() && (
             <img
               src={AuthImage}
               alt="logo"
-              className="w-1/3 h-1/2 mx-auto"
+              className="w-full lg:w-1/3 h-auto object-cover rounded-lg"
             />
           )}
-          <div className="w-1/2 max-w-md p-3 login-container bg-white border-gray-200 rounded-lg shadow-md">
-            <div className="flex justify-center items-center gap-3">
-              <h2 className="text-sm text-edtech-dark">
+          <div className="w-full lg:w-1/2 p-4 lg:p-6 login-container bg-white border-gray-200 rounded-lg shadow-md">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-6">
+              <h2 className="text-sm text-edtech-dark text-center sm:text-left">
                 <span className="text-edtech-common">Kick Start</span> your journey with
               </h2>
               <img
                 src={logo}
                 alt="logo"
-                style={{ width: '50px', height: '50px' }}
+                style={{ width: '40px', height: '40px' }}
                 onClick={() => navigate('/')}
                 className="cursor-pointer"
               />
             </div>
-            <h2 className="text-2xl font-bold mb-6">Create an Account</h2>
-            <div className="w-full max-w-md">
+            <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center sm:text-left">Create an Account</h2>
+            <div className="w-full">
               <form
                 className="space-y-4"
                 onSubmit={handleSubmit}
               >
-                <div className="flex lg:flex-row gap-4 md:flex-col sm:flex-col">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-gray-700 mb-1"
                     >
                       Full Name
                     </label>
                     <Input
                       type="text"
                       id="name"
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                      className="w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
                       placeholder="Enter your name"
                       onChange={(e) => setName(e.target.value)}
                       value={name}
@@ -118,14 +119,14 @@ function SignUp() {
                   <div>
                     <label
                       htmlFor="username"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-gray-700 mb-1"
                     >
                       Username
                     </label>
                     <Input
                       type="text"
                       id="username"
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                      className="w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
                       placeholder="Enter your username"
                       onChange={(e) => setUsername(e.target.value)}
                       value={username}
@@ -135,14 +136,14 @@ function SignUp() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-gray-700 mb-1"
                   >
                     Email
                   </label>
                   <Input
                     type="email"
                     id="email"
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                    className="w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
                     placeholder="Enter your email"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
@@ -151,31 +152,31 @@ function SignUp() {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-gray-700 mb-1"
                   >
                     Password
                   </label>
                   <Input
                     type="password"
                     id="password"
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                    className="w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
                     placeholder="Enter your password"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                   />
                 </div>
-                <div className="flex lg:flex-row gap-4 md:flex-col sm:flex-col">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label
                       htmlFor="mobile"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-gray-700 mb-1"
                     >
                       Mobile Number
                     </label>
                     <Input
                       type="number"
                       id="mobile"
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                      className="w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
                       placeholder="Enter your mobile number"
                       onChange={(e) => setMobile(e.target.value)}
                       value={mobile}
@@ -184,13 +185,13 @@ function SignUp() {
                   <div>
                     <label
                       htmlFor="profession"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-gray-700 mb-1"
                     >
                       Profession
                     </label>
                     <select
                       id="profession"
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary px-3 py-2 bg-white border border-gray-300"
+                      className="w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary px-3 py-2 bg-white border border-gray-300"
                       onChange={(e) => setProfession(e.target.value)}
                       value={profession}
                     >
@@ -201,18 +202,18 @@ function SignUp() {
                     </select>
                   </div>
                 </div>
-                <div className="flex lg:flex-row gap-4 md:flex-col sm:flex-col">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label
                       htmlFor="country"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-gray-700 mb-1"
                     >
                       Country
                     </label>
                     <Input
                       type="text"
                       id="country"
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                      className="w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
                       placeholder="Enter your country"
                       onChange={(e) => setCountry(e.target.value)}
                       value={country}
@@ -221,14 +222,14 @@ function SignUp() {
                   <div>
                     <label
                       htmlFor="state"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-gray-700 mb-1"
                     >
                       State
                     </label>
                     <Input
                       type="text"
                       id="state"
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                      className="w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
                       placeholder="Enter your state"
                       onChange={(e) => setState(e.target.value)}
                       value={state}
@@ -237,17 +238,17 @@ function SignUp() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full"
+                  className="w-full mt-6"
                   style={{ backgroundColor: '#396FDF' }}
                   disabled={isLoading}
                 >
                   {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Sign Up'}
                 </Button>
               </form>
-              <div className="mt-4 text-center">
+              <div className="mt-6 text-center">
                 <Link
                   to="/login"
-                  className="text-edtech-secondary "
+                  className="text-edtech-secondary hover:text-edtech-primary transition-colors"
                 >
                   Already have an account? <span className="text-edtech-primary font-bold">Login</span>
                 </Link>

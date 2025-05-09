@@ -21,375 +21,17 @@ import static_resource from '../../static/static_resource.json'
 import config from '../../config'
 import { makeAPICall } from '../../utils/api'
 import { toast } from 'sonner'
-
-const resourcesData = [
-  {
-    id: 1,
-    title: 'AI Engineer Roadmap 2025',
-    category: 'AI & Data Science',
-    date: 'March 18, 2025',
-    image: '/lovable-uploads/18957b32-3f3a-4d55-a983-166ab37fbb3c.png',
-    downloadLink: '/resource/1',
-    featured: true,
-    description: 'Complete guide to becoming an AI Engineer in 2025 with step-by-step learning path.',
-    downloads: 1205,
-    type: 'PDF',
-    isFree: false,
-    price: 29.99,
-    content: `
-    <h2>Introduction</h2>
-    <p>This comprehensive roadmap outlines the skills, tools, and knowledge needed to become an AI Engineer in 2025. Whether you're just starting out or looking to pivot your career, this guide will help you navigate the rapidly evolving field of artificial intelligence.</p>
-    
-    <h2>Fundamental Skills</h2>
-    <ul>
-      <li>Strong foundation in Python programming</li>
-      <li>Understanding of data structures and algorithms</li>
-      <li>Knowledge of software engineering principles</li>
-      <li>Familiarity with version control (Git)</li>
-      <li>Solid mathematics background (linear algebra, calculus, probability)</li>
-    </ul>
-    
-    <h2>Machine Learning Fundamentals</h2>
-    <ul>
-      <li>Supervised learning algorithms</li>
-      <li>Unsupervised learning techniques</li>
-      <li>Model evaluation and validation</li>
-      <li>Feature engineering</li>
-      <li>Hyperparameter tuning</li>
-    </ul>
-    
-    <h2>Deep Learning Mastery</h2>
-    <ul>
-      <li>Neural network architectures</li>
-      <li>Convolutional neural networks (CNNs)</li>
-      <li>Recurrent neural networks (RNNs)</li>
-      <li>Transformers and attention mechanisms</li>
-      <li>Generative models (GANs, VAEs, Diffusion models)</li>
-    </ul>
-    
-    <h2>Tools and Frameworks</h2>
-    <ul>
-      <li>TensorFlow and Keras</li>
-      <li>PyTorch</li>
-      <li>Hugging Face transformers</li>
-      <li>MLflow for experiment tracking</li>
-      <li>DVC for data version control</li>
-    </ul>
-    
-    <h2>Model Deployment</h2>
-    <ul>
-      <li>Model serving (TensorFlow Serving, TorchServe)</li>
-      <li>Containerization with Docker</li>
-      <li>Orchestration with Kubernetes</li>
-      <li>Cloud platforms (AWS, GCP, Azure)</li>
-      <li>MLOps best practices</li>
-    </ul>
-    
-    <h2>Specialized Skills</h2>
-    <ul>
-      <li>Computer vision</li>
-      <li>Natural language processing</li>
-      <li>Reinforcement learning</li>
-      <li>Time series analysis</li>
-      <li>Generative AI</li>
-    </ul>
-    
-    <h2>Projects to Build</h2>
-    <p>This roadmap includes 10 hands-on projects of increasing complexity to apply your skills and build your portfolio.</p>
-    `,
-  },
-  {
-    id: 2,
-    title: '10 Common Mistakes Freshers Make in Their First Data Job',
-    category: 'Career Advice',
-    date: 'March 01, 2025',
-    image: '/placeholder.svg',
-    downloadLink: '/resource/2',
-    featured: false,
-    description: "Learn from others' mistakes and accelerate your data career growth.",
-    downloads: 832,
-    type: 'Checklist',
-    isFree: true,
-    price: 0,
-    content: `
-    <h2>Introduction</h2>
-    <p>Starting your first data job is exciting but can also be overwhelming. This guide highlights common mistakes that fresh graduates make in their first data role and provides practical advice to avoid them.</p>
-    
-    <h2>Mistake #1: Focusing Too Much on Complex Algorithms</h2>
-    <p>Many freshers try to implement complex algorithms when simpler ones would work better. Remember that in the real world, interpretability and reliability often matter more than squeezing out an extra 0.1% of accuracy.</p>
-    
-    <h2>Mistake #2: Not Understanding the Business Context</h2>
-    <p>Technical skills are important, but understanding the business problem you're solving is equally critical. Take time to learn about the industry, company goals, and how your work contributes to business outcomes.</p>
-    
-    <h2>Mistake #3: Poor Data Exploration</h2>
-    <p>Rushing into modeling without thoroughly exploring and understanding the data can lead to poor results. Always spend sufficient time on exploratory data analysis before jumping to conclusions.</p>
-    
-    <h2>Mistake #4: Neglecting Communication Skills</h2>
-    <p>Technical brilliance is undermined if you can't effectively communicate your findings to non-technical stakeholders. Practice explaining complex concepts in simple terms.</p>
-    
-    <h2>Mistake #5: Not Asking Questions</h2>
-    <p>Many freshers hesitate to ask questions fearing they'll look incompetent. Remember, asking thoughtful questions shows engagement and a desire to learn.</p>
-    
-    <h2>Mistake #6: Overcomplicating Solutions</h2>
-    <p>Simple, maintainable solutions are often better than complex ones. Don't build a neural network when linear regression would suffice.</p>
-    
-    <h2>Mistake #7: Neglecting Version Control</h2>
-    <p>Not using version control properly can lead to lost work and collaboration difficulties. Master Git from the beginning of your career.</p>
-    
-    <h2>Mistake #8: Poor Documentation Habits</h2>
-    <p>Failing to document your code, analyses, and decisions can create problems for future you and your teammates. Develop good documentation habits early.</p>
-    
-    <h2>Mistake #9: Not Understanding Data Quality Issues</h2>
-    <p>Real-world data is messy. Learn to identify and handle missing values, outliers, and inconsistencies effectively.</p>
-    
-    <h2>Mistake #10: Forgetting to Network</h2>
-    <p>Building relationships within and outside your team is crucial for career growth. Attend company events, join communities, and connect with fellow data professionals.</p>
-    `,
-  },
-  {
-    id: 3,
-    title: 'Top Hyderabad Startups',
-    description: 'Explore the top startups in Hyderabad and their unique offerings',
-    category: 'startups',
-    price: 19,
-    duration: 14,
-    level: 'Advanced',
-    rating: 4.9,
-    bestseller: false,
-    reviews: 760,
-    downloads: 760,
-    instructor: 'Akhil Dubey',
-    originalPrice: 39,
-    image:
-      'https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad4750020d46c3c04/view?project=67fabe35003d5a3f0bb3&mode=admin',
-    content: `
-    <h2>Introduction</h2>
-    <p>This comprehensive roadmap outlines the skills, tools, and knowledge needed to become an AI Engineer in 2025. Whether you're just starting out or looking to pivot your career, this guide will help you navigate the rapidly evolving field of artificial intelligence.</p>
-    
-    <h2>Fundamental Skills</h2>
-    <ul>
-      <li>Strong foundation in Python programming</li>
-      <li>Understanding of data structures and algorithms</li>
-      <li>Knowledge of software engineering principles</li>
-      <li>Familiarity with version control (Git)</li>
-      <li>Solid mathematics background (linear algebra, calculus, probability)</li>
-    </ul>
-    
-    <h2>Machine Learning Fundamentals</h2>
-    <ul>
-      <li>Supervised learning algorithms</li>
-      <li>Unsupervised learning techniques</li>
-      <li>Model evaluation and validation</li>
-      <li>Feature engineering</li>
-      <li>Hyperparameter tuning</li>
-    </ul>
-    
-    <h2>Deep Learning Mastery</h2>
-    <ul>
-      <li>Neural network architectures</li>
-      <li>Convolutional neural networks (CNNs)</li>
-      <li>Recurrent neural networks (RNNs)</li>
-      <li>Transformers and attention mechanisms</li>
-      <li>Generative models (GANs, VAEs, Diffusion models)</li>
-    </ul>
-    
-    <h2>Tools and Frameworks</h2>
-    <ul>
-      <li>TensorFlow and Keras</li>
-      <li>PyTorch</li>
-      <li>Hugging Face transformers</li>
-      <li>MLflow for experiment tracking</li>
-      <li>DVC for data version control</li>
-    </ul>
-    
-    <h2>Model Deployment</h2>
-    <ul>
-      <li>Model serving (TensorFlow Serving, TorchServe)</li>
-      <li>Containerization with Docker</li>
-      <li>Orchestration with Kubernetes</li>
-      <li>Cloud platforms (AWS, GCP, Azure)</li>
-      <li>MLOps best practices</li>
-    </ul>
-    
-    <h2>Specialized Skills</h2>
-    <ul>
-      <li>Computer vision</li>
-      <li>Natural language processing</li>
-      <li>Reinforcement learning</li>
-      <li>Time series analysis</li>
-      <li>Generative AI</li>
-    </ul>
-    
-    <h2>Projects to Build</h2>
-    <p>This roadmap includes 10 hands-on projects of increasing complexity to apply your skills and build your portfolio.</p>
-    `,
-  },
-  {
-    id: 4,
-    title: 'Top Chennai Startups',
-    description: 'Explore the top startups in Chennai and their unique offerings',
-    category: 'startups',
-    price: 19,
-    duration: 20,
-    level: 'Intermediate',
-    rating: 4.6,
-    bestseller: false,
-    reviews: 530,
-    instructor: 'Akhil Dubey',
-    downloads: 530,
-    originalPrice: 59,
-    image:
-      'https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad7bd003385be8d1c/view?project=67fabe35003d5a3f0bb3&mode=admin',
-    content: `
-    <h2>Introduction</h2>
-    <p>This comprehensive roadmap outlines the skills, tools, and knowledge needed to become an AI Engineer in 2025. Whether you're just starting out or looking to pivot your career, this guide will help you navigate the rapidly evolving field of artificial intelligence.</p>
-    
-    <h2>Fundamental Skills</h2>
-    <ul>
-      <li>Strong foundation in Python programming</li>
-      <li>Understanding of data structures and algorithms</li>
-      <li>Knowledge of software engineering principles</li>
-      <li>Familiarity with version control (Git)</li>
-      <li>Solid mathematics background (linear algebra, calculus, probability)</li>
-    </ul>
-    
-    <h2>Machine Learning Fundamentals</h2>
-    <ul>
-      <li>Supervised learning algorithms</li>
-      <li>Unsupervised learning techniques</li>
-      <li>Model evaluation and validation</li>
-      <li>Feature engineering</li>
-      <li>Hyperparameter tuning</li>
-    </ul>
-    
-    <h2>Deep Learning Mastery</h2>
-    <ul>
-      <li>Neural network architectures</li>
-      <li>Convolutional neural networks (CNNs)</li>
-      <li>Recurrent neural networks (RNNs)</li>
-      <li>Transformers and attention mechanisms</li>
-      <li>Generative models (GANs, VAEs, Diffusion models)</li>
-    </ul>
-    
-    <h2>Tools and Frameworks</h2>
-    <ul>
-      <li>TensorFlow and Keras</li>
-      <li>PyTorch</li>
-      <li>Hugging Face transformers</li>
-      <li>MLflow for experiment tracking</li>
-      <li>DVC for data version control</li>
-    </ul>
-    
-    <h2>Model Deployment</h2>
-    <ul>
-      <li>Model serving (TensorFlow Serving, TorchServe)</li>
-      <li>Containerization with Docker</li>
-      <li>Orchestration with Kubernetes</li>
-      <li>Cloud platforms (AWS, GCP, Azure)</li>
-      <li>MLOps best practices</li>
-    </ul>
-    
-    <h2>Specialized Skills</h2>
-    <ul>
-      <li>Computer vision</li>
-      <li>Natural language processing</li>
-      <li>Reinforcement learning</li>
-      <li>Time series analysis</li>
-      <li>Generative AI</li>
-    </ul>
-    
-    <h2>Projects to Build</h2>
-    <p>This roadmap includes 10 hands-on projects of increasing complexity to apply your skills and build your portfolio.</p>
-    `,
-  },
-  {
-    id: 5,
-    title: 'Top Startups In India',
-    description: 'Explore the top startups in India and their unique offerings',
-    category: 'startups',
-    price: 19,
-    duration: 5,
-    level: 'Beginner',
-    rating: 4.5,
-    students: 1890,
-    instructor: 'Emma Rodriguez',
-    featured: true,
-    date: '2025-02-01',
-    downloads: 1890,
-    isFree: false,
-    type: 'PDF',
-    image:
-      'https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad925001c8970148f/view?project=67fabe35003d5a3f0bb3&mode=admin',
-    content: `
-    <h2>Introduction</h2>
-    <p>This comprehensive roadmap outlines the skills, tools, and knowledge needed to become an AI Engineer in 2025. Whether you're just starting out or looking to pivot your career, this guide will help you navigate the rapidly evolving field of artificial intelligence.</p>
-    
-    <h2>Fundamental Skills</h2>
-    <ul>
-      <li>Strong foundation in Python programming</li>
-      <li>Understanding of data structures and algorithms</li>
-      <li>Knowledge of software engineering principles</li>
-      <li>Familiarity with version control (Git)</li>
-      <li>Solid mathematics background (linear algebra, calculus, probability)</li>
-    </ul>
-    
-    <h2>Machine Learning Fundamentals</h2>
-    <ul>
-      <li>Supervised learning algorithms</li>
-      <li>Unsupervised learning techniques</li>
-      <li>Model evaluation and validation</li>
-      <li>Feature engineering</li>
-      <li>Hyperparameter tuning</li>
-    </ul>
-    
-    <h2>Deep Learning Mastery</h2>
-    <ul>
-      <li>Neural network architectures</li>
-      <li>Convolutional neural networks (CNNs)</li>
-      <li>Recurrent neural networks (RNNs)</li>
-      <li>Transformers and attention mechanisms</li>
-      <li>Generative models (GANs, VAEs, Diffusion models)</li>
-    </ul>
-    
-    <h2>Tools and Frameworks</h2>
-    <ul>
-      <li>TensorFlow and Keras</li>
-      <li>PyTorch</li>
-      <li>Hugging Face transformers</li>
-      <li>MLflow for experiment tracking</li>
-      <li>DVC for data version control</li>
-    </ul>
-    
-    <h2>Model Deployment</h2>
-    <ul>
-      <li>Model serving (TensorFlow Serving, TorchServe)</li>
-      <li>Containerization with Docker</li>
-      <li>Orchestration with Kubernetes</li>
-      <li>Cloud platforms (AWS, GCP, Azure)</li>
-      <li>MLOps best practices</li>
-    </ul>
-    
-    <h2>Specialized Skills</h2>
-    <ul>
-      <li>Computer vision</li>
-      <li>Natural language processing</li>
-      <li>Reinforcement learning</li>
-      <li>Time series analysis</li>
-      <li>Generative AI</li>
-    </ul>
-    
-    <h2>Projects to Build</h2>
-    <p>This roadmap includes 10 hands-on projects of increasing complexity to apply your skills and build your portfolio.</p>
-    `,
-  },
-]
-console.log("resource", resourcesData)
+import publicApi from '../../utils/publicApi'
+import resourcesData from '../../static/courses.json'
+import dayjs from 'dayjs'
+import { isNullOrUndefined } from '../../utils'
 
 const ResourceDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [resource, setResource] = useState<any>(null)
   const [showPreview, setShowPreview] = useState(true)
+  const [loading, setLoading] = useState(true)
   const { user } = useSelector((state: any) => state.metaDataReducer)
   const { token } = useSelector((state: any) => state.tokenReducer)
 
@@ -409,45 +51,21 @@ const ResourceDetail = () => {
     }
   }, [])
 
-  const scriptLoaded = () => {
-    const options = {
-      key: config.razorpay.razorpayKey,
-      currency: static_resource.currency,
-      name: static_resource.companyName,
-      image: static_resource.logoUrl,
-      prefill: {
-        name: user?.name ?? 'Demo User',
-        email: user?.email ?? 'demo@gmail.com',
-        contact: user?.mobile_number ?? '9999999999',
-      },
-      notes: {
-        address: user?.address ?? 'India',
-      },
-      theme: static_resource.theme,
-    }
-
-    rzp1Ref.current = new (window as any).Razorpay(options)
-    rzp1Ref.current.on('payment.failed', function (response: any) {
-      alert(response.error.code)
-      alert(response.error.description)
-      alert(response.error.source)
-      alert(response.error.step)
-      alert(response.error.reason)
-      alert(response.error.metadata.order_id)
-      alert(response.error.metadata.payment_id)
-    })
-  }
-
   useEffect(() => {
-    const foundResource = resourcesData.find((r) => r.id === resourceId)
-    if (foundResource) {
-      setResource(foundResource)
-    } else {
-      navigate('/resources')
-    }
+    publicApi.getResource(resourceId).then((res: any) => {
+      console.log('res', res)
+      res.json().then((data: any) => {
+        setResource(data.data)
+        setLoading(false)
+      })
+    })
   }, [resourceId])
 
   const handleDownload = () => {
+    if (isNullOrUndefined(token)) {
+      toast.error('Please login to download the resource')
+      return
+    }
     makeAPICall(
       'createOrder',
       {
@@ -590,7 +208,7 @@ const ResourceDetail = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-white">
       <Navbar />
 
-      <div className="container mx-auto px-4 py-12">
+      {!loading && <div className="container mx-auto px-4 py-12">
         <Button
           variant="ghost"
           className="mb-6 hover:bg-gray-100"
@@ -603,7 +221,7 @@ const ResourceDetail = () => {
           Back to Resources
         </Button>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        {<div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           <div className="md:col-span-8 space-y-6 animate-fade-in">
             <div className="space-y-4">
               <div className="flex flex-wrap gap-2">
@@ -632,13 +250,13 @@ const ResourceDetail = () => {
                 />
                 <span>{resource.date}</span>
                 <span className="mx-2">•</span>
-                <span>{resource.downloads.toLocaleString()} downloads</span>
+                <span>{resource?.downloads?.toLocaleString() ?? 23} downloads</span>
               </div>
             </div>
 
             <div className="aspect-video rounded-xl overflow-hidden shadow-md">
               <img
-                src={resource.image}
+                src={resource.image_url}
                 alt={resource.title}
                 className="w-full h-full object-cover"
               />
@@ -650,7 +268,7 @@ const ResourceDetail = () => {
 
               <div
                 className="prose prose-lg max-w-none prose-headings:text-edtech-blue-dark prose-a:text-edtech-teal"
-                dangerouslySetInnerHTML={{ __html: getDisplayContent() }}
+                // dangerouslySetInnerHTML={{ __html: getDisplayContent() }}
               ></div>
 
               {/* Preview notice for paid resources */}
@@ -668,7 +286,7 @@ const ResourceDetail = () => {
                         size={18}
                         className="mr-2"
                       />
-                      Get Access for ${resource.price}
+                      Get Access for ₹{resource.price}
                     </Button>
                   </div>
                 </div>
@@ -695,7 +313,7 @@ const ResourceDetail = () => {
                       >
                         Premium Resource
                       </Badge>
-                      <p className="text-2xl font-bold text-edtech-blue-dark">${resource.price}</p>
+                      <p className="text-2xl font-bold text-edtech-blue-dark">₹{resource.price}</p>
                     </div>
                   )}
                 </div>
@@ -719,7 +337,7 @@ const ResourceDetail = () => {
                       />
                       <span>Type:</span>
                     </div>
-                    <span className="text-edtech-blue-dark">{resource.type}</span>
+                    <span className="text-edtech-blue-dark">{resource?.type ?? 'PDF'}</span>
 
                     <div className="flex items-center text-gray-500">
                       <Calendar
@@ -728,7 +346,7 @@ const ResourceDetail = () => {
                       />
                       <span>Date:</span>
                     </div>
-                    <span className="text-edtech-blue-dark">{resource.date}</span>
+                    <span className="text-edtech-blue-dark">{dayjs(resource?.created_at).format('DD MMM YYYY')}</span>
 
                     <div className="flex items-center text-gray-500">
                       <Download
@@ -737,7 +355,7 @@ const ResourceDetail = () => {
                       />
                       <span>Downloads:</span>
                     </div>
-                    <span className="text-edtech-blue-dark">{resource.downloads.toLocaleString()}</span>
+                    <span className="text-edtech-blue-dark">{resource?.downloads?.toLocaleString() ?? 23}</span>
                   </div>
                 </div>
 
@@ -764,24 +382,24 @@ const ResourceDetail = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </div>}
 
         {/* Related Resources Section */}
         <div className="mt-12 space-y-6">
           <h2 className="text-2xl font-bold text-edtech-blue-dark">Related Resources</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {resourcesData
-              .filter((r) => r.id !== resourceId && r.category === resource.category)
+              .filter((r: any) => r.id !== resourceId && r.category === resource.category)
               .slice(0, 3)
-              .map((relatedResource) => (
+              .map((relatedResource: any) => (
                 <Card
                   key={relatedResource.id}
                   className="resource-card rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60 cursor-pointer"
-                  onClick={() => navigate(`/resource/${relatedResource.id}`)}
+                  onClick={() => navigate(`/resource/${relatedResource.course_id}`)}
                 >
                   <div className="relative h-40 overflow-hidden">
                     <img
-                      src={relatedResource.image}
+                      src={relatedResource.image_url}
                       alt={relatedResource.title}
                       className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
                     />
@@ -817,7 +435,7 @@ const ResourceDetail = () => {
                           variant="outline"
                           className="text-blue-600 border-blue-200 bg-blue-50"
                         >
-                          ${relatedResource.price}
+                          ₹{relatedResource.price}
                         </Badge>
                       )}
                       <Button
@@ -834,7 +452,10 @@ const ResourceDetail = () => {
               ))}
           </div>
         </div>
-      </div>
+      </div>}
+      {loading && <div className="container mx-auto px-4 py-12">
+        <p>Loading resource...</p>
+      </div>}
     </div>
   )
 }

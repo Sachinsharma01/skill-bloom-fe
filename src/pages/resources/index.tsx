@@ -28,105 +28,10 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '../../components/ui/pagination'
+import publicApi from '../../utils/publicApi'
+import resourcesData from '../../static/courses.json'
 
 // TODO Replace with actual data from the database
-const resourcesData = [
-  {
-    id: 1,
-    title: 'Top Product Based Companies In India',
-    description: 'Explore the top product based companies in India and their unique offerings',
-    category: 'product-based-companies',
-    price: 29,
-    duration: 1,
-    level: 'Intermediate',
-    rating: 4.8,
-    students: 1245,
-    instructor: 'Akhil Dubey',
-    featured: false,
-    date: '2025-02-01',
-    downloads: 1245,
-    isFree: true,
-    type: 'PDF',
-    image:
-      'https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fac409000129a7563e/view?project=67fabe35003d5a3f0bb3&mode=admin',
-  },
-  {
-    id: 2,
-    title: 'Top MNCs In India',
-    description: 'Explore the top product based companies in India and their unique offerings',
-    category: 'mncs',
-    price: 29,
-    duration: 6,
-    level: 'Beginner',
-    rating: 4.7,
-    students: 850,
-    instructor: 'Akhil Dubey',
-    featured: true,
-    date: '2025-02-01',
-    downloads: 850,
-    isFree: true,
-    type: 'PDF',
-    image:
-      'https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fac71c00097f6a2304/view?project=67fabe35003d5a3f0bb3&mode=admin',
-  },
-  {
-    id: 3,
-    title: 'Top Hyderabad Startups',
-    description: 'Explore the top startups in Hyderabad and their unique offerings',
-    category: 'startups',
-    price: 19,
-    duration: 14,
-    level: 'Advanced',
-    rating: 4.9,
-    students: 760,
-    instructor: 'Akhil Dubey',
-    featured: true,
-    date: '2025-02-01',
-    downloads: 760,
-    isFree: true,
-    type: 'PDF',
-    image:
-      'https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad4750020d46c3c04/view?project=67fabe35003d5a3f0bb3&mode=admin',
-  },
-  {
-    id: 4,
-    title: 'Top Chennai Startups',
-    description: 'Explore the top startups in Chennai and their unique offerings',
-    category: 'startups',
-    price: 19,
-    duration: 20,
-    level: 'Intermediate',
-    rating: 4.6,
-    students: 530,
-    instructor: 'Akhil Dubey',
-    featured: false,
-    date: '2025-02-01',
-    downloads: 530,
-    isFree: false,
-    type: 'PDF',
-    image:
-      'https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad7bd003385be8d1c/view?project=67fabe35003d5a3f0bb3&mode=admin',
-  },
-  {
-    id: 5,
-    title: 'Top Startups In India',
-    description: 'Explore the top startups in India and their unique offerings',
-    category: 'startups',
-    price: 19,
-    duration: 5,
-    level: 'Beginner',
-    rating: 4.5,
-    students: 1890,
-    instructor: 'Emma Rodriguez',
-    featured: true,
-    date: '2025-02-01',
-    downloads: 1890,
-    isFree: false,
-    type: 'PDF',
-    image:
-      'https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad925001c8970148f/view?project=67fabe35003d5a3f0bb3&mode=admin',
-  },
-]
 
 // Category data with counts
 const categoriesData = [
@@ -149,18 +54,27 @@ const Resources: React.FC<{}> = () => {
   const [activeTab, setActiveTab] = useState('all')
   const [isSearchFocused, setIsSearchFocused] = useState(false)
   const [displayedResources, setDisplayedResources] = useState(resourcesData)
+  const [resources, setResources] = useState([])
   const navigate = useNavigate()
   const { toast } = useToast()
 
   // Update displayed resources when filters change
   useEffect(() => {
+    const fetchResources = async () => {
+      const resources: any = await publicApi.getCourses()
+      if (resources.success) {
+        const data = await resources.json()
+        setResources(data.data)
+      }
+    }
+    fetchResources()
     let filtered = [...resourcesData]
 
     // Apply tab filter first
     if (activeTab === 'featured') {
-      filtered = filtered.filter((resource) => resource.featured)
+      filtered = filtered.filter((resource: any) => resource.is_featured)
     } else if (activeTab === 'recent') {
-      filtered = filtered.filter((resource) => new Date(resource.date) > new Date('2025-02-01'))
+      filtered = filtered.filter((resource: any) => new Date(resource.created_at) > new Date('2025-02-01'))
     }
 
     // Then apply search filter
@@ -178,13 +92,13 @@ const Resources: React.FC<{}> = () => {
     }
 
     // Apply sorting
-    filtered.sort((a, b) => {
+    filtered.sort((a: any, b: any) => {
       if (sortBy === 'popular') {
         return b.downloads - a.downloads
       } else if (sortBy === 'latest') {
-        return new Date(b.date).getTime() - new Date(a.date).getTime()
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
       } else if (sortBy === 'oldest') {
-        return new Date(a.date).getTime() - new Date(b.date).getTime()
+        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
       }
       return 0
     })
@@ -214,7 +128,7 @@ const Resources: React.FC<{}> = () => {
   }, [viewType, displayedResources])
 
   const handleViewResource = (resource: any) => {
-    navigate(`/resources/${resource.id}`)
+    navigate(`/resources/${resource.course_id}`)
   }
 
   const getResourceTypeIcon = (type: string) => {
@@ -493,14 +407,14 @@ const Resources: React.FC<{}> = () => {
               <div className="md:col-span-9">
                 {viewType === 'grid' ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {displayedResources.map((resource) => (
+                    {displayedResources.map((resource: any) => (
                       <Card
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60"
                       >
                         <div className="relative h-40 overflow-hidden">
                           <img
-                            src={resource.image}
+                            src={resource.image_url}
                             alt={resource.title}
                             className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
                           />
@@ -575,7 +489,7 @@ const Resources: React.FC<{}> = () => {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 gap-4">
-                    {displayedResources.map((resource) => (
+                    {displayedResources.map((resource: any) => (
                       <Card
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden border-gray-200/60"
@@ -583,7 +497,7 @@ const Resources: React.FC<{}> = () => {
                         <div className="flex flex-col md:flex-row">
                           <div className="relative md:w-1/3 h-48 md:h-auto">
                             <img
-                              src={resource.image}
+                              src={resource.image_url}
                               alt={resource.title}
                               className="w-full h-full object-cover"
                             />
@@ -637,7 +551,7 @@ const Resources: React.FC<{}> = () => {
                                     variant="outline"
                                     className="text-blue-600 border-blue-200 bg-blue-50"
                                   >
-                                    ${resource.price}
+                                    ₹{resource.price}
                                   </Badge>
                                 )}
                                 <Button
@@ -805,14 +719,14 @@ const Resources: React.FC<{}> = () => {
               <div className="md:col-span-9">
                 {viewType === 'grid' ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {displayedResources.map((resource) => (
+                    {displayedResources.map((resource: any) => (
                       <Card
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60"
                       >
                         <div className="relative h-40 overflow-hidden">
                           <img
-                            src={resource.image}
+                            src={resource.image_url}
                             alt={resource.title}
                             className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
                           />
@@ -866,7 +780,7 @@ const Resources: React.FC<{}> = () => {
                                   variant="outline"
                                   className="text-blue-600 border-blue-200 bg-blue-50"
                                 >
-                                  ${resource.price}
+                                  ₹{resource.price}
                                 </Badge>
                               )}
                               <Button
@@ -885,7 +799,7 @@ const Resources: React.FC<{}> = () => {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 gap-4">
-                    {displayedResources.map((resource) => (
+                    {displayedResources.map((resource: any) => (
                       <Card
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden border-gray-200/60"
@@ -893,7 +807,7 @@ const Resources: React.FC<{}> = () => {
                         <div className="flex flex-col md:flex-row">
                           <div className="relative md:w-1/3 h-48 md:h-auto">
                             <img
-                              src={resource.image}
+                              src={resource.image_url}
                               alt={resource.title}
                               className="w-full h-full object-cover"
                             />
@@ -945,7 +859,7 @@ const Resources: React.FC<{}> = () => {
                                     variant="outline"
                                     className="text-blue-600 border-blue-200 bg-blue-50"
                                   >
-                                    ${resource.price}
+                                    ₹{resource.price}
                                   </Badge>
                                 )}
                                 <Button
@@ -1086,7 +1000,7 @@ const Resources: React.FC<{}> = () => {
               <div className="md:col-span-9">
                 {viewType === 'grid' ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {displayedResources.map((resource) => (
+                    {displayedResources.map((resource: any) => (
                       <Card
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60"
@@ -1149,7 +1063,7 @@ const Resources: React.FC<{}> = () => {
                                   variant="outline"
                                   className="text-blue-600 border-blue-200 bg-blue-50"
                                 >
-                                  ${resource.price}
+                                  ₹{resource.price}
                                 </Badge>
                               )}
                               <Button
@@ -1168,7 +1082,7 @@ const Resources: React.FC<{}> = () => {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 gap-4">
-                    {displayedResources.map((resource) => (
+                    {displayedResources.map((resource: any) => (
                       <Card
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden border-gray-200/60"
@@ -1176,7 +1090,7 @@ const Resources: React.FC<{}> = () => {
                         <div className="flex flex-col md:flex-row">
                           <div className="relative md:w-1/3 h-48 md:h-auto">
                             <img
-                              src={resource.image}
+                              src={resource.image_url}
                               alt={resource.title}
                               className="w-full h-full object-cover"
                             />
@@ -1230,7 +1144,7 @@ const Resources: React.FC<{}> = () => {
                                     variant="outline"
                                     className="text-blue-600 border-blue-200 bg-blue-50"
                                   >
-                                    ${resource.price}
+                                    ₹{resource.price}
                                   </Badge>
                                 )}
                                 <Button

@@ -16,5 +16,8 @@ export default {
     },
     getTestimonials: async () => {
         return fetch(`${config.api.baseURL}/public/testimonials`)
+    },
+    getResource: async (id: number) => {
+        return fetch(`${config.api.baseURL}/public/courses/${id}`)
     }
 }
