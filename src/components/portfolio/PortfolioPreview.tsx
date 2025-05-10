@@ -12,6 +12,7 @@ export function PortfolioPreview() {
   const { formData } = usePortfolio();
   const { token } = useSelector((state: any) => state.tokenReducer);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { user } = useSelector((state: any) => state.metaDataReducer);
   const { basicInfo, education, skills, experiences, projects, certificates, selectedTemplate } = formData;
   const navigate = useNavigate();
   const selectedCertificates = certificates.filter(cert => cert.selected);
@@ -41,13 +42,18 @@ export function PortfolioPreview() {
     toast.success("Your portfolio is being generated... 🎉");
     console.log("Portfolio data", formData)
 
-    makeAPICall('generatePortfolio', {
-      data: formData,
+    makeAPICall('savePortfolio', {
+      formData: formData,
       template: selectedTemplate,
+      user_id: user?.id + '',
     }, token as string).then((res) => {
       console.log("Portfolio data", res)
-      toast.success("Your portfolio has been generated! 🎉");
-      navigate(`/dashboard/portfolio/${res._id}`)
+      if (res.error || res.errorMessage) {
+        toast.error('Error generating portfolio, please try again later')
+      } else {
+        toast.success("Your portfolio has been generated! 🎉");
+        navigate(`/dashboard/portfolio/${res._id}`)
+      }
     })
     
     return true;

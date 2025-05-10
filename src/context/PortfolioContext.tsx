@@ -73,7 +73,7 @@ const initialFormData: PortfolioFormData = {
 }
 
 // Define the order of steps with education after basicInfo
-const steps: FormStep[] = ['basicInfo', 'education', 'skillsExp', 'projects', 'certificates', 'template', 'preview']
+const steps: FormStep[] = ['basicInfo', 'education', 'skillsExp', 'projects', 'certificates', 'preview']
 
 const PortfolioContext = createContext<PortfolioContextType | undefined>(undefined)
 

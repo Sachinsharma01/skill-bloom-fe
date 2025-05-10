@@ -393,7 +393,7 @@ const ResourceDetail = () => {
               .slice(0, 3)
               .map((relatedResource: any) => (
                 <Card
-                  key={relatedResource.id}
+                  key={relatedResource.course_id}
                   className="resource-card rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60 cursor-pointer"
                   onClick={() => navigate(`/resource/${relatedResource.course_id}`)}
                 >
@@ -441,8 +441,8 @@ const ResourceDetail = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white"
-                        onClick={() => window.open(`/resources/${relatedResource.id}`, '_blank')}
+                        className="text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white cursor-pointer"
+                        onClick={() => navigate(`/resources/${relatedResource.course_id}`)}
                       >
                         View Details
                       </Button>

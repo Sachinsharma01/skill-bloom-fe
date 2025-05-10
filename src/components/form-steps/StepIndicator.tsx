@@ -39,11 +39,6 @@ export function StepIndicator() {
       label: 'Certificates',
       icon: <Award className="h-5 w-5" />,
     },
-    {
-      id: 'template',
-      label: 'Template',
-      icon: <Palette className="h-5 w-5" />,
-    },
   ]
 
   const handleStepClick = (step: FormStep) => {

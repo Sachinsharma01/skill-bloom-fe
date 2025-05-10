@@ -19,12 +19,14 @@ export function BasicInfoForm() {
     if (file) {
       toast.loading('Uploading photo...')
       documentUpload(file, BUCKET_NAMES.PORTFOLIO).then((res) => {
+        console.log("res", res)
         if (res.error) {
           toast.dismiss()
           toast.error(res.message)
         } else {
           const photoUrl = res.url
           updateBasicInfo({ photo: file, photoUrl })
+          console.log("photoUrl", photoUrl)
           toast.dismiss()
           toast.success('Photo uploaded successfully')
         }
@@ -58,6 +60,7 @@ export function BasicInfoForm() {
       { field: 'fullName', label: 'Full Name' },
       { field: 'email', label: 'Email' },
       { field: 'position', label: 'Position' },
+      {field: "linkedinProfile", label: "LinkedIn Profile"},
     ] as const
 
     for (const { field, label } of requiredFields) {
@@ -123,7 +126,7 @@ export function BasicInfoForm() {
         <div className="space-y-3">
           <div className="input-group">
             <Label
-              htmlFor="whatYouDoHeadline"
+              htmlFor="headline"
               className="input-label"
             >
               What Do You Do - Headline{' '}
@@ -132,18 +135,18 @@ export function BasicInfoForm() {
               </span>
             </Label>
             <Input
-              id="whatYouDoHeadline"
+              id="headline"
               placeholder="Turning Complex Data into Actionable Insights"
-              value={basicInfo.whatYouDoHeadline || ''}
+              value={basicInfo.headline || ''}
               onChange={(e) => {
                 if (e.target.value.length <= 50) {
-                  updateBasicInfo({ whatYouDoHeadline: e.target.value })
+                  updateBasicInfo({ headline: e.target.value })
                 }
               }}
               maxLength={50}
             />
             <div className="text-xs text-right mt-1 text-muted-foreground">
-              {basicInfo.whatYouDoHeadline?.length || 0}/50 characters
+              {basicInfo.headline?.length || 0}/50 characters
             </div>
           </div>
 
@@ -270,12 +273,12 @@ export function BasicInfoForm() {
               htmlFor="linkedinProfile"
               className="input-label"
             >
-              LinkedIn Profile{' '}
+              LinkedIn Profile{' '} *
               <span className="text-xs text-muted-foreground">(https://www.linkedin.com/in/user-id/)</span>
             </Label>
             <Input
               id="linkedinProfile"
-              placeholder="https://www.linkedin.com/in/johndoe/"
+              placeholder=" "
               value={basicInfo.linkedinProfile}
               onChange={(e) => updateBasicInfo({ linkedinProfile: e.target.value })}
             />

@@ -58,15 +58,6 @@ const DashboardEnrolledCoursesView = () => {
 
           {/* Featured Content */}
           <div>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-semibold text-gray-800">My Courses</h2>
-              <button
-                onClick={() => navigate('/resources')}
-                className="text-indigo-600 hover:text-indigo-700 flex items-center"
-              >
-                View All <span className="ml-1">→</span>
-              </button>
-            </div>
             <div>
               {enrolledCourses.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
