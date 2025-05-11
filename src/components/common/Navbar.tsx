@@ -8,7 +8,7 @@ import Avatar from './Avatar'
 import { useDispatch } from 'react-redux'
 import tokenActions from '../../redux/actions/tokenActions'
 import config from '../../config'
-
+import metaDataActions from '../../redux/actions/metaDataActions'
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const dispatch = useDispatch()
@@ -19,6 +19,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(tokenActions.removeToken())
+    dispatch(metaDataActions.removeMetaData())
+    localStorage.clear()
     navigate('/')
   }
 
