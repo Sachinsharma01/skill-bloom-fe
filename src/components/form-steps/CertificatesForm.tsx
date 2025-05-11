@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { usePortfolio } from '../../context/PortfolioContext';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
@@ -10,9 +10,21 @@ import { toast } from 'sonner';
 import { Certificate } from '../../types';
 import { Calendar } from 'lucide-react';
 
-export function CertificatesForm() {
+export function CertificatesForm({ certificatesData }: { certificatesData: any }) {
   const { formData, updateCertificate, addCertificate, removeCertificate } = usePortfolio();
   const { certificates } = formData;
+
+  useEffect(() => {
+    certificates.forEach((certificate: any) => {
+      removeCertificate(certificate.id);
+    });
+
+    if (certificatesData) {
+      certificatesData.forEach((certificate: any) => {
+        addCertificate(certificate);
+      });
+    }
+  }, [certificatesData]);
   
   const [newCertificate, setNewCertificate] = useState({
     name: '',

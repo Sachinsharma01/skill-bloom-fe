@@ -1,6 +1,6 @@
 import supabase from "../supabase"
 
-const documentUpload = async (file: File, bucketName: string, fileName: string | undefined) => {
+const documentUpload = async (file: File, bucketName: string, fileName: string | undefined = undefined) => {
     if (!file) return
     try {
         const { data, error } : { data: any, error: any } = await supabase.storage.from(bucketName).upload(fileName ?? file.name, file)

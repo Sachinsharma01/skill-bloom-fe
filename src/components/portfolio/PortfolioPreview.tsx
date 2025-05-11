@@ -66,6 +66,8 @@ export function PortfolioPreview() {
     toast.success('Your portfolio is being generated... 🎉')
     console.log('Portfolio data', formData)
 
+    formData.basicInfo.whatYouDoHeadline = "  "
+
     makeAPICall(
       'savePortfolio',
       {

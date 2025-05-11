@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePortfolio } from '../../context/PortfolioContext';
 import { NavigationButtons } from './NavigationButtons';
 import { Button } from '../../components/ui/button';
@@ -29,9 +29,17 @@ import {
   AlertDescription
 } from "../../components/ui/alert";
 
-export function EducationForm() {
+export function EducationForm({ educationData }: { educationData: any}) {
   const { formData, addEducation, updateEducation, removeEducation, goToNextStep, goToPrevStep } = usePortfolio();
+  useEffect(() => {
+    if (educationData) {
+      educationData.forEach((education: any) => {
+        addEducation(education);
+      });
+    }
+  }, [educationData]);
   const { education } = formData;
+  console.log("education", education)
 
   const [isAdding, setIsAdding] = useState(false);
   const [editingEducation, setEditingEducation] = useState<Education | null>(null);

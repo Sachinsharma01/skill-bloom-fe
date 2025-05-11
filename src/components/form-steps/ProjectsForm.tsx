@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePortfolio } from '../../context/PortfolioContext';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
@@ -20,9 +20,17 @@ import { Project } from '../../types';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs';
 import { Switch } from '../../components/ui/switch';
 
-export function ProjectsForm() {
+export function ProjectsForm({ projectsData }: { projectsData: any }) {
   const { formData, addProject, updateProject, removeProject } = usePortfolio();
   const { projects } = formData;
+
+  useEffect(() => {
+    if (projectsData) {
+      projectsData.forEach((project: any) => {
+        addProject(project);
+      });
+    }
+  }, [projectsData]);
 
   const emptyProject: Omit<Project, 'id'> = {
     name: '',
@@ -673,9 +681,9 @@ export function ProjectsForm() {
                     </div>
                   </div>
                   
-                  {(project.technologies.length > 0 || project.keyFeatures.length > 0) && (
+                  {(project?.technologies?.length > 0 || project?.keyFeatures?.length > 0) && (
                     <div className="p-4 border-t bg-gray-50">
-                      {project.technologies.length > 0 && (
+                      {project?.technologies?.length > 0 && (
                         <div className="mb-2">
                           <h5 className="text-sm font-medium mb-1">Technologies:</h5>
                           <div className="flex flex-wrap gap-2">

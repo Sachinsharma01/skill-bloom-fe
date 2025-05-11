@@ -15,6 +15,8 @@ export function BasicInfoForm() {
   const { formData, updateBasicInfo } = usePortfolio()
   const { basicInfo } = formData
 
+  console.log("basicInfo", basicInfo)
+
   const handlePhotoChange = (file: File | null) => {
     if (file) {
       toast.loading('Uploading photo...')

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePortfolio } from '../../context/PortfolioContext';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
@@ -20,9 +20,24 @@ import {
 import { Switch } from '../../components/ui/switch';
 import { Skill } from '../../types';
 
-export function SkillsExpForm() {
+export function SkillsExpForm({ skillsData, experiencesData }: { skillsData: any, experiencesData: any }) {
   const { formData, addSkill, removeSkill, updateSkill, addExperience, updateExperience, removeExperience } = usePortfolio();
   const { skills, experiences } = formData;
+
+  useEffect(() => {
+    if (skillsData) {
+      skillsData.forEach((skill: any) => {
+        addSkill(skill.name, skill.category, skill.proficiency);
+      });
+      console.log("skillsData", skillsData)
+    }
+    if (experiencesData) {
+      experiencesData.forEach((experience: any) => {
+        addExperience(experience);
+      });
+      console.log("experiencesData", experiencesData)
+    }
+  }, [skillsData, experiencesData]);
   
   const [newSkill, setNewSkill] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<'technical' | 'tools' | 'additional'>('technical');

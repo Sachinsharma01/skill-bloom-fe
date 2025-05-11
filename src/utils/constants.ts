@@ -6,21 +6,21 @@ export const DEFAULT_CERTIFICATES: Certificate[] = [
     name: 'Excel: Mother of Business Intelligence',
     issuer: 'Codebasics',
     date: '2022',
-    selected: true,
+    selected: false,
   },
   {
     id: 'cert2',
     name: 'Get Job Ready: Power BI Data Analytics for All Levels 3.0',
     issuer: 'Codebasics',
     date: '2022',
-    selected: true,
+    selected: false,
   },
   {
     id: 'cert3',
     name: 'SQL Beginner to Advanced For Data Professionals',
     issuer: 'Codebasics',
     date: '2022',
-    selected: false,
+    selected: false,  
   },
 ]
 
