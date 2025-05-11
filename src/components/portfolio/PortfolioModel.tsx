@@ -107,7 +107,7 @@ const PortfolioModel = ({ onClick, open }: { onClick: () => void; open: boolean 
 
   const handleViewSample = () => {
     onClick()
-    window.open(`${config.skillbloom_portfoilo_url}/portfolio/6817dc2877afb432eed5b516`, '_blank')
+    window.open(`${config.skillbloom_portfoilo_url}/portfolio/681fb7e408b2dd085bbde23c`, '_blank')
   }
 
   return (

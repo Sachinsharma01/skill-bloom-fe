@@ -31,7 +31,9 @@ const ProfilePictureUploader = ({ user }: { user: any }) => {
       toast.error('Please upload an image')
       return
     }
-    documentUpload(file, BUCKET_NAMES.PROFILE).then((res: any) => {
+    console.log("user", user)
+    const fileName: string = `${user?.name.split(" ")[0]}_${user?.name.split(" ")[1]}_${file.name}`
+    documentUpload(file, BUCKET_NAMES.PROFILE, fileName).then((res: any) => {
       console.log('upload response', res)
       if (res.error) toast.error(res.message)
       if (res.data || res.url) {

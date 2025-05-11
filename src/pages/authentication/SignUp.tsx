@@ -26,13 +26,16 @@ function SignUp() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
+    toast.loading('Creating account...')
     const usernameError: string | Promise<boolean> = validateUserName(username)
     if (typeof usernameError === 'string') {
+      toast.dismiss()
       toast.error(usernameError)
       return
     } else {
       usernameError.then((response: any) => {
         if (!response.valid) {
+          toast.dismiss()
           toast.error('Username is already taken')
           setIsLoading(false)
           return
@@ -45,14 +48,17 @@ function SignUp() {
       email,
       password,
       mobile_number: mobile,
-      country,
-      state,
+      country: 'India',
+      state:  "N/A",
       profession,
     }).then((res: any) => {
       console.log(res)
-      if (res.error) {
-        toast.error(res.message ?? res.error)
+      if (res.error || res.errorMessage) {
+        toast.dismiss()
+        toast.error(res.message ?? res.error ?? res.errorMessage)
+        setIsLoading(false)
       } else {
+        toast.dismiss()
         toast.success('Account created successfully')
         setIsLoading(false)
         navigate('/login')
@@ -71,7 +77,7 @@ function SignUp() {
         padding: '1rem',
       }}
     >
-      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen py-8"> 
+      <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen py-8">
         <div className="flex flex-col lg:flex-row gap-4 justify-center items-center bg-white lg:p-10 p-4 rounded-lg w-full lg:w-[75%] max-w-6xl">
           {!isMobileDevice() && !isTabletDevice() && (
             <img
@@ -180,6 +186,7 @@ function SignUp() {
                       placeholder="Enter your mobile number"
                       onChange={(e) => setMobile(e.target.value)}
                       value={mobile}
+                      maxLength={10}
                     />
                   </div>
                   <div>
@@ -202,7 +209,7 @@ function SignUp() {
                     </select>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label
                       htmlFor="country"
@@ -235,7 +242,7 @@ function SignUp() {
                       value={state}
                     />
                   </div>
-                </div>
+                </div> */}
                 <Button
                   type="submit"
                   className="w-full mt-6"

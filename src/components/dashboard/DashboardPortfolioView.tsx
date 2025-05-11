@@ -21,12 +21,14 @@ const DashboardPortfolioView = () => {
   const viewLink =
     userHasPortfolioAccess && alreadyHasPortfolio
       ? `${config.skillbloom_portfoilo_url}/portfolio/${user?.portfolio_id}`
-      : `${config.skillbloom_portfoilo_url}/portfolio/6817dc2877afb432eed5b516`
+      : `${config.skillbloom_portfoilo_url}/portfolio/681fb7e408b2dd085bbde23c`
   const createdEditText = userHasPortfolioAccess && alreadyHasPortfolio ? 'Edit Portfolio' : 'Create Portfolio'
 
   const handleCreatePortfolio = () => {
     if (alreadyHasPortfolio) {
-      navigate(`${config.skillbloom_portfoilo_url}/portfolio/${user?.portfolio_id}`)
+      console.log('already has portfolio')
+      navigate('/portfolio/create')
+      // window.open(`${config.skillbloom_portfoilo_url}/portfolio/${user?.portfolio_id}`, '_blank')
     } else if (userHasPortfolioAccess && !alreadyHasPortfolio) {
       navigate('/portfolio/create')
     } else if (!userHasPortfolioAccess) {

@@ -35,7 +35,9 @@ const DashboardOverview = () => {
 
   const handleCreatePortfolio = () => {
     if (alreadyHasPortfolio) {
-      navigate(`${config.skillbloom_portfoilo_url}/portfolio/${user?.portfolio_id}`)
+      console.log('already has portfolio')
+      navigate('/portfolio/create')
+      // window.open(`${config.skillbloom_portfoilo_url}/portfolio/${user?.portfolio_id}`, '_blank')
     } else if (userHasPortfolioAccess && !alreadyHasPortfolio) {
       navigate('/portfolio/create')
     } else if (!userHasPortfolioAccess) {
