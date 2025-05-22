@@ -11,6 +11,8 @@ import { isMobileDevice, isTabletDevice } from '../../utils'
 import logo from '../../assets/logo.png'
 import authBg from '../../assets/auth_bg.png'
 import { Loader2 } from 'lucide-react'
+import { EyeIcon } from 'lucide-react'
+
 function SignUp() {
   const navigate = useNavigate()
 
@@ -23,6 +25,8 @@ function SignUp() {
   const [state, setState] = useState('')
   const [profession, setProfession] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
@@ -49,7 +53,7 @@ function SignUp() {
       password,
       mobile_number: mobile,
       country: 'India',
-      state:  "N/A",
+      state: 'N/A',
       profession,
     }).then((res: any) => {
       console.log(res)
@@ -162,14 +166,20 @@ function SignUp() {
                   >
                     Password
                   </label>
-                  <Input
-                    type="password"
-                    id="password"
-                    className="w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
-                    placeholder="Enter your password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                  />
+                  <div className="relative">
+                    <Input
+                      type={showPassword ? 'text' : 'password'}
+                      id="password"
+                      className="rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                      placeholder="Enter your password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                    />
+                    <EyeIcon
+                      className="w-4 h-4 absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
+                      onClick={() => setShowPassword(!showPassword)}
+                    />
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>

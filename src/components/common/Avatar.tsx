@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { LogOutIcon, ArrowRightIcon } from 'lucide-react'
 import ProfilePopover from '../profile/ProfilePopover'
 const Avatar: React.FC<{ image: string; name: string }> = ({ image, name }) => {
-  const imageSource = image ?? `https://d1om2ubwmy56c7.cloudfront.net/avatar/${name.split(' ')[0][0].toLowerCase()}.png`
+  console.log("image", image)
+  const imageSource = image ?? `https://ui-avatars.com/api/?name=${name.split(' ')[0]}+${name.split(' ')[1]}`
   const navigate = useNavigate()
+  console.log("imageSource", imageSource)
   // const [isHovered, setIsHovered] = useState(false)
   return (
     <div

@@ -117,7 +117,7 @@ const About = () => {
         <section className="bg-gradient-to-r from-edtech-dark to-edtech-secondary text-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center">
             <div className="w-full text-center">
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 whitespace-nowrap">
+              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
                 Unlock Your Potential with SkillBoom
               </h1>
               <p className="text-xl opacity-90 mb-8 max-w-3xl mx-auto">

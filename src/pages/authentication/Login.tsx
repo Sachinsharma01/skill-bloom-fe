@@ -11,7 +11,7 @@ import AuthImage from '../../assets/auth.jpeg'
 import { isMobileDevice, isTabletDevice } from '../../utils'
 import logo from '../../assets/logo.png'
 import authBg from '../../assets/auth_bg.png'
-import { Loader2 } from 'lucide-react'
+import { EyeIcon, Loader2 } from 'lucide-react'
 
 const Login: React.FC = () => {
   const dispatch = useDispatch()
@@ -20,6 +20,7 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -107,14 +108,20 @@ const Login: React.FC = () => {
                   >
                     Password
                   </label>
-                  <Input
-                    type="password"
-                    id="password"
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
-                    placeholder="Enter your password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                  />
+                  <div className="relative">
+                    <Input
+                      type={showPassword ? 'text' : 'password'}
+                      id="password"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-edtech-secondary focus:ring-edtech-secondary"
+                      placeholder="Enter your password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                    />
+                    <EyeIcon
+                      className="w-4 h-4 absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
+                      onClick={() => setShowPassword(!showPassword)}
+                    />
+                  </div>
                 </div>
                 <Button
                   type="submit"

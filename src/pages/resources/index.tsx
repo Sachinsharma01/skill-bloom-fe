@@ -73,8 +73,6 @@ const Resources: React.FC<{}> = () => {
     // Apply tab filter first
     if (activeTab === 'featured') {
       filtered = filtered.filter((resource: any) => resource.is_featured)
-    } else if (activeTab === 'recent') {
-      filtered = filtered.filter((resource: any) => new Date(resource.created_at) > new Date('2025-02-01'))
     }
 
     // Then apply search filter
@@ -262,12 +260,6 @@ const Resources: React.FC<{}> = () => {
                 className="rounded-full data-[state=active]:bg-white data-[state=active]:text-edtech-blue-dark data-[state=active]:shadow-sm"
               >
                 Featured
-              </TabsTrigger>
-              <TabsTrigger
-                value="recent"
-                className="rounded-full data-[state=active]:bg-white data-[state=active]:text-edtech-blue-dark data-[state=active]:shadow-sm"
-              >
-                Recent
               </TabsTrigger>
             </TabsList>
 

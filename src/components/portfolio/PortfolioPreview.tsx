@@ -83,7 +83,8 @@ export function PortfolioPreview() {
       } else {
         toast.success('Your portfolio has been generated! 🎉')
         dispatch(metaDataActions.setMetaData({ ...user, has_portfolio_access: true }))
-        navigate(`/dashboard/portfolio/${res._id}`)
+        console.log("res._id", res)
+        window.open(`https://skillbloom-portfolio.vercel.app/portfolio/${res._id}`, '_blank')
       }
     })
 

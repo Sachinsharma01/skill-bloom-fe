@@ -14,7 +14,7 @@ const Dashboard = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col md:flex-row min-h-screen bg-gray-50 relative">
+      <div className="flex flex-col md:flex-row bg-gray-50 relative">
         <div className="md:fixed md:top-[64px] md:left-0 md:h-[calc(100vh-64px)] md:w-64">
           <DashboardSidebar onClick={(tab) => setSelectedTab(tab)} selectedTab={selectedTab} />
         </div>
