@@ -4,6 +4,8 @@ import { makeAPICall } from '../../utils/api'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { LinkedinIcon, LinkIcon } from 'lucide-react'
+import { Button } from '../../components/ui/button'
+import ReviewModal from '../../components/common/ReviewModal'
 
 interface ResourceData {
   company_name: string
@@ -24,7 +26,9 @@ const DashboardCourseDetails: React.FC = () => {
   const [resourceData, setResourceData] = useState<APIData>()
   const { id } = useParams()
   const { token } = useSelector((state: any) => state.tokenReducer)
+  const { user } = useSelector((state: any) => state.metaDataReducer)
   const [loading, setLoading] = useState(true)
+  const [openReviewModal, setOpenReviewModal] = useState(false)
 
   useEffect(() => {
     const fetchCompanies = async () => {
@@ -38,6 +42,7 @@ const DashboardCourseDetails: React.FC = () => {
     fetchCompanies()
   }, [])
 
+
   console.log('resourceData', resourceData)
   return (
     <>
@@ -45,7 +50,16 @@ const DashboardCourseDetails: React.FC = () => {
       {loading && <div className="flex justify-center items-center h-screen">Loading...</div>}
       {!loading && (
         <div className="p-6">
-          <h1 className="text-2xl font-bold mb-6">{resourceData?.course?.name}</h1>
+          <div className="flex justify-between items-center">
+            <h1 className="text-2xl font-bold mb-6">{resourceData?.course?.name}</h1>
+            <Button
+              variant="secondary"
+              className="mb-6"
+              onClick={() => setOpenReviewModal(true)}
+            >
+              Review Course
+            </Button>
+          </div>
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white border border-gray-200">
               <thead className="bg-gray-50">
@@ -101,6 +115,15 @@ const DashboardCourseDetails: React.FC = () => {
           </div>
         </div>
       )}
+      {
+        <ReviewModal
+          open={openReviewModal}
+          onClick={() => setOpenReviewModal(false)}
+          courseId={id}
+          userId={user.id}
+          token={token}
+        />
+      }
     </>
   )
 }

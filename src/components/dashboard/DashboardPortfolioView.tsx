@@ -6,7 +6,7 @@ import GreetingBanner from '../common/GreetingBanner'
 import { isNullOrUndefined } from '../../utils'
 import config from '../../config'
 import { toast } from 'sonner'
-import PortfolioModel from '../portfolio/PortfolioModel'
+import PortfolioModel from '../portfolio/PortfolioModal'
 
 const DashboardPortfolioView = () => {
   const navigate = useNavigate()

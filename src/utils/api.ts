@@ -26,7 +26,11 @@ export const makeAPICall = async (api: string, payload?: any, token?: string) =>
     } catch (error: any) {
         console.error('API Error:', error);
         if (error.response) {
-            return error.response.data;
+            return {
+                response: error.response.data,
+                error: true,
+                errorMessage: error.response.data.errorMessage,
+            };
         }
         return {
             error: true,
@@ -86,6 +90,10 @@ const API = {
     },
     grantPortfolioAccess: async (payload: any, headers: any) => {
         const response = await axiosInstance.post(`/dashboard/portfolio/${payload.id}/grant_access`, payload, headers);
+        return response.data
+    },
+    reviewCourse: async (payload: any, headers: any) => {
+        const response = await axiosInstance.post(`/user/${payload.userId}/review_course/${payload.courseId}`, payload, headers);
         return response.data
     }
 }
