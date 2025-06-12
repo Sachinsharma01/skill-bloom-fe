@@ -16,6 +16,7 @@ import Portfolio from "./portfolio";
 import PortfolioDownload from "./portfolio/PortfolioDownload";
 import PortfolioCreate from "./portfolio/CreatePortfolio";
 // import Payment from "./payment";
+import QA from "./Q&A/index";
 
 const Navigation = () => {
   
@@ -38,6 +39,7 @@ const Navigation = () => {
           <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
           <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
           <Route path="/dashboard/course/:id" element={ isLoggedIn ? <DashboardCourseDetails /> : <Navigate to="/login" />} />
+          <Route path="/qa" element={ isLoggedIn ? <QA /> : <Navigate to="/login" />} />
           <Route path="/portfolio" element={isLoggedIn ? <Portfolio /> : <Navigate to="/login" />} />
           <Route path="/portfolio/download" element={isLoggedIn ? <PortfolioDownload /> : <Navigate to="/login" />} />
           <Route path="/portfolio/create" element={isLoggedIn ? <PortfolioCreate /> : <Navigate to="/login" />} />

@@ -38,6 +38,7 @@ const categoriesData = [
   { name: 'startups', count: 3 },
   { name: 'mncs', count: 1 },
   { name: 'product-based-companies', count: 1 },
+  { name: 'interviews', count: 1 },
   // { name: "SQL", count: 8 },
   // { name: "Python", count: 5 },
   // { name: "Interview Questions", count: 3 },
