@@ -100,7 +100,7 @@
         "course_id": 7,
         "description": "Explore the top questions asked in interviews and their unique offerings",
         "price": 19,
-        "image_url": "https://cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/67fad7bd003385be8d1c/view?project=67fabe35003d5a3f0bb3&mode=admin",
+        "image_url": "https://fra.cloud.appwrite.io/v1/storage/buckets/67fabed7002c52e15016/files/684b1cac0025f56eec0c/view?project=67fabe35003d5a3f0bb3&mode=admin",
         "category": "interviews",
         "author": "Akhil Dubey",
         "duration": 600,
