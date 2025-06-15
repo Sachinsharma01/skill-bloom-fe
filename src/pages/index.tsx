@@ -18,7 +18,7 @@ import PortfolioCreate from "./portfolio/CreatePortfolio";
 // import Payment from "./payment";
 import QA from "./Q&A/index";
 
-const Navigation = () => {
+const   Navigation = () => {
   
   const {user} = useSelector((state: any) => state.metaDataReducer)
   const { token, isLoggedIn } = useSelector((state: any) => state.tokenReducer);

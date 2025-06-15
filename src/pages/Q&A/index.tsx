@@ -84,11 +84,11 @@ const Index = () => {
               className={cn(
                 'absolute inset-0 transition-all duration-300',
                 completionRatio > 0.7
-                  ? 'bg-edtech-primary'
+                  ? 'bg-edtech-common'
                   : completionRatio > 0.3
-                  ? 'bg-edtech-primary/70'
+                  ? 'bg-edtech-common/70'
                   : completionRatio > 0
-                  ? 'bg-edtech-primary/30'
+                  ? 'bg-edtech-common/30'
                   : 'bg-gray-200',
               )}
               style={{ width: `${Math.max(completionRatio * 100, 3)}%` }}
@@ -104,14 +104,13 @@ const Index = () => {
       return <div className="flex w-full mt-1 gap-0.5">{segments}</div>
     }
 
-    // For fewer questions, show dots
     return questions.map((q, idx) => (
       <span
         key={q.id}
         className={cn(
           'w-4 h-4 rounded-full flex items-center justify-center text-xs border transition-all mx-0.5',
           completedQuestions[tabId][q.id]
-            ? 'bg-edtech-primary/10 border-edtech-primary text-edtech-primary'
+            ? 'bg-edtech-common/10 border-edtech-common text-edtech-common'
             : 'bg-white border-gray-300 text-gray-600',
         )}
       >
@@ -128,19 +127,9 @@ const Index = () => {
     <>
       <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-edtech-dark/5 to-edtech-primary/5">
-        {/* Redesigned fixed header with back button and improved question counter */}
         <div className="fixed left-0 right-0 z-50 bg-white shadow-md py-3 px-4 flex items-center justify-between border-b">
           <div className="flex items-center gap-3">
-            {/* Logo and Back button */}
-            <div className="flex items-center">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="ml-2 flex items-center gap-1 hover:bg-gray-100"
-              >
-                <ArrowLeft size={18} />
-              </Button>
-            </div>
+            <div className="flex items-center"></div>
           </div>
 
           <div className="flex-1 mx-6 max-w-md">
@@ -158,8 +147,7 @@ const Index = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            {/* Interactive visual counter with animation */}
-            <div className="bg-edtech-primary/10 rounded-full px-3 py-1.5 flex items-center gap-1.5">
+            <div className="bg-edtech-common/10 rounded-full px-3 py-1.5 flex items-center gap-1.5">
               <div className="flex space-x-1">
                 {Array.from({
                   length: Math.min(5, tabData.find((tab) => tab.id === activeTab)?.questions.length || 5),
@@ -174,7 +162,7 @@ const Index = () => {
                             (tabData.find((tab) => tab.id === activeTab)?.questions.length || 1)) *
                             5,
                         )
-                        ? 'bg-edtech-primary'
+                        ? 'bg-edtech-common'
                         : 'bg-gray-300',
                     )}
                   />
@@ -195,7 +183,7 @@ const Index = () => {
           <div className="text-center mb-12">
             <p className="text-lg md:text-xl text-edtech-secondary max-w-2xl mx-auto">
               Explore common questions and detailed answers across various categories.
-              <span className="font-medium text-edtech-primary ml-1">Click on any question to reveal the answer!</span>
+              <span className="font-medium text-edtech-common ml-1">Click on any question to reveal the answer!</span>
             </p>
           </div>
 
@@ -246,7 +234,7 @@ const Index = () => {
                   <div className="flex items-center justify-between mb-6">
                     <h2 className="text-2xl md:text-3xl font-serif font-bold text-edtech-dark text-center w-full">
                       {tab.label}
-                      <div className="h-1 w-20 bg-edtech-primary mt-2 mx-auto rounded-full"></div>
+                      <div className="h-1 w-20 bg-edtech-common mt-2 mx-auto rounded-full"></div>
                     </h2>
                   </div>
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/common/Navbar'
 import { makeAPICall } from '../../utils/api'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { LinkedinIcon, LinkIcon } from 'lucide-react'
 import { Button } from '../../components/ui/button'
@@ -29,12 +29,16 @@ const DashboardCourseDetails: React.FC = () => {
   const { user } = useSelector((state: any) => state.metaDataReducer)
   const [loading, setLoading] = useState(true)
   const [openReviewModal, setOpenReviewModal] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchCompanies = async () => {
       setLoading(true)
       makeAPICall('dashboardDetails', { id }, token as string).then((res: any) => {
         console.log('res', res)
+        if (parseInt(res.course.id) === 7) {
+          navigate('/qa')
+        }
         setResourceData(res)
         setLoading(false)
       })

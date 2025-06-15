@@ -126,7 +126,7 @@ const QACard: React.FC<QACardProps> = ({
               "flex items-center justify-center transition-all duration-300",
               expanded 
                 ? "bg-red-50 border-red-400 text-red-500 hover:bg-red-100" 
-                : "bg-teal-50 border-teal text-teal hover:bg-teal-100",
+                : "bg-edtech-common-light border-edtech-common text-edtech-common hover:bg-edtech-common hover:text-white",
               "min-w-24"
             )}
             onClick={toggleExpansion}
