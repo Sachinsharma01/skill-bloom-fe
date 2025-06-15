@@ -1,6 +1,7 @@
 import { makeAPICall } from './api'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import { createBrowserHistory } from 'history'
 
 export const validateUserName = (username: string) => {
   if (username.length < 3) {
@@ -46,3 +47,5 @@ export function cn(...inputs: ClassValue[]) {
 export const generateOrderId = () => {
   return Math.floor(Math.random() * 10000)
 }
+
+export const history = createBrowserHistory()
