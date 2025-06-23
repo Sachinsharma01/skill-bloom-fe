@@ -114,7 +114,7 @@ const ContactForm = () => {
           
           <Button 
             type="submit" 
-            className="w-full bg-edtech-primary hover:bg-opacity-90 text-white"
+            className="w-full bg-edtech-common hover:bg-edtech-common/90 text-white"
             disabled={form.formState.isSubmitting}
           >
             {form.formState.isSubmitting ? "Sending..." : "Send Message"}
