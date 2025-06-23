@@ -112,7 +112,7 @@ const Footer = () => {
                 placeholder="Your email address" 
                 className="bg-gray-800 border-gray-700 text-white"
               />
-              <Button className="bg-edtech-primary hover:bg-edtech-primary/90">
+              <Button className="bg-edtech-common hover:bg-edtech-common/90">
                 Subscribe
               </Button>
             </div>

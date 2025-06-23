@@ -94,7 +94,7 @@ const FeaturedCourses: React.FC = () => {
                     <p className="text-sm text-gray-600 mb-2">By {course.course.author}</p>
                     <div className="flex items-center justify-between mt-4">
                       <div className="flex items-baseline">
-                        <span className="text-edtech-dark font-bold text-lg">₹{course.course.price}</span>
+                        <span className="text-edtech-common font-bold text-lg">₹{course.course.price}</span>
                         <span className="text-gray-500 line-through text-sm ml-2">
                           ₹{course.course.originalPrice ?? course.course.price * 1.5}
                         </span>

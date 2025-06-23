@@ -197,7 +197,7 @@ const Resources: React.FC<{}> = () => {
 
       {/* Hero section with animated background */}
       <div className="relative overflow-hidden py-12 md:py-20">
-        <div className="absolute inset-0 bg-edtech-secondary text-white"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white"></div>
         <div className="relative container mx-auto px-4">
           <div className="flex flex-col items-center text-center space-y-6 max-w-4xl mx-auto">
             <span className="inline-flex items-center rounded-full border border-edtech-teal/30 bg-edtech-teal/10 px-3 py-1 text-sm font-medium text-white hover:bg-edtech-primary hover:text-white transition-colors duration-300">
@@ -462,7 +462,7 @@ const Resources: React.FC<{}> = () => {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => handleViewResource(resource)}
-                                className="text-black border-edtech-teal hover:bg-blue-500 hover:text-white"
+                                className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white rounded-full px-4 md:px-6 text-sm md:text-base"
                               >
                                 View Details
                               </Button>
@@ -541,7 +541,7 @@ const Resources: React.FC<{}> = () => {
                                 )}
                                 <Button
                                   onClick={() => handleViewResource(resource)}
-                                  className="bg-teal-500 border-edtech-teal text-white hover:bg-teal-500"
+                                  className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white rounded-full px-4 md:px-6 text-sm md:text-base"
                                 >
                                   View Details
                                 </Button>
@@ -768,7 +768,7 @@ const Resources: React.FC<{}> = () => {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => handleViewResource(resource)}
-                                className="text-edtech-teal border-edtech-teal hover:bg-edtech-teal hover:text-white"
+                                className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white rounded-full px-4 md:px-6 text-sm md:text-base"
                               >
                                 View Details
                               </Button>
@@ -845,7 +845,7 @@ const Resources: React.FC<{}> = () => {
                                 )}
                                 <Button
                                   onClick={() => handleViewResource(resource)}
-                                  className="bg-edtech-teal text-white hover:bg-edtech-teal/90"
+                                  className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white rounded-full px-4 md:px-6 text-sm md:text-base"
                                 >
                                   <Download
                                     size={16}
@@ -1051,8 +1051,8 @@ const Resources: React.FC<{}> = () => {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => handleViewResource(resource)}
-                                  className="bg-blue-600 hover:bg-blue-700 rounded-full px-4 md:px-6 text-sm md:text-base"
-                                >
+                                className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white rounded-full px-4 md:px-6 text-sm md:text-base"
+                              >
                                 View Details
                               </Button>
                             </div>
@@ -1130,7 +1130,7 @@ const Resources: React.FC<{}> = () => {
                                 )}
                                 <Button
                                   onClick={() => handleViewResource(resource)}
-                                  className="bg-blue-600 hover:bg-blue-700 rounded-full px-4 md:px-6 text-sm md:text-base"
+                                  className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white rounded-full px-4 md:px-6 text-sm md:text-base"
                                 >
                                   <Download
                                     size={16}

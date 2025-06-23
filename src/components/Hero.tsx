@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Hero = () => {
   const navigate = useNavigate();
   return (
-    <div className="relative bg-gradient-to-r from-edtech-dark to-edtech-secondary overflow-hidden">
+    <div className="relative bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <svg className="h-full w-full" viewBox="0 0 800 800">
@@ -37,7 +37,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="bg-edtech-primary hover:bg-edtech-primary/90 text-white font-medium px-6"
+                className="bg-edtech-common hover:bg-edtech-common/50 text-white font-medium px-6"
                 onClick={() => navigate('/resources')}
               >
                 Explore Resources
@@ -59,7 +59,7 @@ const Hero = () => {
                   <div className="text-edtech-dark font-bold">
                     Web Development Masterclass
                   </div>
-                  <div className="text-edtech-primary font-bold">$89</div>
+                  <div className="text-edtech-primary font-bold"></div>
                 </div>
                 <div className="mt-1 flex items-center">
                   <div className="flex text-yellow-500">

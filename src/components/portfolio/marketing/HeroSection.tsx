@@ -47,9 +47,9 @@ const HeroSection = ({ onPreview, onBuy }: HeroSectionProps) => {
           
           <Button 
             onClick={onPreview}
-            variant="outline" 
+ 
             size="lg"
-            className="w-full sm:w-auto text-base text-black sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full border-white/30 text-white hover:bg-white/10 backdrop-blur"
+            className="w-full bg-yellow-400 sm:w-auto text-base text-black sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full border-white/30 text-white hover:bg-white/10 backdrop-blur"
           >
             See Live Demo
           </Button>

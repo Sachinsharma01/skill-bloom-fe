@@ -114,7 +114,7 @@ const About = () => {
 
       <main className="bg-gray-50">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-edtech-dark to-edtech-secondary text-white py-20">
+        <section className="bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center">
             <div className="w-full text-center">
               <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
@@ -128,7 +128,7 @@ const About = () => {
               <div className="flex justify-center space-x-4">
                 <Button
                   asChild
-                  className="bg-brand-teal hover:bg-opacity-90 text-white"
+                  className="bg-edtech-common hover:bg-edtech-common/90 text-white"
                 >
                   <Link to="/resources">Explore Our Resources</Link>
                 </Button>
@@ -227,7 +227,7 @@ const About = () => {
         </section>
 
         {/* Core Values */}
-        <section className="py-10 md:py-24 bg-edtech-dark text-white">
+        <section className="py-10 md:py-24 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold mb-4">Our Core Values</h2>
@@ -292,7 +292,7 @@ const About = () => {
             <h2 className="text-3xl font-serif font-bold text-brand-blue-dark mb-12 text-center">Our Journey</h2>
             <div className="relative">
               {/* Vertical line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-edtech-secondary/30"></div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-edtech-common-light"></div>
 
               <div className="space-y-12">
                 {milestones.map((milestone, index) => (
@@ -301,7 +301,7 @@ const About = () => {
                     className={`relative flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}
                   >
                     {/* Year bubble */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-edtech-secondary flex items-center justify-center text-white font-bold z-10">
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-edtech-common flex items-center justify-center text-white font-bold z-10">
                       {milestone.year}
                     </div>
 
@@ -355,7 +355,7 @@ const About = () => {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button
                 asChild
-                className="bg-edtech-secondary hover:bg-opacity-90 text-white"
+                className="bg-edtech-common hover:bg-edtech-common/90 text-white"
               >
                 <Link to="/resources">Explore Resources</Link>
               </Button>
@@ -365,7 +365,7 @@ const About = () => {
               <Button
                 asChild
                 variant="outline"
-                className="border-edtech-dark text-edtech-dark hover:bg-edtech-dark/10"
+                className="border-edtech-common text-edtech-common hover:bg-edtech-common/10"
               >
                 <Link to="/contact">Contact Us</Link>
               </Button>

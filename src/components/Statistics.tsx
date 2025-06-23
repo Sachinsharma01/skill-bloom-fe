@@ -96,13 +96,13 @@ const Statistics = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-edtech-primary/10 text-edtech-primary mb-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-edtech-common/10 text-edtech-common mb-4">
                 <stat.icon size={24} />
               </div>
               <div className="text-3xl md:text-4xl font-bold text-edtech-dark mb-2">
                 {statsData[stat.value] || 0}
               </div>
-              <div className="text-lg font-medium text-edtech-primary mb-1">
+              <div className="text-lg font-medium text-edtech-common mb-1">
                 {stat.label}
               </div>
               <div className="text-sm text-edtech-secondary">

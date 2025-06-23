@@ -66,6 +66,7 @@ export default {
           common: '#396FDF',
           'common-light': '#E6F0FF',
           white: '#FFFFFF',
+          'common-dark': '#2D3748',
         },
       },
       borderRadius: {
