@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../../../components/ui/dialog";
 import { Button } from "../../../components/ui/button";
 import { X, ExternalLink } from "lucide-react";
+import config from "../../../config";
 
 interface DemoModalProps {
   isOpen: boolean;
@@ -52,7 +53,7 @@ const DemoModal = ({ isOpen, onClose }: DemoModalProps) => {
               </div>
               
               <div className="mt-6 sm:mt-8">
-                <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
+                <Button onClick={() => window.open(`${config.skillbloom_portfoilo_url}/portfolio/681fb7e408b2dd085bbde23c`, '_blank')} className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">
                   <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                   Open Full Demo
                 </Button>

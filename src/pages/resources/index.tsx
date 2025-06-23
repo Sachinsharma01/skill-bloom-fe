@@ -16,6 +16,8 @@ import Navbar from '../../components/common/Navbar'
 import { Badge } from '../../components/ui/badge'
 import { Button } from '../../components/ui/button'
 import { Card, CardContent } from '../../components/ui/card'
+import { Card as ResourceCard } from '../../components/resource/resourceDetails/ui/card'
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs'
 import { ScrollArea } from '../../components/ui/scroll-area'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select'
@@ -397,7 +399,7 @@ const Resources: React.FC<{}> = () => {
                 {viewType === 'grid' ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {displayedResources.map((resource: any) => (
-                      <Card
+                      <ResourceCard
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60"
                       >
@@ -439,13 +441,7 @@ const Resources: React.FC<{}> = () => {
                           </h3>
                           <p className="text-edtech-blue-medium text-sm mb-4 line-clamp-2">{resource.description}</p>
                           <div className="flex justify-between items-center">
-                            <div className="flex items-center text-xs text-gray-500">
-                              <Calendar
-                                size={12}
-                                className="mr-1"
-                              />
-                              <span>{resource.date}</span>
-                            </div>
+                            <div className="flex items-center text-xs text-gray-500"></div>
                             <div className="flex items-center gap-2">
                               {resource.isFree ? (
                                 <Badge
@@ -459,21 +455,21 @@ const Resources: React.FC<{}> = () => {
                                   variant="outline"
                                   className="text-blue-600 border-blue-200 bg-blue-50"
                                 >
-                                  ${resource.price}
+                                  ₹{resource.price}
                                 </Badge>
                               )}
                               <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={() => handleViewResource(resource)}
-                                className="text-black border-edtech-teal hover:bg-teal-500 hover:text-white"
+                                className="text-black border-edtech-teal hover:bg-blue-500 hover:text-white"
                               >
                                 View Details
                               </Button>
                             </div>
                           </div>
                         </CardContent>
-                      </Card>
+                      </ResourceCard>
                     ))}
                   </div>
                 ) : (
@@ -709,7 +705,7 @@ const Resources: React.FC<{}> = () => {
                 {viewType === 'grid' ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {displayedResources.map((resource: any) => (
-                      <Card
+                      <ResourceCard
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60"
                       >
@@ -750,10 +746,6 @@ const Resources: React.FC<{}> = () => {
                           <p className="text-edtech-blue-medium text-sm mb-4 line-clamp-2">{resource.description}</p>
                           <div className="flex justify-between items-center">
                             <div className="flex items-center text-xs text-gray-500">
-                              <Calendar
-                                size={12}
-                                className="mr-1"
-                              />
                               <span>{resource.date}</span>
                             </div>
                             <div className="flex items-center gap-2">
@@ -783,7 +775,7 @@ const Resources: React.FC<{}> = () => {
                             </div>
                           </div>
                         </CardContent>
-                      </Card>
+                      </ResourceCard>
                     ))}
                   </div>
                 ) : (
@@ -990,7 +982,7 @@ const Resources: React.FC<{}> = () => {
                 {viewType === 'grid' ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {displayedResources.map((resource: any) => (
-                      <Card
+                      <ResourceCard
                         key={resource.id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60"
                       >
@@ -1059,14 +1051,14 @@ const Resources: React.FC<{}> = () => {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => handleViewResource(resource)}
-                                className="text-edtech-teal border-edtech-teal hover:bg-edtech-teal hover:text-white"
-                              >
+                                  className="bg-blue-600 hover:bg-blue-700 rounded-full px-4 md:px-6 text-sm md:text-base"
+                                >
                                 View Details
                               </Button>
                             </div>
                           </div>
                         </CardContent>
-                      </Card>
+                      </ResourceCard>
                     ))}
                   </div>
                 ) : (
@@ -1138,7 +1130,7 @@ const Resources: React.FC<{}> = () => {
                                 )}
                                 <Button
                                   onClick={() => handleViewResource(resource)}
-                                  className="bg-edtech-teal text-white hover:bg-edtech-teal/90"
+                                  className="bg-blue-600 hover:bg-blue-700 rounded-full px-4 md:px-6 text-sm md:text-base"
                                 >
                                   <Download
                                     size={16}

@@ -112,13 +112,13 @@ const Navbar = () => {
               <Button
                 onClick={() => navigate('/login')}
                 variant="outline"
-                className="text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white"
+                className="text-edtech-common border-edtech-common hover:bg-edtech-common hover:text-white"
               >
                 Log In
               </Button>
               <Button
                 onClick={() => navigate('/signup')}
-                className="bg-edtech-primary hover:bg-edtech-primary/90 text-white"
+                className="bg-edtech-common hover:bg-edtech-common/90 text-white"
               >
                 Sign Up
               </Button>
@@ -208,13 +208,13 @@ const Navbar = () => {
                     <Button
                       onClick={() => navigate('/login')}
                       variant="outline"
-                      className="w-full text-edtech-primary border-edtech-primary hover:bg-edtech-primary hover:text-white"
+                      className="w-full text-edtech-common border-edtech-common hover:bg-edtech-common hover:text-white"
                     >
                       Log In
                     </Button>
                     <Button
                       onClick={() => navigate('/signup')}
-                      className="w-full bg-edtech-primary hover:bg-edtech-primary/90 text-white"
+                      className="w-full bg-edtech-common hover:bg-edtech-common/90 text-white"
                     >
                       Sign Up
                     </Button>

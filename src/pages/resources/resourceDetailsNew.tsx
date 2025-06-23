@@ -1,5 +1,5 @@
 import { Button } from '../../components/ui/button'
-import { Card, CardContent } from '../../components/ui/card'
+import { Card, CardContent } from '../../components/resource/resourceDetails/ui/card'
 import { Badge } from '../../components/ui/badge'
 import { CheckCircle, Users, TrendingUp, Zap, Star, Download, BookOpen, Briefcase } from 'lucide-react'
 import Navbar from '../../components/common/Navbar'
@@ -267,7 +267,7 @@ const ResourceDetailsNew = () => {
                       <h4 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-gray-900">{resource.title}</h4>
                       <p className="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">{resource.description}</p>
                       <div className="flex items-center justify-between">
-                        <span className="text-xl md:text-2xl font-bold text-blue-600">{resource.price}</span>
+                        <span className="text-xl md:text-2xl font-bold text-blue-600">₹{resource.price}</span>
                         <Button
                           onClick={() => navigate(`/resources/${resource.course_id}`, { replace: true })}
                           className="bg-blue-600 hover:bg-blue-700 rounded-full px-4 md:px-6 text-sm md:text-base"

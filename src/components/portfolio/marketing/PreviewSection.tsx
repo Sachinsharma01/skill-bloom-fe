@@ -52,27 +52,6 @@ const PreviewSection = ({ onPreview }: PreviewSectionProps) => {
               </div>
             </div>
           </div>
-
-          {/* Feature highlights */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 px-4 sm:px-0">
-            <div className="text-center p-4 sm:p-6 bg-gray-800 rounded-xl sm:rounded-2xl">
-              <Code className="w-8 h-8 sm:w-12 sm:h-12 text-purple-400 mx-auto mb-3 sm:mb-4" />
-              <h4 className="text-lg sm:text-xl font-bold mb-2">Clean Code</h4>
-              <p className="text-gray-400 text-sm sm:text-base">Built with modern React and TypeScript</p>
-            </div>
-            
-            <div className="text-center p-4 sm:p-6 bg-gray-800 rounded-xl sm:rounded-2xl">
-              <Smartphone className="w-8 h-8 sm:w-12 sm:h-12 text-blue-400 mx-auto mb-3 sm:mb-4" />
-              <h4 className="text-lg sm:text-xl font-bold mb-2">Responsive</h4>
-              <p className="text-gray-400 text-sm sm:text-base">Perfect on desktop, tablet, and mobile</p>
-            </div>
-            
-            <div className="text-center p-4 sm:p-6 bg-gray-800 rounded-xl sm:rounded-2xl sm:col-span-2 lg:col-span-1">
-              <Eye className="w-8 h-8 sm:w-12 sm:h-12 text-green-400 mx-auto mb-3 sm:mb-4" />
-              <h4 className="text-lg sm:text-xl font-bold mb-2">Eye-Catching</h4>
-              <p className="text-gray-400 text-sm sm:text-base">Designed to impress and convert</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
