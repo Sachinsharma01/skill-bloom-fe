@@ -18,7 +18,6 @@ import { Button } from '../../components/ui/button'
 import { Card, CardContent } from '../../components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs'
 import { ScrollArea } from '../../components/ui/scroll-area'
-import { useToast } from '../../hooks/use-toast'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select'
 import {
   Pagination,
@@ -31,33 +30,27 @@ import {
 import publicApi from '../../utils/publicApi'
 import resourcesData from '../../static/courses.json'
 
-// TODO Replace with actual data from the database
-
 // Category data with counts
 const categoriesData = [
   { name: 'startups', count: 3 },
   { name: 'mncs', count: 1 },
   { name: 'product-based-companies', count: 1 },
   { name: 'interviews', count: 1 },
-  // { name: "SQL", count: 8 },
-  // { name: "Python", count: 5 },
-  // { name: "Interview Questions", count: 3 },
-  // { name: "Power BI", count: 2 },
-  // { name: "Machine Learning", count: 2 }
 ]
 
 const Resources: React.FC<{}> = () => {
-  window.scrollTo({ top: 0, left: 0 })
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [sortBy, setSortBy] = useState('popular')
-  const [viewType, setViewType] = useState('masonry')
+  const [viewType, setViewType] = useState('grid')
   const [activeTab, setActiveTab] = useState('all')
   const [isSearchFocused, setIsSearchFocused] = useState(false)
   const [displayedResources, setDisplayedResources] = useState(resourcesData)
   const [resources, setResources] = useState([])
   const navigate = useNavigate()
-  const { toast } = useToast()
+  const [refetch, setRefetch] = useState(false)
+
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
 
   // Update displayed resources when filters change
   useEffect(() => {
@@ -68,7 +61,10 @@ const Resources: React.FC<{}> = () => {
         setResources(data.data)
       }
     }
-    fetchResources()
+    if (refetch) {
+      fetchResources()
+      setRefetch(false)
+    }
     let filtered = [...resourcesData]
 
     // Apply tab filter first
@@ -103,7 +99,7 @@ const Resources: React.FC<{}> = () => {
     })
 
     setDisplayedResources(filtered)
-  }, [activeTab, searchQuery, selectedCategory, sortBy])
+  }, [activeTab, searchQuery, selectedCategory, sortBy, refetch])
 
   // Animation effect for cards
   useEffect(() => {
@@ -282,7 +278,7 @@ const Resources: React.FC<{}> = () => {
                 </SelectContent>
               </Select>
 
-              <div className="inline-flex items-center gap-1 bg-white border rounded-full p-1">
+              {/* <div className="inline-flex items-center gap-1 bg-white border rounded-full p-1">
                 <Button
                   variant={viewType === 'grid' ? 'default' : 'ghost'}
                   size="icon"
@@ -299,7 +295,7 @@ const Resources: React.FC<{}> = () => {
                 >
                   <ListFilter size={16} />
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
 

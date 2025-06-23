@@ -17,6 +17,8 @@ import PortfolioDownload from "./portfolio/PortfolioDownload";
 import PortfolioCreate from "./portfolio/CreatePortfolio";
 // import Payment from "./payment";
 import QA from "./Q&A/index";
+import PortfolioMarketing from "./portfolio/marketing";
+import ResourceDetailsNew from "./resources/resourceDetailsNew";
 
 const   Navigation = () => {
   
@@ -32,7 +34,7 @@ const   Navigation = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/resources" element={<Resources />} />
-          <Route path="/resources/:id" element={<ResourceDetail />} />
+          <Route path="/resources/:id" element={<ResourceDetailsNew />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Login />} />
           <Route path="/signup" element={isLoggedIn ? <Navigate to="/dashboard" /> : <SignUp />} />
@@ -40,7 +42,7 @@ const   Navigation = () => {
           <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
           <Route path="/dashboard/course/:id" element={ isLoggedIn ? <DashboardCourseDetails /> : <Navigate to="/login" />} />
           <Route path="/qa" element={ isLoggedIn ? <QA /> : <Navigate to="/login" />} />
-          <Route path="/portfolio" element={isLoggedIn ? <Portfolio /> : <Navigate to="/login" />} />
+          <Route path="/portfolio" element={isLoggedIn ? <Portfolio /> : <PortfolioMarketing />} />
           <Route path="/portfolio/download" element={isLoggedIn ? <PortfolioDownload /> : <Navigate to="/login" />} />
           <Route path="/portfolio/create" element={isLoggedIn ? <PortfolioCreate /> : <Navigate to="/login" />} />
           {/* <Route path="/payment/:id" element={<Payment />} /> */}

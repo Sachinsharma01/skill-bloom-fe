@@ -33,7 +33,8 @@ const Login: React.FC = () => {
 
     makeAPICall('signin', { email, password }).then((res: any) => {
       if (res.error ?? res.errorMessage) {
-        toast.error(res.error ?? res.errorMessage)
+        console.log('new check', res)
+        toast.error(res.errorMessage ?? res.error)
         setIsLoading(false)
         return
       }
