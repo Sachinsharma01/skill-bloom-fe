@@ -430,7 +430,7 @@ const Resources: React.FC<{}> = () => {
                         </div>
                         <CardContent className="p-4 md:p-6">
                           <h4 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-gray-900">{resource.title}</h4>
-                          <p className="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">{resource.description.slice(0, 40)}...</p>
+                          <p className="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">{resource.description}</p>
                           <div className="flex items-center justify-between">
                             <span className="text-xl md:text-2xl font-bold text-blue-600">₹{resource.price}</span>
                             <Button
