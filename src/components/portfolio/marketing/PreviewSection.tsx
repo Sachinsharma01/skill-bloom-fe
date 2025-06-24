@@ -1,6 +1,6 @@
 import { Button } from "../../../components/ui/button";
 import { Play, Eye, Code, Smartphone } from "lucide-react";
-import { toast } from "/hooks/use-toast";
+import { toast } from "../../../hooks/use-toast";
 
 interface PreviewSectionProps {
   onPreview: () => void;
