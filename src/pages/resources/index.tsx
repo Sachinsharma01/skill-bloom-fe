@@ -40,6 +40,24 @@ const categoriesData = [
   { name: 'interviews', count: 1 },
 ]
 
+interface Resource {
+  course_id: number
+  image_url: string
+  title: string
+  description: string
+  price: number
+  name: string
+  category: string
+  author: string
+  duration: number
+  rating: number
+  is_featured: boolean
+  is_published: boolean
+  created_at: string
+  updated_at: string
+  downloads: number
+}
+
 const Resources: React.FC<{}> = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
@@ -400,73 +418,27 @@ const Resources: React.FC<{}> = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {displayedResources.map((resource: any) => (
                       <ResourceCard
-                        key={resource.id}
+                        key={resource.course_id}
                         className="resource-card opacity-0 rounded-xl overflow-hidden transform transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-edtech-teal/30 border border-gray-200/60"
                       >
-                        <div className="relative h-40 overflow-hidden">
+                        <div className="aspect-video overflow-hidden">
                           <img
                             src={resource.image_url}
                             alt={resource.title}
-                            className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
+                            className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                           />
-                          {resource.featured && (
-                            <div className="absolute top-3 left-3">
-                              <Badge className="bg-edtech-teal text-white border-none">
-                                <Sparkles
-                                  size={12}
-                                  className="mr-1"
-                                />
-                                Featured
-                              </Badge>
-                            </div>
-                          )}
-                          <div className="absolute bottom-3 right-3 flex items-center bg-black/50 text-white text-xs rounded-full px-2 py-1 backdrop-blur-sm">
-                            <Download
-                              size={10}
-                              className="mr-1"
-                            />
-                            {resource.downloads.toLocaleString()}
-                          </div>
                         </div>
-                        <CardContent className="p-4">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Badge className={`${getCategoryClass(resource.category)}`}>{resource.category}</Badge>
-                            <div className="flex items-center text-xs text-gray-500">
-                              {getResourceTypeIcon(resource.type)}
-                              <span className="ml-1">{resource.type}</span>
-                            </div>
-                          </div>
-                          <h3 className="text-lg font-semibold text-edtech-blue-dark mb-2 line-clamp-2">
-                            {resource.title}
-                          </h3>
-                          <p className="text-edtech-blue-medium text-sm mb-4 line-clamp-2">{resource.description}</p>
-                          <div className="flex justify-between items-center">
-                            <div className="flex items-center text-xs text-gray-500"></div>
-                            <div className="flex items-center gap-2">
-                              {resource.isFree ? (
-                                <Badge
-                                  variant="outline"
-                                  className="text-green-600 border-green-200 bg-green-50"
-                                >
-                                  Free
-                                </Badge>
-                              ) : (
-                                <Badge
-                                  variant="outline"
-                                  className="text-blue-600 border-blue-200 bg-blue-50"
-                                >
-                                  ₹{resource.price}
-                                </Badge>
-                              )}
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => handleViewResource(resource)}
-                                className="bg-blue-600 text-white hover:bg-blue-700 hover:text-white rounded-full px-4 md:px-6 text-sm md:text-base"
-                              >
-                                View Details
-                              </Button>
-                            </div>
+                        <CardContent className="p-4 md:p-6">
+                          <h4 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-gray-900">{resource.title}</h4>
+                          <p className="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">{resource.description.slice(0, 40)}...</p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xl md:text-2xl font-bold text-blue-600">₹{resource.price}</span>
+                            <Button
+                              onClick={() => navigate(`/resources/${resource.course_id}`, { replace: true })}
+                              className="bg-blue-600 hover:bg-blue-700 rounded-full px-4 md:px-6 text-sm md:text-base"
+                            >
+                              View Details
+                            </Button>
                           </div>
                         </CardContent>
                       </ResourceCard>

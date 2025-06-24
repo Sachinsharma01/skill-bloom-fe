@@ -1,3 +1,4 @@
+import { toast } from '../../../hooks/use-toast'
 import { Button } from '../../../components/ui/button'
 import { ArrowRight, Sparkles } from 'lucide-react'
 
@@ -37,7 +38,11 @@ const HeroSection = ({ onPreview, onBuy }: HeroSectionProps) => {
 
         <div className="flex flex-col gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12 px-4 sm:px-0">
           <Button
-            onClick={onBuy}
+            onClick={() => toast({
+              title: 'Trust us, it is coming soon!',
+              description: 'We are working on it and it will be available soon.',
+              variant: 'info',
+            })}
             size="lg"
             className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full group transition-all duration-300 hover:scale-105"
           >
@@ -46,7 +51,11 @@ const HeroSection = ({ onPreview, onBuy }: HeroSectionProps) => {
           </Button>
 
           <Button
-            onClick={onPreview}
+            onClick={() => toast({
+              title: 'Trust us, it is coming soon!',
+              description: 'We are working on it and it will be available soon.',
+              variant: 'info',
+            })}
             size="lg"
             className="bg-yellow-400 text-blue-800 hover:bg-yellow-300 text-lg px-6 md:px-8 py-3 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-semibold w-full sm:w-auto"
           >
