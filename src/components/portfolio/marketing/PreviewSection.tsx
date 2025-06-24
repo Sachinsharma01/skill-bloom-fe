@@ -1,5 +1,6 @@
 import { Button } from "../../../components/ui/button";
 import { Play, Eye, Code, Smartphone } from "lucide-react";
+import { toast } from "/hooks/use-toast";
 
 interface PreviewSectionProps {
   onPreview: () => void;
@@ -37,7 +38,11 @@ const PreviewSection = ({ onPreview }: PreviewSectionProps) => {
                     <h3 className="text-lg sm:text-2xl font-bold mb-2">Interactive Demo</h3>
                     <p className="text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">Click to see the full portfolio in action</p>
                     <Button 
-                      onClick={onPreview}
+                      onClick={() => toast({
+                        title: 'Trust us, it is coming soon!',
+                        description: 'We are working on it and it will be available soon.',
+                        variant: 'info',
+                      })}
                       className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3"
                     >
                       <Eye className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
