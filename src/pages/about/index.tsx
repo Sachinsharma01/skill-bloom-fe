@@ -114,12 +114,10 @@ const About = () => {
 
       <main className="bg-gray-50">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white py-20">
+        <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center">
             <div className="w-full text-center">
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
-                Unlock Your Potential with SkillBoom
-              </h1>
+              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">Unlock Your Potential with SkillBoom</h1>
               <p className="text-xl opacity-90 mb-8 max-w-3xl mx-auto">
                 At SkillBoom, we're redefining how individuals prepare for the professional world.
                 <br />
@@ -128,7 +126,7 @@ const About = () => {
               <div className="flex justify-center space-x-4">
                 <Button
                   asChild
-                  className="bg-edtech-common hover:bg-edtech-common/90 text-white"
+                  className="bg-yellow-400 text-blue-800 hover:bg-yellow-300 text-lg px-6 md:px-8 py-3 md:py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-semibold w-full sm:w-auto"
                 >
                   <Link to="/resources">Explore Our Resources</Link>
                 </Button>
@@ -227,7 +225,7 @@ const About = () => {
         </section>
 
         {/* Core Values */}
-        <section className="py-10 md:py-24 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
+        <section className="py-10 md:py-24 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-serif font-bold mb-4">Our Core Values</h2>

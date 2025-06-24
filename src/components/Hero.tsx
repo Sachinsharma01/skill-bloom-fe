@@ -1,13 +1,16 @@
-import { Button } from "./ui/button";
-import { useNavigate } from "react-router-dom";
+import { Button } from './ui/button'
+import { useNavigate } from 'react-router-dom'
 
 const Hero = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   return (
-    <div className="relative bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 overflow-hidden">
+    <div className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <svg className="h-full w-full" viewBox="0 0 800 800">
+        <svg
+          className="h-full w-full"
+          viewBox="0 0 800 800"
+        >
           <defs>
             <pattern
               id="pattern"
@@ -17,10 +20,19 @@ const Hero = () => {
               height="20"
               patternUnits="userSpaceOnUse"
             >
-              <circle cx="10" cy="10" r="1" fill="white" />
+              <circle
+                cx="10"
+                cy="10"
+                r="1"
+                fill="white"
+              />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#pattern)" />
+          <rect
+            width="100%"
+            height="100%"
+            fill="url(#pattern)"
+          />
         </svg>
       </div>
 
@@ -28,16 +40,16 @@ const Hero = () => {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="text-white animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Stand Out With a Live Portfolio & Curated Career Resources
+              Stand Out With a Live Portfolio & Curated Career Resources
             </h1>
             <p className="text-lg md:text-xl opacity-90 mb-8">
-            Get online in 5 minutes with an effortless portfolio builder.
-            Explore top resources to boost your job search and professional brand.
+              Get online in 5 minutes with an effortless portfolio builder. Explore top resources to boost your job
+              search and professional brand.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="bg-edtech-common hover:bg-edtech-common/50 text-white font-medium px-6"
+                className="bg-yellow-400 text-blue-800 hover:bg-yellow-300 text-lg px-6 md:px-8 py-3 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-semibold w-full sm:w-auto"
                 onClick={() => navigate('/resources')}
               >
                 Explore Resources
@@ -56,9 +68,7 @@ const Hero = () => {
               </div>
               <div className="mt-4">
                 <div className="flex justify-between items-center">
-                  <div className="text-edtech-dark font-bold">
-                    Web Development Masterclass
-                  </div>
+                  <div className="text-edtech-dark font-bold">Web Development Masterclass</div>
                   <div className="text-edtech-primary font-bold"></div>
                 </div>
                 <div className="mt-1 flex items-center">
@@ -75,9 +85,7 @@ const Hero = () => {
                       </svg>
                     ))}
                   </div>
-                  <span className="ml-1 text-sm text-gray-500">
-                    4.9 (2,532 reviews)
-                  </span>
+                  <span className="ml-1 text-sm text-gray-500">4.9 (2,532 reviews)</span>
                 </div>
               </div>
             </div>
@@ -89,7 +97,7 @@ const Hero = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

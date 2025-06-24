@@ -197,7 +197,7 @@ const Resources: React.FC<{}> = () => {
 
       {/* Hero section with animated background */}
       <div className="relative overflow-hidden py-12 md:py-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white"></div>
         <div className="relative container mx-auto px-4">
           <div className="flex flex-col items-center text-center space-y-6 max-w-4xl mx-auto">
             <span className="inline-flex items-center rounded-full border border-edtech-teal/30 bg-edtech-teal/10 px-3 py-1 text-sm font-medium text-white hover:bg-edtech-primary hover:text-white transition-colors duration-300">

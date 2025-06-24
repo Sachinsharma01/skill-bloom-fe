@@ -45,7 +45,7 @@ const FeaturedCourses: React.FC = () => {
                 <Button
                   onClick={() => navigate('/resources')}
                   variant="outline"
-                  className="border-edtech-primary text-edtech-primary hover:bg-edtech-primary hover:text-white"
+                  className="border-edtech-common text-edtech-common hover:bg-edtech-common hover:text-white"
                 >
                   View All
                 </Button>
