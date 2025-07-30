@@ -8,8 +8,6 @@ import About from "./about";
 import Blog from "./blog";
 import Contact from "./contact";
 import Home from "./home/Index";
-import Login from "./authentication/Login";
-import SignUp from "./authentication/SignUp";
 import Dashboard from "./dashboard";
 import DashboardCourseDetails from "./dashboard/DashboardCourseDetails";
 import Portfolio from "./portfolio";
@@ -19,6 +17,7 @@ import PortfolioCreate from "./portfolio/CreatePortfolio";
 import QA from "./Q&A/index";
 import PortfolioMarketing from "./portfolio/marketing";
 import ResourceDetailsNew from "./resources/resourceDetailsNew";
+import Authentication from "./authentication";
 
 const   Navigation = () => {
   
@@ -36,8 +35,8 @@ const   Navigation = () => {
           <Route path="/resources" element={<Resources />} />
           <Route path="/resources/:id" element={<ResourceDetailsNew />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Login />} />
-          <Route path="/signup" element={isLoggedIn ? <Navigate to="/dashboard" /> : <SignUp />} />
+          <Route path="/login" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Authentication />} />
+          <Route path="/signup" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Authentication />} />
           <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
           <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
           <Route path="/dashboard/course/:id" element={ isLoggedIn ? <DashboardCourseDetails /> : <Navigate to="/login" />} />

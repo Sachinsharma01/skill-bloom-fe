@@ -50,7 +50,7 @@ const API = {
     },
     username: async (payload: any) => {
         const response = await axiosInstance.get('/validate/username', { params: payload });
-        return response.data.data
+        return response.data
     },
     profile: async (payload: { id: number }, headers: any) => {
         const response = await axiosInstance.get(`/user/profile/${payload.id}`, headers);
